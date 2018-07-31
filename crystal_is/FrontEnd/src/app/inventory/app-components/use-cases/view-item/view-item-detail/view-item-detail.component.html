@@ -1,0 +1,61 @@
+<div *ngIf="this.getDataReady()">
+  <div class="col-md-10">
+    <table class="table table-responsive table-striped">
+      <thead>
+          <tr>
+              <th colspan="3" style="text-align: center;">General</th>
+            </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">Name</td>
+          <td  style="text-align: center;" colspan="2">{{this.getItem().getName()}}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">Description</td>
+          <td style="text-align: center;" colspan="2">{{this.getItem().getDescription()}}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">Unit</td>
+          <td style="text-align: center;" colspan="2">{{this.getItem().getUnitName(this.getUnits())}}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">Price</td>
+          <td style="text-align: center;" colspan="2">{{this.getItem().getPrice()}}</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">Stock</td>
+          <td style="text-align: center;" colspan="2">{{this.getItem().getStock()}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th colspan="3" style="text-align: center;">Quantitative attributes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let attribute of this.getItem().getAttrSet().getQuanAttrSet()">
+          <td style="text-align: center;">{{attribute.getName()}}</td>
+          <td style="text-align: center;">{{attribute.getUnitName(this.getUnits())}}</td>
+          <td style="text-align: center;">{{attribute.getMagnitude()}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+            <th colspan="3" style="text-align: center;">Qualitative attributes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let attribute of this.getItem().getAttrSet().getQualAttrSet()">
+              <td style="text-align: center;">{{attribute.getName()}}</td>
+              <td style="text-align: center;" colspan="2">{{attribute.getDescription()}}</td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
+</div>

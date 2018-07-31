@@ -1,0 +1,89 @@
+<div *ngIf="this.getDataReady()">
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th colspan="3" style="text-align: center;">General</th>
+              </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">Name</td>
+            <td  style="text-align: center;" colspan="2">{{this.getItem().getName()}}</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">Description</td>
+            <td style="text-align: center;" colspan="2">{{this.getItem().getDescription()}}</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">Unit</td>
+            <td style="text-align: center;" colspan="2">{{this.getItem().getUnitName(this.getUnits())}}</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">Cost</td>
+            <td style="text-align: center;" colspan="2">{{this.getItem().getCost()}}</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">Stock</td>
+            <td style="text-align: center;" colspan="2">{{this.getItem().getStock()}}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table class="table table-responsive table-striped">
+        <thead>
+          <tr>
+            <th colspan="3" style="text-align: center;">Quantitative attributes</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let attribute of this.getItem().getAttrSet().getQuanAttrSet()">
+            <td style="text-align: center;">{{attribute.getName()}}</td>
+            <td style="text-align: center;">{{attribute.getUnitName(this.getUnits())}}</td>
+            <td style="text-align: center;">{{attribute.getMagnitude()}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-responsive table-striped">
+        <thead>
+          <tr>
+              <th colspan="3" style="text-align: center;">Qualitative attributes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let attribute of this.getItem().getAttrSet().getQualAttrSet()">
+                <td style="text-align: center;">{{attribute.getName()}}</td>
+                <td style="text-align: center;" colspan="2">{{attribute.getDescription()}}</td>
+              </tr>
+            </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div class="row" style="padding-top: 10px;">
+      <div class="col-md-2">
+        <button class="btn btn-info" (click)="this.showPurchaseHistory()">Purchase history</button>
+      </div>
+    </div>
+    <div *ngIf="this.getShowPurchaseHistory()" style="padding-top: 20px;">
+      <div class="row">
+        <div class="col-md-10">
+      <table class="table table-hover">
+        <thead>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let purchase_record of this.getItem().getPurchaseHistory().getPurchaseRecords()">
+            <td>{{purchase_record.getDate()}}</td>
+            <td>{{purchase_record.getPrice()}}</td>
+            <td>{{purchase_record.getQuantity()}}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      </div>
+    </div>
+  </div>
