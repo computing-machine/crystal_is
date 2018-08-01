@@ -2,20 +2,20 @@ import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule, Router} from "@angular/router";
 
-import {SidebarComponent} from "../components/gui-elements/sidebar/sidebar.component";
-import {ContentComponent} from "../components/gui-elements/content/content.component";
 import {SearchFinishedGoodComponent} from "../components/use-cases/view-finished-good/search-finished-good/search-finished-good.component";
 import {ViewFinishedGoodDetailComponent} from "../components/use-cases/view-finished-good/view-finished-good-detail/view-finished-good-detail.component";
 import {SearchRawMaterialComponent} from "../components/use-cases/view-raw-material/search-raw-material/search-raw-material.component";
 import {ViewRawMaterialDetailComponent} from "../components/use-cases/view-raw-material/view-raw-material-detail/view-raw-material-detail.component";
 import {SearchIntermediaryComponent} from "../components/use-cases/view-intermediary/search-intermediary/search-intermediary.component";
 import {ViewIntermediaryDetailComponent} from "../components/use-cases/view-intermediary/view-intermediary-detail/view-intermediary-detail.component";
-import { DashboardComponent } from '../components/gui-elements/dashboard/dashboard.component';
+import { InventorySidebarComponent } from '../components/gui-elements/inventory-sidebar/inventory-sidebar.component';
+import { InventoryContentComponent } from '../components/gui-elements/inventory-content/inventory-content.component';
+import { InventoryDashboardComponent } from '../components/gui-elements/inventory-dashboard/inventory-dashboard.component';
 
 const inventory_routes: Routes=[
   {
     path:"Inventory",
-    component:DashboardComponent,
+    component:InventoryDashboardComponent,
     children:[
       {
         path:"FinishedGoods",
@@ -54,5 +54,5 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[SidebarComponent,ContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
-  SearchRawMaterialComponent,ViewRawMaterialDetailComponent,SearchIntermediaryComponent,ViewIntermediaryDetailComponent, DashboardComponent];
+export const inventory_routing_components=[InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
+  SearchRawMaterialComponent,ViewRawMaterialDetailComponent,SearchIntermediaryComponent,ViewIntermediaryDetailComponent, InventoryDashboardComponent];
