@@ -1,0 +1,58 @@
+<div *ngIf="this.data_ready">
+<div class ="row">
+    <div class="col-md-11" >
+      <h2>All Vendors</h2>
+        <div class="panel panel-default" >
+            <div class="panel-heading" style="background-color: #2e353d">
+                <font color="white">View Vendor</font>
+            </div>
+            <div class="panel-body">
+            <div class="col-md-12">
+        <table class="table table-responsive{-sm|-md|-lg|-xl} table-hover" >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Payable</th>
+                <th>View Purchase Orders</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let vendor of vendors">
+                <td>{{vendor.getName()}}</td>
+                <td >
+                  <div  *ngFor="let contact of vendor.getContacts()">
+                    {{contact}}
+                  </div>
+                </td>
+                <td>
+                    <div  *ngFor="let address of vendor.getAddresses()">
+                      <div>
+                        {{address.getCity()}}
+                        {{address.getStreet()}}
+                        {{address.getHouseNo()}}
+                      </div>
+                    </div>
+                </td>
+                <td>
+                <div *ngFor ="let vendor of vendors">
+                 {{vendor.getPayable()}}
+                </div>
+                </td>
+                <td>
+                        <div class="col-sm-8">
+                            <button style="background-color: white;  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); color: black; border: 2px solid #2e353d"
+                                type="submit" class="btn">View POs</button>
+                        </div>
+                </td>
+              
+              </tr>
+            </tbody>
+          </table> 
+          </div>
+        </div>
+          </div>   
+    </div>
+  </div>
+  </div>

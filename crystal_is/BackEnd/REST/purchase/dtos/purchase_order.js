@@ -2,17 +2,20 @@ let mongoose = require("mongoose");
 let Employee=require("../../payroll/dtos/employee");
 let Vendor=require("./vendor");
 let RawMaterial=require("../../inventory/dtos/raw_material");
-
+let Unit=require("../../inventory/dtos/unit");
+ 
 let PurchaseOrderSchema = mongoose.Schema({
     purchaser_id:{type:mongoose.Schema.Types.ObjectId, ref:Employee, required:true},
     vendor_id:{type:mongoose.Schema.Types.ObjectId, ref:Vendor, required:true},
     order_date:{type:Date, required:true},
+    status:String,
     due_date:Date,
     payable:Number,
-    deliverables:[{rm_id:{type:mongoose.Schema.Types.ObjectId, ref:RawMaterial, required:true}, quantity:Number}],
-    recieved:[{rm_id:{type:mongoose.Schema.Types.ObjectId, ref:RawMaterial, ref:RawMaterial}, quantity:Number, date:Date, stockkeeper_id:{type:mongoose.Schema.Types.ObjectId, ref:Employee}}],
-    invoiced:{ref_number:Number, status:Boolean, date:Date, payments:[{date:Date, amount:Number}]},
-    delivery:{status:Boolean, date:Date, builty:{status:Boolean, num:String}}
+    deliverables:[{rm_id:{type:mongoose.Schema.Types.ObjectId, ref:RawMaterial, required:true},
+        unit_id:{type:mongoose.Schema.Types.ObjectId, ref:Unit, required:true},quantity:Number,
+        price:Number,recievings:[{date:Date, quantity:Number, note:String, bilty:{status:Boolean, ref_number:Number}}]}],
+    invoice:{ref_number:Number, payments:[{date:Date, amount:Number, reciept_number:Number, note:String}]},
+    history:[{status:String, date:Date}]
 });
 
 let PurchaseOrder=module.exports = mongoose.model("PurchaseOrder",PurchaseOrderSchema,"PurchaseOrder");

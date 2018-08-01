@@ -14,6 +14,17 @@ router.get("/Units", (req, res)=>{
     });
 });
 
+router.get("/Unit/:id", (req, res)=>{
+    Unit.getById(req.params.id,(err, unit)=>{
+        if(err){
+            res.send(err);
+        }//if
+        else{
+            res.json(unit);
+        }//else
+    })
+});
+
 router.post("/Units", (req, res)=>{
     let unit=req.body;
     Unit.addUnit(unit, (err, unit)=>{

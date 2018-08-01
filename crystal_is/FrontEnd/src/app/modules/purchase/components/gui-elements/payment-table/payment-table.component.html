@@ -1,0 +1,20 @@
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Reciept Number</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Note</th>
+        </thead>
+        
+        
+        <tbody>
+            <tr *ngFor="let payment of payments">
+                <td>{{payment.getRecieptNumber()}}</td>
+                <td>{{payment.getDate()}}</td>
+                <td>{{payment.getAmount()}}</td>
+                <td>{{payment.getNote()}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

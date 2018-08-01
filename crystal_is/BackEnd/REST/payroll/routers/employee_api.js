@@ -14,7 +14,7 @@ router.get("/Employees", (req, res)=>{
 });
 
 //output: {type:Employee}
-router.get("/Employees/:id", (req, res, next)=>{
+router.get("/Employee/:id", (req, res, next)=>{
     Employee.getById(req.params.id,(err, employee)=>{
         if(err){
             res.send(err)}//if
@@ -25,7 +25,7 @@ router.get("/Employees/:id", (req, res, next)=>{
 });
 
 //output: [{type:Employee},{type:JobDescription},{type:SalaryPackage}]
-router.get("/Employees/:id/JobDes",(req, res)=>{
+router.get("/Employee/:id/JobDes",(req, res)=>{
     Employee.getJobDesById(req.params.id,(err,jd)=>{
         if(err){res.send(err);}//if
         else{
@@ -34,7 +34,7 @@ router.get("/Employees/:id/JobDes",(req, res)=>{
     });
 });
 
-router.get("/Employees/:id/Attendance", (req, res)=>{
+router.get("/Employee/:id/Attendance", (req, res)=>{
     Employee.getAttenById(req.params.id, (err, attendace)=>{
         if(err){res.send(err);}//if
         else{
@@ -43,7 +43,7 @@ router.get("/Employees/:id/Attendance", (req, res)=>{
     });
 });
 
-router.get("/Department/:dept/Designation/:des/Employees",(req, res)=>{
+router.get("/Employees/Department/:dept/Designation/:des",(req, res)=>{
     Employee.getEmpByDeptDes(req.params.dept, req.params.des, (err, employees)=>{
         if(err){res.send(err);}//if
         else{
@@ -52,7 +52,7 @@ router.get("/Department/:dept/Designation/:des/Employees",(req, res)=>{
     });
 });
 
-router.get("/Department/:dept/Employees", (req,res)=>{
+router.get("/Employees/Department/:dept", (req,res)=>{
     Employee.getEmpByDept(req.params.dept, (err, employees)=>{
         if(err){res.send(err);}//if
     else{

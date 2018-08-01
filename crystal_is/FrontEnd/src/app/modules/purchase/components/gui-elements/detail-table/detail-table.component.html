@@ -1,0 +1,37 @@
+<div *ngIf="this.getDataReady()">
+    
+    <table class ="table table-striped "> 
+
+    <thead class="thead-light">   
+        <th>Name</th>
+        <th>Unit</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{this.getRawMaterial().getName()}}</td>
+            <td>{{this.getUnit().getName()}}</td>
+            <td>{{this.getDeliverable().getPrice()}}</td>
+            <td>{{this.getDeliverable().getQuantity()}}</td>
+            <td><button (click)="showDetail()">Recievings</button></td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="this.getShowDetail()">
+<table class="table table-stripped" >
+                <thead>
+                    <th>Recieving Date</th>
+                    <th>Quantity</th>
+                    <th>Note</th>
+                </thead>
+    <tbody>
+        <tr *ngFor="let recieving of this.getDeliverable().getRecievings()">
+            <td>{{recieving.getDate()}}</td>
+            <td>{{recieving.getQuantity()}}</td>
+            <td>{{recieving.getNote()}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>

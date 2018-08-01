@@ -15,7 +15,7 @@ router.get("/PurchaseOrders",(req, res)=>{
     });
 });
 
-router.get("/PurchaseOrders/:id", (req, res)=>{
+router.get("/PurchaseOrder/:id", (req, res)=>{
     PurchaseOrder.getById(req.params.id, (err, purchase_order)=>{
         if(err){res.send(err);}//if
         else{

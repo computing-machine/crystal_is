@@ -1,0 +1,71 @@
+<div *ngIf="this.getDataReady()">
+    <h2>Purchase Order Details</h2>
+    <div class="row">
+        <div class ="col-md-11">
+    <div class="panel panel-success" >
+        <div class="panel-heading">View Purchase Orders</div>
+        <div class="panel-body">
+
+        
+    <table class="table table-striped">
+        <thead>
+            <th>General</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID</td>
+                <td>{{this.getPurchaseOrder().getId()}}</td>
+            </tr>
+            <tr>
+                <td>Vendor</td>
+                <td>{{this.getVendor().getName()}}</td>
+            </tr>
+            <tr>
+                <td>Purchaser</td>
+                <td>{{this.getPurchaser().getName()}}</td>
+            </tr>
+            <tr>
+                <td>Order date</td>
+                <td>{{this.getPurchaseOrder().getOrderDate()}}</td>
+            </tr>
+            <tr>
+                <td>Due date</td>
+                <td>{{this.getPurchaseOrder().getDueDate()}}</td>
+            </tr>
+            <tr>
+                <td>Late by</td>
+                <td>{{this.getPurchaseOrder().getLateDays()}}</td>
+            </tr>
+            <tr>
+                <td>Payable</td>
+                <td>{{this.getPurchaseOrder().getPayable()}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-toolbar col-md-12">
+        <div ><button (click)="this.showDeliverables()" class="btn btn-default " >Deliverables</button></div>
+        <div><button (click)="this.showInvoice()" class="btn btn-default ">Invoices </button></div>
+    </div>
+    
+    <div *ngIf="this.getShowDeliverables()">
+    <table  class="table table-striped">
+        <thead>
+                <th>Deliverables</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let deliverable of this.getPurchaseOrder().getDeliverables()">
+                <td><table class="table table-striped"> <app-detail-table [deliverable]="deliverable"></app-detail-table></table></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div *ngIf="this.getShowInvoice()">
+                      <app-payment-table [payments]="this.getPurchaseOrder().getInvoice().getPayments()"></app-payment-table>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+

@@ -1,0 +1,48 @@
+<div *ngIf="this.getDataReady()">
+    <div class="row">
+      <h2>All Purchase Orders</h2>
+        
+      <div class="panel panel-success col-md-11" >
+
+          <div class="panel-heading">View Purchase Orders</div>
+          <div class="panel-body">
+        <div class="col-md-12" style="margin-top:30px">
+          <table class="table table-responsive table-hover" >
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Order Date</th>
+                  <th>Vendor</th>
+                  <th>Purchaser</th>
+                  <th>Paybales</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let purchase_order of this.getPurchaseOrders()" >
+                  <td >
+                      {{purchase_order.getId()}}
+                </td>
+                  <td>
+                        {{purchase_order.getOrderDate()}}
+                  </td>
+                  <td>
+                        {{purchase_order.getVendorName(this.getVendors())}}
+                  </td>
+                  <td>
+                      {{purchase_order.getPurchaserName(this.getPurchasers())}}
+                  </td>
+                  
+                  <td>
+                      {{purchase_order.getPayable()}}
+                  </td>
+                  <td>N/A</td>
+                  <td><button class="btn btn-primary" (click)="getPurchaseOrderDetail(purchase_order.getId(),'/Purchase/PurchaseOrder/')">Detail</button></td>
+                </tr>
+              </tbody>
+            </table>    
+      </div>
+      </div>
+      </div>
+ </div>
+</div>

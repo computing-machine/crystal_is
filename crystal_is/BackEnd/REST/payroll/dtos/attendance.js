@@ -9,3 +9,11 @@ let AttendanceSchema=mongoose.Schema({
 });
 
 let Attendance=module.exports=mongoose.model("Attendance", AttendanceSchema, "Attendance");
+
+module.exports.getById=(id, callback)=>{
+    Attendance.findById(id, callback);
+}//getById
+
+module.exports.getAll=(callback)=>{
+    Attendance.find(callback);
+}//getAll
