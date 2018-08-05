@@ -4,7 +4,7 @@ let SalaryPackage=require("./salary_package");
 let JobDescriptionSchema=mongoose.Schema({
     department:String,
     designation:String,
-    salary_package:{type:mongoose.Schema.Types.ObjectId, ref:SalaryPackage},
+    salary_packages:[{id:{type:mongoose.Schema.Types.ObjectId, ref:SalaryPackage}, status:Boolean}],
     advantages:[{}]
 });
 

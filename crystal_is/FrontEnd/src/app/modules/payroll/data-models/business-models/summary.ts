@@ -1,12 +1,13 @@
+import { SummaryData } from "../json-models/summary-data";
 
 export class Summary{
 
     //API
-    constructor(summary:any){
+    constructor(summary_data:SummaryData){
 
-        this.setEffectiveFrom(summary.effective_from);
-        this.setExpiryDate(summary.expiry_date);
-        this.setDescription(summary.description);
+        this.setEffectiveFrom(summary_data.effective_from);
+        this.setExpiryDate(summary_data.expiry_date);
+        this.setDescription(summary_data.description);
 
     }//method
     
@@ -40,7 +41,6 @@ export class Summary{
 
 
     //data members
-    //private bom:BOM;
     private effective_from:Date;
     private expiry_date:Date;
     private description:String;

@@ -21,4 +21,22 @@ export class EmployeeService {
     }));
   }//method
 
+  getEmployee(id:object){
+    return this.http.get("http://localhost:3000/Payroll/EmployeeApi/Employee/"+id).pipe(map(data=>{
+      return data.json();
+    }));
+  }//method
+
+  getEmployees(){
+    return this.http.get("http://localhost:3000/Payroll/EmployeeApi/Employees").pipe(map(data=>{
+      return data.json();
+    }));
+  }//method
+
+  getEmpByLogId(id){
+    return this.http.get("http://localhost:3000/Payroll/EmployeeApi/Employee/LogId/"+id).pipe(map(data=>{
+      return data.json();
+    }));
+  }//method
+
 }//class ends

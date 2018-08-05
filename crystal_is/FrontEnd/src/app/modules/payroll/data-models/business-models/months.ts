@@ -1,43 +1,37 @@
 import {List} from "../collection-models/list";
-import {Days} from "./days";
+import {Day} from "./day";
+import { MonthData } from "../json-models/month-data";
 
 export class Month{
 
     //API
-    constructor(months:any){
+    constructor(month_data:MonthData){
 
-       
-        this.setNumber(months.number);
-        this.setDays(months.days);
-
+        this.days=new List<Day>();
+        this.setMonthNumber(month_data.month_number);
+        
+        for(let day_data of month_data.days){
+            this.days.add(new Day(day_data));
+        }//for
 
     }//method
-
 
     //mutators
-    setNumber(given_number:Number):void{
-        this.number=given_number;
+    setMonthNumber(given_number:Number):void{
+        this.month_number=given_number;
     }//method
-    setDays(given_days:List<Days>):void{
-        this.days=given_days;
-    }//method
-
-
-
-
 
     //accessors
-    getNumber():Number{
-        return this.number;
+    getMonthNumber():Number{
+        return this.month_number;
     }//method
-    getDays():List<Days>{
+    getDays():List<Day>{
         return this.days;
     }//method
     
 
 
     //data members
-    //private bom:BOM;
-    private number:Number;
-    private days: List<Days>;
+    private month_number:Number;
+    private days: List<Day>;
 }

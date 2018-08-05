@@ -1,13 +1,18 @@
 import { Summary } from "./summary";
 import { List } from "../collection-models/list";
-import { Facilities } from "./facilities";
+import { SalaryPackageData } from "../json-models/salary-package-data";
+import { Facility } from "./facility";
 
 export class SalaryPackage{
 
     //API
-    constructor(salaryPackage:any){
-        this.setSummary(salaryPackage.summary);
-        this.setFacilities(salaryPackage.facilities);
+    constructor(salary_package_data:SalaryPackageData){
+        this.setSummary(new Summary(salary_package_data.summary));
+        
+        this.facilities=new List<Facility>();
+        for(let facility_data of salary_package_data.facilities){
+            this.facilities.add(new Facility(facility_data));
+        }//for
 
     }//method
 
@@ -16,28 +21,17 @@ export class SalaryPackage{
     getInterReq():Number{return;}//method
 
     //mutators
-    setSummary(given_summary:List<Summary>):void{
+    setSummary(given_summary:Summary):void{
         this.summary=given_summary;
     }//method
-    setFacilities(given_facilities:List<Facilities>):void{
-        this.facilities=given_facilities;
-    }//method
-
-
-
-
 
     //accessors
-    getSalaryPackage():List<Summary>{
-        return this.summary;
-    }//method
+    getSummary():Summary{return this.summary;}
+    getFacilities():List<Facility>{return this.facilities;}
 
-    getAdvantages():List<Facilities>{
-        return this.facilities;
-    }//method
-
-    private summary:List <Summary>;
-    private facilities: List <Facilities>;
+    //data members
+    private summary:Summary;
+    private facilities: List <Facility>;
     
   
 }

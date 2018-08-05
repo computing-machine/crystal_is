@@ -30,17 +30,6 @@ router.get("/JobDescriptions/:id", (req, res)=>{
     });
 });
 
-router.get("/JobDescriptions/:description/:id", (req, res)=>{
-    JobDescription.getById(req.params.id, (err, jobDescriptions)=>{
-        if(err){
-            res.send(err);
-        }//if
-        else{
-            res.json(jobDescriptions);
-        }//else
-    });
-});
-
 /*
 // /Deductions/:department/:designation
 router.get("/JobDescriptions/:department/:designation", (req, res)=>{

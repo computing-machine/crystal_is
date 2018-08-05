@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {PurchaseOrderService} from "../../../../data-services/purchase-order/purchase-order.service";
 import {VendorService} from "../../../../data-services/vendor-service/vendor.service";
 import { PurchaseOrder } from '../../../../data-models/business-models/purchase-order';
@@ -7,6 +7,7 @@ import { Employee } from '../../../../../payroll/data-models/business-models/emp
 import { Vendor } from '../../../../data-models/business-models/vendor';
 import { EmployeeService } from '../../../../../payroll/data-services/Employee/employee.service';
 import {Router} from "@angular/router";
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-search-purchase-order',
@@ -15,7 +16,8 @@ import {Router} from "@angular/router";
 })
 export class SearchPurchaseOrderComponent implements OnInit {
 
-  constructor(private purchase_order_service:PurchaseOrderService,
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,
+              private purchase_order_service:PurchaseOrderService,
               private purchaser_service:EmployeeService,
               private vendor_service:VendorService, private router:Router) { }
 
@@ -24,16 +26,11 @@ export class SearchPurchaseOrderComponent implements OnInit {
     this.setPurchaseOrders(new List<PurchaseOrder>());
     this.setPurchasers(new List<Employee>());
     this.setVendors(new List<Vendor>());
-    this.purchase_order_service.getPurchaseOrders().subscribe(purchase_orders_data=>{
+    this.purchase_order_service.getPurchaserOrdersByPurchaser(this.storage.get("user_id")).subscribe(purchase_orders_data=>{
       for(let data of purchase_orders_data){
         this.getPurchaseOrders().add(new PurchaseOrder(data));
       }//for
       //asyn call
-      this.purchaser_service.getPurchasers().subscribe(purchasers_data=>{
-        for(let data of purchasers_data){
-          this.getPurchasers().add(new Employee(data));
-        }//for
-        //asyn call
         this.vendor_service.getVendors().subscribe(vendors_data=>{
           for(let data of vendors_data){
             this.getVendors().add(new Vendor(data));
@@ -41,7 +38,6 @@ export class SearchPurchaseOrderComponent implements OnInit {
           
           this.setDataReady(true);
         });//data-service
-      });//data-service
     })//data-service
   }//ngOnInit
 

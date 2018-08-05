@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ViewItemDetailComponent} from "../../view-item/view-item-detail/view-item-detail.component";
+import {ViewItemDetailComponent} from "../view-item-detail/view-item-detail.component";
 import {Item} from "../../../../data-models/business-models/item";
 import {RawMaterial} from "../../../../data-models/business-models/raw-material";
 import {Unit} from "../../../../data-models/business-models/unit";

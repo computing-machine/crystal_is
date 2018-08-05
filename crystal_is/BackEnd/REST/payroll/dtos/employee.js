@@ -32,7 +32,7 @@ module.exports.getJobDesById=(id, callback)=>{
             JobDescription.findById(employee.job_description,(err, job_description)=>{
                 if(err){console.log(err);}//if
                 else{
-                    for(let sp of job_description.salary_package)
+                    for(let sp of job_description.salary_packages)
                         if(sp.status==true)
                             salary_package_id=sp.id;
                     SalaryPackage.findById(salary_package_id, (err, salary_package)=>{
@@ -63,3 +63,7 @@ module.exports.getEmpByDept=(dept,callback)=>{
 module.exports.getAttenById=(emp_id, callback)=>{
     Attendance.find({employee_id:{$eq:emp_id}},callback);
 }//method
+
+module.exports.getEmpByLogId=(log_id, callback)=>{
+    Employee.find({log_in_info_id:{$eq:mongoose.Types.ObjectId(log_id)}}, callback);
+}

@@ -15,4 +15,10 @@ export class JobDescriptionService {
     }));
   }
 
+  getJobDes(id){
+    return this.http.get("http://localhost:3000/Payroll/JobDescriptionApi/JobDescriptions/"+id).pipe(map(data=>{
+      return data.json();
+    }));
+  }
+
 }

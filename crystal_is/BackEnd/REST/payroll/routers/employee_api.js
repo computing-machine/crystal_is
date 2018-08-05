@@ -61,4 +61,13 @@ router.get("/Employees/Department/:dept", (req,res)=>{
     });
 });
 
+router.get("/Employee/LogId/:id", (req,res)=>{
+    Employee.getEmpByLogId(req.params.id, (err, employee)=>{
+        if(err){res.send(err);}//if
+    else{
+        res.json(employee);
+    }//else
+    });
+});
+
 module.exports=router;

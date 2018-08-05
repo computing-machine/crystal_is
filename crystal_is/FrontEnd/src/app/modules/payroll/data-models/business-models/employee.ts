@@ -1,21 +1,36 @@
 import {List} from "../collection-models/list";
 import {Deduction} from "./deduction";
+import { EmployeeData } from "../json-models/employee-data";
+import { Address } from "./address";
+import { Contact } from "./contact";
 
 export class Employee{
 
     //API
-    constructor(employee:any){
+    constructor(employee:EmployeeData){
 
         this.setId(employee._id);
         this.setName(employee.name);
-        this.setAddress(employee.address);
-        this.setContact(employee.contact);
-        this.setContract(employee.contract);
-        this.setStartTime(employee.start_time);
-        this.setJobDescriptionId(employee.job_description_id);
-        this.setSupervisorOfId(employee.supervisor_of_id);
-        this.setDeduction(employee.deduction);
+        this.addresses=new List<Address>();
+        for(let address of employee.addresses){
+            this.addresses.add(new Address(address));
+        }//for
 
+        this.contacts=new List<Contact>();
+        for(let contact of employee.contacts){
+            this.contacts.add(new Contact(contact));
+        }//for
+
+        this.deductions=new List<Deduction>();
+        for(let deduction of employee.deductions){
+            this.deductions.add(new Deduction(deduction));
+        }//for
+        
+        this.setContract(employee.contract);
+        this.setJoiningDate(employee.joining_date);
+        this.setJobDescriptionId(employee.job_description_id);
+        this.setSupervisorId(employee.supervisor_id);
+        this.setLogInInfoId(employee.log_in_info_id);
 
     }//method
 
@@ -24,82 +39,35 @@ export class Employee{
     getInterReq():Number{return;}//method
 
     //mutators
-    setName(given_name:string):void{
-        this.name=given_name;
-    }//method
-
-    setAddress(given_address:String):void{
-        this.address=given_address;
-    }//method
-
-    setContact(given_contact:Number):void{
-        this.contact=given_contact;
-    }//method
-    setContract(given_contract:Number):void{
-        this.contract=given_contract;
-    }//method
-    setStartTime(given_start_time:Number):void{
-        this.start_time=given_start_time;
-    }//method
-    setJobDescriptionId(given_job_description_id:String):void{
-        this.job_description_id=given_job_description_id;
-    }//method
-    setSupervisorOfId(given_supervisor_of_id:String[]):void{
-        this.supervisor_of_id=given_supervisor_of_id;
-    }//method
-    setDeduction(given_deduction:List<Deduction>):void{
-        this.deductions=given_deduction;
-    }//method
-
+    setName(given_name:string):void{this.name=given_name;}//method
+    setContract(given_contract:Number):void{this.contract=given_contract;}//method
+    setJoiningDate(given_joining_date:Date):void{this.joining_date=given_joining_date;}//method
+    setJobDescriptionId(given_job_description_id:object):void{this.job_description_id=given_job_description_id;}//method
+    setSupervisorId(given_supervisor_id:object):void{this.supervisor_id=given_supervisor_id;}//method
     setId(given_id:object):void{this.id=given_id;}
-
-
-
-
-
+    setLogInInfoId(given_id:object):void{this.log_in_info_id=given_id;}
 
     //accessors
     getId():object{return this.id;}
-    getName():string{
-        return this.name;
-    }//method
-
-    getAddress():String{
-        return this.address;
-    }//method
-
-    getContact():Number{
-        return this.contact;
-    }//method
-
-    getContract():Number{
-        return this.contract;
-    }//method
-
-    getStartTime():Number{
-        return this.start_time;
-    }//method
-    getJobDescriptionId():String{
-        return this.job_description_id;
-    }//method
-    getSupervisorOfId():String[]{
-        return this.supervisor_of_id;
-    }//method
-    getDeduction():List<Deduction>{
-        return this.deductions;
-    }
-    
-
+    getName():string{return this.name;}//method
+    getAddresses():List<Address>{return this.addresses;}//method
+    getContacts():List<Contact>{return this.contacts;}//method
+    getContract():Number{return this.contract;}//method
+    getJoiningDate():Date{return this.joining_date;}//method
+    getJobDescriptionId():object{return this.job_description_id;}//method
+    getSupervisorId():object{return this.supervisor_id;}//method
+    getDeductions():List<Deduction>{return this.deductions;}
+    getLogInInfoId():object{return this.log_in_info_id;}
 
     //data members
-    //private bom:BOM;
     private id:object;
     private name:string;
-    private address:String;
-    private contact:Number;
+    private addresses:List<Address>;
+    private contacts:List<Contact>;
     private contract:Number;
-    private start_time:Number;
-    private job_description_id:String;
+    private joining_date:Date;
+    private job_description_id:object;
     private deductions: List<Deduction>;
-    private supervisor_of_id: String[] = [];
-}
+    private supervisor_id:object;
+    private log_in_info_id:object;
+}//class ends

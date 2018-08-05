@@ -1,14 +1,19 @@
 import {List} from "../collection-models/list";
 import {Month} from "./months";
+import { AttendanceData } from "../json-models/attendance-data";
 
 export class Attendance{
 
     //API
-    constructor(attendance:any){
+    constructor(attendance_data:AttendanceData){
 
-        this.setEmployeeId(attendance.employee_id);
-        this.setYear(attendance.year);
-        this.setMonths(attendance.months);
+        this.setEmployeeId(attendance_data.employee_id);
+        this.setYear(attendance_data.year);
+        
+        this.months=new List<Month>();
+        for(let month_data of attendance_data.months){
+            this.months.add(new Month(month_data));
+        }//for
 
     }//method
 
@@ -17,25 +22,20 @@ export class Attendance{
     getInterReq():Number{return;}//method
 
     //mutators
-    setEmployeeId(given_employee_id:String):void{
+    setEmployeeId(given_employee_id:object):void{
         this.employee_id=given_employee_id;
     }//method
 
-    setYear(given_year:Date):void{
+    setYear(given_year:number):void{
         this.year=given_year;
     }//method
-    setMonths(given_months:List<Month>):void{
-        this.months=given_months;
-    }//method
-
-
 
     //accessors
-    getEmployeeId():String{
+    getEmployeeId():object{
         return this.employee_id;
     }//method
 
-    getYear():Date{
+    getYear():number{
         return this.year;
     }//method
 
@@ -46,8 +46,7 @@ export class Attendance{
 
 
     //data members
-    //private bom:BOM;
-    private employee_id:String;
-    private year:Date;
+    private employee_id:object;
+    private year:number;
     private months: List<Month>;
 }

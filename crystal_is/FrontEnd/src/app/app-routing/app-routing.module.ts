@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
-import { LogInComponent } from '../log-in/log-in.component';
+import { LogInComponent } from '../entry-point/components/use-cases/log-in/log-in.component';
 
 const app_routes=[
   {

@@ -1,16 +1,27 @@
 import { List } from "../collection-models/list";
 import { SalaryPackage } from "./salary_package";
-import { Advantages } from "./advantages";
+import { JobDescriptionData } from "../json-models/job-description-data";
+import { SalaryPackageData } from "../json-models/salary-package-data";
+import { Facility } from "./facility";
+import {FacilityData} from "../json-models/facility-data";
 
 export class JobDescription{
 
     //API
-    constructor(jobDescription:any){
+    constructor(job_description_data:JobDescriptionData){
 
-        this.setDepartment(jobDescription.department);
-        this.setDesignation(jobDescription.designation);
-        this.setSalaryPackage(jobDescription.salary_package);
-        this.setAdvantages(jobDescription.advantages);
+        this.setDepartment(job_description_data.department);
+        this.setDesignation(job_description_data.designation);
+        this.salary_packages_ids=new List<object>();
+
+        for(let salary_package_id of job_description_data.salary_packages){
+            this.salary_packages_ids.add(salary_package_id);
+        }//for
+
+        this.facilities=new List<Facility>();
+        for(let facility_data of job_description_data.facilities){
+            this.facilities.add(new Facility(facility_data))
+        }//for
 
     }//method
 
@@ -26,16 +37,6 @@ export class JobDescription{
     setDesignation(given_designation:String):void{
         this.designation=given_designation;
     }//method
-    setSalaryPackage(given_salary_package:List<SalaryPackage>):void{
-        this.salary_package=given_salary_package;
-    }//method
-    setAdvantages(given_advantages:List<Advantages>):void{
-        this.advantages=given_advantages;
-    }//method
-
-
-
-
 
     //accessors
     getDepartment():String{
@@ -46,12 +47,12 @@ export class JobDescription{
         return this.designation;
     }//method
 
-    getSalaryPackage():List<SalaryPackage>{
-        return this.salary_package;
+    getSalaryPackages():List<object>{
+        return this.salary_packages_ids;
     }//method
 
-    getAdvantages():List<Advantages>{
-        return this.advantages;
+    getFacilities():List<Facility>{
+        return this.facilities;
     }//method
     
 
@@ -60,6 +61,6 @@ export class JobDescription{
     //private bom:BOM;
     private department:String;
     private designation:String;
-    private salary_package: List<SalaryPackage>;
-    private advantages: List<Advantages>;
+    private salary_packages_ids: List<object>;
+    private facilities: List<Facility>;
 }
