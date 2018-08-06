@@ -1,0 +1,52 @@
+
+<div *ngIf="this.getDataStatus()">
+    <div class="row" style="margin-top:20px">
+      <div>
+        <form class="form-inline" >
+          <div class="form-group col-md-3 col-sm-12 col-xs-12"   >
+            <input id="orderId" name="input_order_id" [(ngModel)]="input_order_id" type="input" (input)="getItems()" class="form-control" placeholder="Enter order id" >
+          </div>
+          <div class="form-group col-md-3 col-sm-12 col-xs-12"   >
+            <input  id="customer_name" name="input_customer_name" [(ngModel)]="input_customer_name" type="text" (input)="getItems()" class="form-control" placeholder="Enter customer name :">
+          </div>
+         
+        </form>
+        <div class="col-md-11" style="margin-top:30px">
+          <table class="table table-responsive table-hover" >
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Order Date</th>
+                  <th>Order Status</th>
+                  <th>Customer</th>
+                  <th>Total price</th>
+                  <th>Receivables</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let order of this.getResultOrders()" >
+                  <td >{{order.getSalesOrderId()}}</td>
+                  <td>
+                        {{order.getOrderDate()}}
+                  </td>
+                  <td>
+                        {{order.getStatus()}}
+                  </td>
+                  <td>
+                      {{order.getCusId()}}
+                  </td>
+                  <td>
+                      {{order.getTotalPrice()}}
+                  </td>
+                  <td>
+                      {{order.getReceivables()}}
+                  </td>
+                  <td><button class="btn btn-primary" (click)="getOrderDetail(this.order.getSalesOrderId())">Detail</button></td>
+                </tr>
+              </tbody>
+            </table>    
+      </div>
+      </div>
+    </div>
+    </div>

@@ -1,0 +1,26 @@
+<div  class="col-md-11" style="margin-top:30px">
+    <table class="table table-responsive table-hover" >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let person of result_persons" >
+            <td >{{person.getName()}}</td>
+            <td >
+              <div  *ngFor="let contact of person.getContacts()">
+                {{contact}}
+              </div>
+            </td>
+            <td>
+                <div  *ngFor="let address of person.getAddresses()">
+                    {{address.getAddress()}}
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>    
+</div>

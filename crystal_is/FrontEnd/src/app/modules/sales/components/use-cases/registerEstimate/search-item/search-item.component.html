@@ -1,0 +1,40 @@
+<div *ngIf="this.getDataStatus()" >
+  <div class="row" style='margin-top:15px'>
+    <div class="col-md-3 col-md-offset-4" >
+      <h3><strong>Select Items</strong></h3>
+    </div>
+    <div class="col-md-11">
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                  <th>Item ID</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Qunaity</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let item of this.getFinishGoods()" >
+                  <td >{{item.getId()}}</td>
+                  <td>{{item.getName()}}</td>
+                  <td>{{item.getDescription()}}</td>
+                  <td>{{item.getPrice()}}</td>
+                  <td>
+                    <select (change)="setQuanity($event.target.value)">
+                      <option *ngFor="let i of this.getfglength()">
+                        {{i}}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                        <button id="select_item_btn" class="btn btn-info" (click)="setSelectedFGItems($event.target,this.item,this.getQuantity())" >Select</button>
+                  </td>
+                </tr>
+              </tbody>
+        </table>
+        <button id="save_item_selec_btn" style="float:right" class="btn" (click)="saveFGSelection()">Save Selection</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+
+.bigicon {
+    font-size: 18px;
+    color: #4f5b69;
+}
+
+#submit_form_div
+{
+  border-style: inset;
+  border-width: 3px;
+}
+
+/* alert css */
+.alert-purple { border-color:#d19b3d ;background: #e1ffff;color: #4f5b69; }
+
+.alert a {color: gold;}
+

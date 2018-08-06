@@ -27,6 +27,7 @@ export class SearchPurchaseOrderComponent implements OnInit {
     this.setPurchasers(new List<Employee>());
     this.setVendors(new List<Vendor>());
     this.purchase_order_service.getPurchaserOrdersByPurchaser(this.storage.get("user_id")).subscribe(purchase_orders_data=>{
+      console.log(this.storage.get("user_id"));
       for(let data of purchase_orders_data){
         this.getPurchaseOrders().add(new PurchaseOrder(data));
       }//for

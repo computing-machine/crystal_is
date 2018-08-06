@@ -1,0 +1,41 @@
+<div *ngIf="this.getDataStatus()">
+    <form [formGroup]='regCusForm'>
+    <input placeholder="Enter Name" formControlName='name' type='text' >
+    <span *ngIf="name.invalid "  id='namespan'>
+       Name is required
+    </span>
+    <div formArrayName='companies'>
+        <div *ngFor='let company of companies.controls; let i= index'
+        [formGroupName]='i' >
+         <input formControlName = 'name'   placeholder="more companies">
+         <button (click)='deleteCompany(i)'>Delete</button>
+     </div>
+</div>
+
+<button (click)='MoreCompany()'>MoreCompany</button>
+
+    <div formArrayName='contacts'>
+        <div *ngFor='let contact of contacts.controls; let i=index'
+            [formGroupName]='i'>
+            <input  placeholder="contact" formControlName='cont' >
+            <button (click)='deleteContact(i)'>Delete</button>
+            <span *ngIf='contact.invalid'>touched</span>
+                    
+        </div>
+    </div>
+    <button (click)='MoreContacts()'>MoreContacts</button><hr>
+
+    <div formArrayName='addresses'>
+        <div *ngFor='let addr of address.controls ; let i = index'
+            [formGroupName]='i'>
+            <input placeholder='address' formControlName='address'>
+            <button (click)='deleteAddress(i)'>Delete</button>
+            <span *ngIf='addr.invalid'>Enter valid address </span>
+           
+        </div>
+    </div>
+    <button (click)='MoreAddresses()'>More Addresses</button>
+    
+    <button (click)='update()'[disabled]="regCusForm.invalid">Update</button>
+
+</form>

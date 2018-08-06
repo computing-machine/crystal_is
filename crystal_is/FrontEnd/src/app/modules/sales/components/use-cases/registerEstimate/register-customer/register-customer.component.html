@@ -1,0 +1,168 @@
+
+<!--Register Estimate-->
+<app-resgister-estimate></app-resgister-estimate>
+
+<!--<form [formGroup]='regCusForm'>
+    <input placeholder="Enter Name" formControlName='Name'>
+    <div formArrayName='companies'>
+            <div *ngFor='let company of CompanyForm.controls; let i= index'
+            [formGroupName]='i' >
+             <input formControlName = 'name' placeholder="more companies">
+             <button (click)='deleteCompany(i)'>Delete</button>
+         </div>
+    </div>
+    <button (click)='MoreCompany()'>MoreCompany</button><hr>
+
+    <div formArrayName='contacts'>
+        <div *ngFor='let contact of ContactForm.controls; let i=index'
+            [formGroupName]='i'>
+            <input placeholder="contact" formControlName='cont'>
+            <button (click)='deleteContact(i)'>Delete</button>
+        </div>
+    </div>
+    <button (click)='MoreContacts()'>MoreContacts</button><hr>
+
+    <div formArrayName='addresses'>
+        <div *ngFor='let address of AddressForm.controls ; let i = index'
+            [formGroupName]='i'>
+            <input placeholder='address' formControlName='address'>
+            <button (click)='deleteAddress(i)'>Delete</button>
+        </div>
+    </div>
+    <button (click)='MoreAddresses()'>More Addresses</button>
+    
+    <button (click)='submit()' data-toggle="modal" data-target="#regCus">submit</button>
+
+</form>-->
+<div class='col-md-12'>
+    <h3 style='text-align: center'>Register Customer</h3>
+</div>
+<div class="col-md-7 col-md-offset-2">
+    <form [formGroup]='regCusForm' >
+            <div class='col-md-8 form-group' >
+                <label>Name</label>
+                <input placeholder="Enter Name" formControlName='name' class=' form-control' >
+                <span  *ngIf="name.invalid ">
+                        Name is required
+                </span>
+            </div>
+        
+        <div formArrayName='companies' class='form-group' >
+                <div *ngFor='let company of companies.controls; let i= index'
+                [formGroupName]='i' >
+                
+                    <div class='col-md-8' style='margin-bottom:15px'>
+                        <label>Company</label>
+                        <input style='width : 100%'formControlName = 'name' placeholder="more companies" class='form-control'>
+                        <span *ngIf='company.invalid '>Enter Company or delete it</span>
+                    </div>
+                    <div class='col-md-2' style='margin-top:25px'>
+                        <button  class='btn btn-danger'(click)='deleteCompany(i)'>Delete</button>
+                    </div>
+                </div>
+                <div class='col-md-2' style='margin-top:25px'>
+                    <button class='btn btn-primary '(click)='MoreCompany()'>MoreCompany</button>
+                </div>
+        </div>
+        
+        <div formArrayName='contacts' class='form-group'>
+            <div *ngFor='let contact of contacts.controls; let i=index'
+            [formGroupName]='i'>
+                <div class='col-md-8' style='margin-bottom:15px'>
+                    <label>Contact</label>
+                    <input placeholder="contact" formControlName='cont' class='form-control'>
+                    <span *ngIf='contact.invalid '>Enter valid contact</span>
+                </div>
+                <div class='col-md-2' style='margin-top:25px'>
+                    <button class='btn btn-danger' (click)='deleteContact(i)'>Delete</button>
+                </div>
+            </div>
+
+            <div class='col-md-2' style='margin-top:25px'>
+                <button class='btn btn-primary' (click)='MoreContacts()'>MoreContacts</button>
+            </div>
+        </div>
+        <div formArrayName='addresses' class='form-group'>
+                <div *ngFor='let address of addresses.controls; let i=index'
+                [formGroupName]='i'>
+                    <div class='col-md-8' style='margin-bottom:15px'>
+                        <label>Address</label>
+                        <input placeholder="address" formControlName='address' class='form-control'>
+                        <span *ngIf='address.invalid '>Enter valid Address</span>
+                    </div>
+                    <div class='col-md-2' style='margin-top:25px'>
+                        <button class='btn btn-danger' (click)='deleteAddress(i)'>Delete</button>
+                    </div>
+                </div>
+
+                <div class='col-md-2' style='margin-top:25px'>
+                    <button class='btn btn-primary' (click)='MoreAddresses()'>MoreAddresses</button>
+                </div>
+            </div>
+                
+            <div class='col-md-12'>
+                    <button class='btn btn-lg btn-info '(click)='submit()' [disabled]="regCusForm.invalid" data-toggle="modal" data-target="#regCus" >Register Customer</button>
+            </div>
+        
+        
+    </form>
+
+          
+<div id="regCus" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2e353d;color:white">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Registered Customer</h4>
+            </div>
+            <div class="modal-body" *ngIf="this.getDataStatus()">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="text-align:center">Customer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Id</b></td>
+                            <td>{{this.getResultCustomer().getCusId()}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Name</b></td>
+                            <td>{{this.getResultCustomer().getName()}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Company</b></td>
+                            <td>
+                                <div *ngFor="let company of this.getResultCustomer().getCusCompanies()">
+                                    {{company.getCompanyName()}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Contact</b></td>
+                            <td>
+                                <div *ngFor="let contact of this.getResultCustomer().getContacts()">
+                                    {{contact}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Address</b></td>
+                            <td>
+                                <div *ngFor="let address of this.getResultCustomer().getAddresses()">
+                                    {{address.getAddress()}}
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn " data-dismiss="modal" style="background-color: #e1ffff;color:black" (click)="sendCusToRegEstimate(this.getCusId())">OK</button>
+        </div>
+        </div>
+    </div>
+</div>
+    

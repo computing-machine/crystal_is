@@ -1,0 +1,191 @@
+<div class="row" >
+  <div class="col-md-12" style='margin-top:20px'>
+    <div class="col-md-3 col-md-offset-2" >
+      <button id='regcus' class="btn btn-primary" style="width:70%;float:right" (click)="registerCustomer()">Register Customer</button>
+    </div>
+    <div class="col-md-3">
+      <button id='searchcus' class="btn btn-primary" style="width:70%" (click)="searchCustomer()">Search Customer</button>
+    </div>
+  </div>
+</div>
+<!--Selected Customer-->
+<div class="col-md-11" style="margin-top:30px" id="cus_detail">
+  <div *ngIf="getCusDataFlag()">
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th colspan="2" style="text-align:center"> Selected Customer</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><b>Id</b></td>
+                <td>{{this.getCustomer().getCusId()}}</td>
+              </tr>
+              <tr>
+                  <td><b>Name</b></td>
+                  <td>{{this.getCustomer().getName()}}</td>
+                </tr>
+              <tr>
+                <td><b>Company</b></td>
+                <td>
+                    <div *ngFor="let company of this.getCustomer().getCusCompanies()">
+                        {{company.getCompanyName()}}
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Contact</b></td>
+                <td>
+                    <div *ngFor="let contact of this.getCustomer().getContacts()">
+                        {{contact}}
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Address</b></td>
+                <td>
+                    <div *ngFor="let address of this.getCustomer().getAddresses()">
+                        {{address.getAddress()}}
+                    </div>
+                </td>
+            </tr>
+          </table>
+  </div>
+</div>
+
+<!--Select Item-->
+<div *ngIf="this.getDataStatus()" >
+  <div class="row" style='margin-top:15px;margin-bottom : 40px' id="selectItem">
+    <div class="col-md-11">
+     
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th colspan="5" style="text-align:center"> Select Item</th>
+                  </tr>
+                <tr>
+                  <th>Item ID</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Qunaity</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let item of this.getFinishGoods()" >
+                  <td >{{item.getId()}}</td>
+                  <td>{{item.getName()}}</td>
+                  <td>{{item.getDescription()}}</td>
+                  <td>{{item.getPrice()}}</td>
+                  <td>
+                    <input type="text" class="form-control"  min="0" max="12" (input)="setQuantity($event.target.value)">
+                    
+                  </td>
+                  <td>
+                        <button id="select_item_btn" class="btn btn-info" (click)="setSelectedFGItems($event.target,this.item)" >Select</button>
+                  </td>
+                </tr>
+              </tbody>
+        </table>
+        <button id="save_item_selec_btn" style="float:right" class="btn"  (click)="AddOrder()">Save Selection</button>
+      </div>
+    </div>
+      <!-- Modal -->
+<div id="myModal" class="hide" >
+  <div class="col-md-11">
+    <!-- Modal content-->
+    <div  *ngIf="this.getregEstFlag()">
+      <div>
+        <h3 style="text-align: center">Estimate Detail</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th colspan="2" style="text-align:center">Customer</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><b>Id</b></td>
+                <td>{{this.getCustomer().getCusId()}}</td>
+              </tr>
+              <tr>
+                <td><b>Company</b></td>
+                <td>
+                    <div *ngFor="let company of this.getCustomer().getCusCompanies()">
+                        {{company.getCompanyName()}}
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Contact</b></td>
+                <td>
+                    <div *ngFor="let contact of this.getCustomer().getContacts()">
+                        {{contact}}
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Address</b></td>
+                <td>
+                    <div *ngFor="let address of this.getCustomer().getAddresses()">
+                        {{address.getAddress()}}
+                    </div>
+                </td>
+            </tr>
+          </table>
+          <table class="table table-hover">
+            <thead>
+              <th colspan="2" style="text-align:center">Order</th>
+            </thead>
+            <tbody>
+             <tr>
+               <td><b>Order Id</b></td>
+               <td>{{this.getEstimate().getSalesOrderId()}}</td>
+             </tr>
+             <tr>
+              <td><b>Order Date</b></td>
+              <td>{{this.getEstimate().getOrderDate()}}</td>
+            </tr>
+            
+            <tr>
+              <td><b>Price</b></td>
+              <td>{{this.getEstimate().getTotalPrice()}}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center"><b>Items</b></td>
+            </tr>
+            <tr>
+              <td><b>Name</b></td>
+              <td><b>Price</b></td>
+              <td><b>quantity</b></td>
+            </tr>
+            <tr *ngFor="let item of this.getSelectedFGItems()">
+              <td >{{item.fg.getName()}}</td>
+              <td>{{item.fg.getPrice()}}</td>
+              <td>{{item.quantity}}</td>
+            </tr>
+             
+            </tbody>
+          </table>
+      </div>
+      <div style="float:right">
+        <button class="btn btn-primary" (click)="confirmEstimate(this.getEstimate().getSalesOrderId())">Confirm Estimate</button>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+    </div>
+    
+ 
+
+  
+ 
+
+
+    
+
+  

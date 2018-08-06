@@ -29,11 +29,13 @@ export class LogInComponent implements OnInit {
       if(this.log_in_info){
         this.employee_service.getEmpByLogId(this.log_in_info.getId()).subscribe(employee_data=>{
           this.employee=new Employee(employee_data[0]);
+          console.log(this.employee);
           this.job_description_service.getJobDes(this.employee.getJobDescriptionId()).subscribe(job_des_data=>{
             this.job_description=new JobDescription(job_des_data);
             //routing
             if(this.job_description.getDesignation()=="Purchaser"){
               this.storage.set("user_id", this.employee.getId());
+              console.log(this.storage.get("user_id"));
               this.router.navigateByUrl("/Purchase");
             }//if
             else if(this.job_description.getDesignation()=="Clerk"){
@@ -43,6 +45,10 @@ export class LogInComponent implements OnInit {
             else if(this.job_description.getDesignation()=="Stockkeeper"){
               this.storage.set("user_id", this.employee.getId());
               this.router.navigateByUrl("/Inventory");
+            }//if
+            else if(this.job_description.getDesignation()=="Salesperson"){
+              this.storage.set("user_id", this.employee.getId());
+              this.router.navigateByUrl("/Sales");
             }//if
           });
         });
