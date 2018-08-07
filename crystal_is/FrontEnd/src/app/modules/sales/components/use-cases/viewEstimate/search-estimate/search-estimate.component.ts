@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {SearchOrderComponent} from '../../../use-cases/viewOrders/search-order/search-order.component';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
 import {List} from '../../../../data-models/collection-models/list';
 import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
 import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {Customer} from '../../../../data-models/business-models/customer';
-
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,19 +15,19 @@ import {Router} from '@angular/router';
 })
 export class SearchEstimateComponent extends SearchOrderComponent implements OnInit {
 
-  constructor(private SO : SalesOrderService, private cusService : CustomerService, private router : Router) {
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private SO : SalesOrderService, private cusService : CustomerService, private router : Router) {
     super();
    }
 
   ngOnInit() {
     this.setOrders(new List<SalesOrder>());
     this.setOrderCusList(new List<any>());
-    this.SO.getOrdersInProduction().subscribe(response =>{
-      for(let progressed of response){
-        this.getOrders().add(new SalesOrder(progressed));
-        this.cusService.getCustomerById(progressed.customer_id).subscribe(cus_data=>{
+    this.SO.getEstimatesBySalPerId(this.storage.get('user_id')).subscribe(response =>{
+      for(let estimate of response){
+        this.getOrders().add(new SalesOrder(estimate));
+        this.cusService.getCustomerById(estimate.customer_id).subscribe(cus_data=>{
           let customer = new Customer(cus_data);
-         this.getOrderCusList().add({"Customer":customer, "Order" : new SalesOrder(progressed)});
+         this.getOrderCusList().add({"Customer":customer, "Order" : new SalesOrder(estimate)});
         });//getCustomers
       }//for
       this.setResultOrders(this.getOrders());

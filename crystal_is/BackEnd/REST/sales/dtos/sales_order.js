@@ -41,11 +41,11 @@ module.exports.getCustomerInSO = function(SO_id,callback){
     });//getSalesOrderById
 }//getCustomerInSO
 
-module.exports.getDeliveredOrders = function(callback){
+module.exports.getDeliveredOrders = function(id,callback){
     let orders = [];
   salesorder.getAllSalesOrder((err,result)=>{
     for(let i = 0; i<result.length;++i){
-        if(result[i].status == "delivered"){
+        if(result[i].status == "delivered" ||  result[i].status == "Delivered" && result[i].salesperson_id == id){
             orders.push(result[i]);
         }//if
     }//for
@@ -54,11 +54,11 @@ module.exports.getDeliveredOrders = function(callback){
 }//getDeliveredOrders
 
 
-module.exports.getEstimates = function(callback){
+module.exports.getEstimates = function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "estimate"){
+            if(result[i].status == "estimate" || result[i].status == "Estimate" && result[i].salesperson_id==id){
                 orders.push(result[i]);
             }//if
         }//for
@@ -66,23 +66,24 @@ module.exports.getEstimates = function(callback){
     });
 }//getEstimates
 
-module.exports.getConfirmedOrders = function(callback){
+module.exports.getConfirmedOrdersBySalperId = function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "confirmed"){
+            if(result[i].status == 'Confirmed' || result[i].status == 'confirmed'  && result[i].salesperson_id==id){
                 orders.push(result[i]);
             }//if
         }//for
+
         callback(orders);
     });
 }//getConfirmedOrders
 
-module.exports.getOrdersInProduction= function(callback){
+module.exports.getOrdersInProduction= function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "production"){
+            if(result[i].status == "production" || result[i].status == "Production" && result[i].salesperson_id==id){
                 orders.push(result[i]);
             }//if
         }//for
@@ -90,11 +91,11 @@ module.exports.getOrdersInProduction= function(callback){
     });
 }//getOrdersInProduction
 
-module.exports.getReadyOrders = function(callback){
+module.exports.getReadyOrders = function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "ready"){
+            if(result[i].status == "ready" || result[i].status =='Ready' && result[i].salesperson_id == id){
                 orders.push(result[i]);
             }//if
         }//for
@@ -113,6 +114,4 @@ module.exports.updateSalesOrder = function(SO_id,update,callback){
     salesorder.findOneAndUpdate(SO_id,update,callback);
 }//updateSalesOrder
 
-module.exports.getSalesOrderByCusId = function(cusId,callback){
-    salesorder.find(cusId,callback);
-}//getSalesOrderByCusId
+

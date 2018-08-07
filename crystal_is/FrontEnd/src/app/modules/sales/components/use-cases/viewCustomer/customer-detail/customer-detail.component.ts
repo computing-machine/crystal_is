@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PersonDetailComponent} from '../../../../components/use-cases/viewPerson/person-detail/person-detail.component';
 import {CustomerService} from '../../../../data-services/customer/customer.service';
@@ -9,7 +9,7 @@ import {List} from '../../../../data-models/collection-models/list';
 import {FinishedGood} from '../../../../../inventory/data-models/business-models/finished-good';
 import {FinishedGoodService} from '../../../../../inventory/data-services/finished-good/finished-good.service';
 import {Router} from '@angular/router';
-
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-customer-detail',
@@ -38,7 +38,7 @@ export class CustomerDetailComponent extends PersonDetailComponent implements On
     private showOrderetail : Boolean;
   
  
-  constructor(private router:Router,private route : ActivatedRoute,private CusService : CustomerService,private SalesorderService : SalesOrderService, private FGService : FinishedGoodService  ) {
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private router:Router,private route : ActivatedRoute,private CusService : CustomerService,private SalesorderService : SalesOrderService, private FGService : FinishedGoodService  ) {
     super();
    }//super
   
@@ -60,7 +60,8 @@ export class CustomerDetailComponent extends PersonDetailComponent implements On
     this.CusService.getCustomerById(this.getPersonId()).subscribe(customer=>{//getcustomer data
       this.setPerson(new Customer(customer));
       //in asy
-      this.SalesorderService.getSalesOrderByCusId(this.getPersonId()).subscribe(salesorders=>{
+      this.SalesorderService.getSalesOrderByCusId_SalperId(this.getPersonId(),this.storage.get('user_id'))
+      .subscribe(salesorders=>{
           this.setSalesOrder(salesorders);
           this.setOrdersOfCustomer();
           console.log(this.getSalesOrder());
@@ -101,7 +102,7 @@ getSalesOrder():List<SalesOrder>{return this.sales_Orders}
 }//setOrdersOfCustomer
 
 setcusReceivables(receivables:any){
-  this.receivables = this.receivables + receivables;
+  this.receivables = this.receivables + parseInt(receivables);
 }//setcusReceivables
 
 setEstimatesOfCustomer(estimate:any){

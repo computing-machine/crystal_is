@@ -19,37 +19,40 @@ export class SalesOrderService {
       return data.json();
     }));
   }//getSalesOrderById
-  getSalesOrderByCusId(id:any){
-    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrder/Customer/'+id).pipe(map(data=>{
+  getSalesOrderByCusId_SalperId(id:any,saleper_id){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/cusId/'+id+'/salperId/'+saleper_id).pipe(map(data=>{
       return data.json();
     }));
+  
   }//getSalesOrders
-  getdeliveredOrders(){
-    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/deliveredOrders').pipe(map(data=>{  
+  getdeliveredOrdersBySalPer(id:any){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/deliveredOrders/'+id).pipe(map(data=>{  
       return data.json();
     }));
   }//getDeliveredOrders
 
-  getConfirmedOrders(){
-    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/confirmedOrders').pipe(map(data=>{  
+  getConfirmedOrdersBySalperId(id : any){
+    console.log(id);
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/confirmedOrders/'+id).pipe(map(data=>{  
     return data.json();
     }));
   }//getConfirmedOrders
 
-  getOrdersInProduction(){
-    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/production').pipe(map(data=>{  
-      return data.json();
+  getOrdersInProductionBySalPerId(id : any){
+    console.log(id);
+   return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/production/'+id).pipe(map(data=>{  
+    return data.json();
     }));
   }//getOrdersInProduction
 
-  getOrdersReady(){
-    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/ready').pipe(map(data=>{  
+  getOrdersReadyBySalPerId(id : any){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/ready/'+id).pipe(map(data=>{  
       return data.json();
     }));
   }//getOrdersInProduction
  
-getEstimates(){
-  return this.http.get('http://localhost:8000/Sales/SalesOrderApi/SalesOrders/Estimates').pipe(map(data=>{  
+getEstimatesBySalPerId(id:any){
+  return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/Estimates/'+id).pipe(map(data=>{  
       return data.json();
     }));
 }//getEstimate

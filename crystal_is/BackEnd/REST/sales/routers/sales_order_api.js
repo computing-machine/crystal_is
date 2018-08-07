@@ -7,6 +7,8 @@ let router = express.Router();
 //datebase connection
 mongoose.connect("mongodb://umo:marium13@ds123181.mlab.com:23181/mytestdbfortestproject");
 
+
+
 router.get('/SalesOrders',function(req,res){
     salesorder.getAllSalesOrder(function(err,salesorders){
         if(err) res.status(505).send(err);
@@ -16,40 +18,46 @@ router.get('/SalesOrders',function(req,res){
     });//getAllSalesOrder
 });//get all salesorders
 
-router.get('/SalesOrders/Estimates',function(req,res){
-    salesorder.getEstimates((err,result)=>{
+router.get('/SalesOrders/Estimates/:id',function(req,res){
+    let _id= req.params.id;
+    salesorder.getEstimates(_id,(err,result)=>{
         if(err){
             return res.send(err);
         }
         else{
-            return res.status(200).send(salesorder);
+            return res.status(200).send(result);
         }//else
     });
 });//get Estimate
 
-router.get('/SalesOrders/deliveredOrders',function(req,res){
-    salesorder.getDeliveredOrders((err,result)=>{
+router.get('/SalesOrders/deliveredOrders/:id',function(req,res){
+    let _id= req.params.id;
+    salesorder.getDeliveredOrders(_id,(err,result)=>{
        if(err) return res.send(err);
        else{return res.send(result)};
     });
 });
 
-router.get('/SalesOrders/confirmedOrders',function(req,res){
-    salesorder.getConfirmedOrders((err,result)=>{
+router.get('/SalesOrders/confirmedOrders/:id',function(req,res){
+    let _id= req.params.id;
+    salesorder.getConfirmedOrdersBySalperId(_id,(err,result)=>{
+        if(err) return res.send(err);
+        else{
+            return res.send(result);}
+    });
+});
+
+router.get('/SalesOrders/ready/:id',function(req,res){
+    let _id= req.params.id;
+    salesorder.getReadyOrders(_id,(err,result)=>{
         if(err) return res.send(err);
         else{return res.send(result);}
     });
 });
 
-router.get('/SalesOrders/ready',function(req,res){
-    salesorder.getReadyOrders((err,result)=>{
-        if(err) return res.send(err);
-        else{return res.send(result);}
-    });
-});
-
-router.get('/SalesOrders/production',function(req,res){
-    salesorder.getOrdersInProduction((err,result)=>{
+router.get('/SalesOrders/production/:id',function(req,res){
+    let _id= req.params.id;
+    salesorder.getOrdersInProduction(_id,(err,result)=>{
         if(err) return res.send(err);
         else{return res.send(result);}
     });
@@ -73,17 +81,6 @@ router.get('/SalesOrder/:_id/Customer',function(req,res){
     });
 });
 
-router.get('/SalesOrder/Customer/:id',function(req,res){
-    let cusId = {customer_id : req.params.id};
-    //let query = {_id :req.params._id};
-    salesorder.getSalesOrderByCusId(cusId,(err,result)=>{
-        if(err) res.send(err);
-        else{
-            res.send(result);
-        }
-        
-    });
-});
 
 router.put("/SalesOrder/update/:id",function(req,res){
     let query = {_id : req.params.id};
@@ -107,6 +104,17 @@ router.post('/SalesOrder/insert',function(req,res){
     }//else
    });//insertSalesOrder
 });//post salesOrder
+
+router.get('/SalesOrders/cusId/:id/salperId/:salperId',function(req,res){
+    let id = req.params.id;
+    salesorder.find({ $and:[{customer_id:{$eq:id}},{salesperson_id : {$eq:req.params.salperId} }]},(err, salesorders)=>{
+        if(err){console.log(err);}//if
+        else{
+            res.send(salesorders);
+        }
+    });
+ });
+
 
 
 module.exports = router;
