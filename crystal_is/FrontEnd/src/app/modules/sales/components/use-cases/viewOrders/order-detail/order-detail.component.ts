@@ -8,6 +8,8 @@ import {List} from '../../../../data-models/collection-models/list';
 import {Route} from '@angular/router';
 import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {Customer} from '../../../../data-models/business-models/customer';
+import { Unit } from '../../../../../inventory/data-models/business-models/unit';
+import {UnitService} from '../../../../../inventory/data-services/unit/unit.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -17,36 +19,52 @@ import {Customer} from '../../../../data-models/business-models/customer';
 export class OrderDetailComponent implements OnInit {
 
   //private members declaration for Order
+  private date = new Date();
   private order_id : object;
   private order : SalesOrder;
   private data_status:boolean;
   private customer : Customer;
+  private units : List<Unit>;
   //private members declaration for item
   private deliverables : List<any>;
   private item : FinishedGood;
 
-  constructor(private route : ActivatedRoute,private SO_service:SalesOrderService,private FG_service : FinishedGoodService,private cusService : CustomerService ) { }
+  constructor(private route : ActivatedRoute,private SO_service:SalesOrderService,
+              private FG_service : FinishedGoodService,private cusService : CustomerService,
+              private unit_ser : UnitService ) { }
   ngOnInit() {
     //private members initialization
     this.deliverables = new List<any>();
+    this.units = new List<Unit>();
 
     this.setDataStatus(false);   
     this.route.params.subscribe(params=>this.setOrderId(params.id));
+    console.log(this.getOrderId());
     //....................get Orderdata through service.....................
     this.SO_service.getSalesOrderById(this.getOrderId()).subscribe(response=>{
+      console.log(response[0].customer_id);
       this.cusService.getCustomerById(response[0].customer_id).subscribe(customer=>{
-        this.setCustomer(customer);
-        let saleorder_data = response ;
-        for(let data of saleorder_data){
-          let saleorder = new SalesOrder(data);
-          this.setSalesOrder(saleorder);
-        }//for
+        this.unit_ser.getUnits().subscribe(units_data =>{
+          for(let unit of units_data){
+              this.setUnits(unit);
+          }//for
+          this.setCustomer(customer);
+          let saleorder_data = response ;
+          for(let data of saleorder_data){
+            let saleorder = new SalesOrder(data);
+            this.setSalesOrder(saleorder);
+          }//for
+        });//units from service
       });//customer from service
     });//salesorder from service
      
   }//ngOnInit
 
   //........................Order-Detail functions...................
+  setUnits(unitdata : any){
+    this.units.add(new Unit(unitdata));
+  }//setUnits
+  getUnits():List<Unit>{return this.units;}
   setCustomer(customer_data : any){
     this.customer = new Customer(customer_data);
   }//setCustomer
@@ -83,6 +101,7 @@ export class OrderDetailComponent implements OnInit {
   }//setFGInSO
   
   setDeliverableInSO(item:FinishedGood, quantity : any){
+    console.log(this.getUnits());
     let deliverable = {"item" : item , "quantity" : quantity}
     this.deliverables.add(deliverable);
   }//setDeliverableInSO
@@ -93,6 +112,16 @@ export class OrderDetailComponent implements OnInit {
 
   //..............................Item Detail functions.......................
  
+  setDate(){
+    var month = this.date.getMonth()+1;
+    var day = this.date.getDate();
+    var output = this.date.getFullYear() + '-' +
+        ((''+month).length<2 ? '0' : '') + month + '-' +
+        ((''+day).length<2 ? '0' : '') + day;
+  }//setDate
   
+  getDate():any{
+    return this.date;
+  }//getDate
 
 }

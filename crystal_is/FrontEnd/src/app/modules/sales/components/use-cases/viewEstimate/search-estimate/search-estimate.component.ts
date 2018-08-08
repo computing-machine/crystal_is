@@ -15,6 +15,7 @@ import {Router} from '@angular/router';
 })
 export class SearchEstimateComponent extends SearchOrderComponent implements OnInit {
 
+  private temp : any;
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private SO : SalesOrderService, private cusService : CustomerService, private router : Router) {
     super();
    }
@@ -39,4 +40,13 @@ export class SearchEstimateComponent extends SearchOrderComponent implements OnI
     this.router.navigateByUrl("Sales/OrderDetailComponent/"+orderId);
   }//detail
 
+  updateOrder(orderId : any){
+    this.router.navigateByUrl("Sales/UpdateEstimate/"+orderId);
+  }//updateOrder
+  setTemp(id : any){
+    this.temp = id
+  }
+  getTemp():any{
+    return this.temp;
+  }
 }

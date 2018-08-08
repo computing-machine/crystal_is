@@ -14,6 +14,8 @@ import { PurchaseRoutingModule, purchase_routing_components } from "./modules/pu
 import { PayrollRoutingModule, payroll_routing_components } from "./modules/payroll/payroll-routing/payroll-routing.module";
 import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sales-routing-module/sales-routing-module.module";
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +23,13 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     inventory_routing_components,
     purchase_routing_components,
     payroll_routing_components,
+<<<<<<< HEAD
     sales_routing_components
     ],
+=======
+    sales_routing_components,
+  ],
+>>>>>>> sales
   imports: [
     BrowserModule,
     HttpModule,
@@ -33,7 +40,8 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     SalesRoutingModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StorageServiceModule
+    StorageServiceModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

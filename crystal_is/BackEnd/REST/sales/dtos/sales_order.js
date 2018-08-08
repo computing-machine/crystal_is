@@ -13,21 +13,22 @@ let salesorderSchema = mongoose.Schema({
     status:{type:String,required:true},
     invoice:{payment:[{date : Date , amount : String}],builty :{number : String}},
     deliverables: [ {fg_id : Object ,quantity : String} ],
-    history:[ {status : String, date : Date} ]
+    history:[ {status : String, date : Date} ],
+    exist : {type : Boolean}
 });
 
 let salesorder = module.exports = mongoose.model("salesorder",salesorderSchema,"SalesOrder");//export model
 
 module.exports.getAllSalesOrder = function(callback){
-    salesorder.find(callback);
+    salesorder.find({"exist":true},callback);
 }//getAllSalesorder
 
 module.exports.getSalesOrderById =  function(id, callback){
-    salesorder.find({_id:id},callback);
+    salesorder.find({$and:[{"exist":true},{_id:id}]},callback);
 }//get salesOrderById
 
 module.exports.getCustomerInSO = function(SO_id,callback){
-    salesorder.getSalesOrderById(SO_id,(err,salesOrder)=>{
+    salesorder.getSalesOrderById({$and:[{_id:SO_id},{exist:true}]},(err,salesOrder)=>{
         if(err) callback(err);
         else{
             let cusId = salesOrder[0].customer_id;
@@ -45,7 +46,8 @@ module.exports.getDeliveredOrders = function(id,callback){
     let orders = [];
   salesorder.getAllSalesOrder((err,result)=>{
     for(let i = 0; i<result.length;++i){
-        if(result[i].status == "delivered" ||  result[i].status == "Delivered" && result[i].salesperson_id == id){
+        if(result[i].status == "delivered" ||  result[i].status == "Delivered" &&
+         result[i].salesperson_id == id && result[i].exist == true){
             orders.push(result[i]);
         }//if
     }//for
@@ -58,7 +60,8 @@ module.exports.getEstimates = function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "estimate" || result[i].status == "Estimate" && result[i].salesperson_id==id){
+            if(result[i].status == "estimate" || result[i].status == "Estimate" &&
+             result[i].salesperson_id==id  && result[i].exist == true){
                 orders.push(result[i]);
             }//if
         }//for
@@ -70,7 +73,8 @@ module.exports.getConfirmedOrdersBySalperId = function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == 'Confirmed' || result[i].status == 'confirmed'  && result[i].salesperson_id==id){
+            if(result[i].status == 'Confirmed' || result[i].status == 'confirmed'  && 
+            result[i].salesperson_id==id && result[i].exist == true){
                 orders.push(result[i]);
             }//if
         }//for
@@ -83,7 +87,8 @@ module.exports.getOrdersInProduction= function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "production" || result[i].status == "Production" && result[i].salesperson_id==id){
+            if(result[i].status == "production" || result[i].status == "Production" &&
+             result[i].salesperson_id==id && result[i].exist == true){
                 orders.push(result[i]);
             }//if
         }//for
@@ -95,7 +100,8 @@ module.exports.getReadyOrders = function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
         for(let i = 0; i<result.length;++i){
-            if(result[i].status == "ready" || result[i].status =='Ready' && result[i].salesperson_id == id){
+            if(result[i].status == "ready" || result[i].status =='Ready' && 
+            result[i].salesperson_id == id && result[i].exist == true){
                 orders.push(result[i]);
             }//if
         }//for

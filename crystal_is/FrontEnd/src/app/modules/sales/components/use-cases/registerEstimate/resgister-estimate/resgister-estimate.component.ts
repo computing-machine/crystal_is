@@ -164,8 +164,9 @@ setSalesOrder(){
   let deliverables = [];
   for(let item of this.selectedFG){
     let fg_id = item.fg.getId();
-    let quan = item.quantity;
+    let quan = parseInt(item.quantity);
      price = price + (item.fg.getPrice()*quan);
+     console.log(price);
      deliverables.push({"fg_id":fg_id,"quantity" : quan});
   }
   salesOrder.setDeliverables(deliverables);

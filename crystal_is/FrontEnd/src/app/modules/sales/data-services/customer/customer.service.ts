@@ -27,7 +27,7 @@ export class CustomerService {
     let address = [];
     let contacts = [];
     let companies = []; 
-
+    let exist  = false;
     for(let addres of customer.getAddresses()){
       let add = 
         {
@@ -52,7 +52,8 @@ export class CustomerService {
     "name"   : customer.getName(),
     "address":address,
     "contact_no" :contacts,
-    "company" : companies
+    "company" : companies,
+    "exist" : true
   }
     const headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post(URI,data,{headers:headers}).pipe(map(res => {
@@ -89,7 +90,8 @@ export class CustomerService {
       "name"   : customer.getName(),
       "address":address,
       "contact_no" :contacts,
-      "company" : companies
+      "company" : companies,
+      "exist": true,
     }
 
     let _id = customer.getCusId()
@@ -100,6 +102,47 @@ export class CustomerService {
       return res.json();
        }));
   }//updateCustomer
+
+  deleteCustomer(customer : any){
+    let address = [];
+    let contacts = [];
+    let companies = []; 
+
+    for(let addres of customer.getAddresses()){
+      let add = 
+        {
+          "address" : addres.getAddress()
+        };
+        address.push(add);
+      }//set Addresses
+    
+    for(let company of customer.getCusCompanies()){
+      let Company = {
+        "name" : company.getCompanyName()
+      }
+      companies.push(Company);
+    }//set Companies
+
+    for(let contact of customer.getContacts()){
+      contacts.push(contact);
+    }//set Contacts
+
+    let data = {
+      "name"   : customer.getName(),
+      "address":address,
+      "contact_no" :contacts,
+      "company" : companies,
+      "exist": false,
+    }
+
+    let _id = customer.getCusId()
+    let URI = "http://localhost:3000/Sales/CustomerApi/Customers/delete/"+_id;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.put(URI,data,{headers:headers}).pipe(map(res => {
+      console.log(res.json());
+      return res.json();
+       }));
+  }//deleteCustomer
 
 
 }

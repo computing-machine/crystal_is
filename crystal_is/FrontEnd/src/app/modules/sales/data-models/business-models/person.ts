@@ -7,6 +7,7 @@ export class Person {
     private name : string;
     private contacts : List<string>;
     private addresses : List<any>;
+    
 
     //constructor
     constructor(){

@@ -80,7 +80,8 @@ addOrder(order : any){
     "order_date" : order.getOrderDate(),
     "status" : order.getStatus(),
     "deliverables": deliverables,
-    "history" : history
+    "history" : history,
+    "exist" : true
   }//data
     const headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post(URI,data,{headers:headers}).pipe(map(res => {
@@ -114,7 +115,8 @@ ConfirmEstimate(Estimate : any){
       "order_date" : Estimate.getOrderDate(),
       "status" : "Confirmed",
       "deliverables": deliverables,
-      "history" : history
+      "history" : history,
+      "exist" : true
     }//data
     let id = Estimate.getSalesOrderId();
     this.setDate(); 

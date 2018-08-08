@@ -44,7 +44,7 @@
                 </td>
                   <td><button class="btn btn-primary" (click)="getDetail(this.person.getCusId())">Detail</button></td>
                   <td><button class="btn btn-warning" (click)="editCustomer(this.person.getCusId())">Edit</button></td>
-                  <td><button class="btn btn-danger">Delete</button></td>
+                  <td><button class="btn btn-danger" (click)='removeExistance(this.person.getCusId())'>Delete</button></td>
                 </tr>
               </tbody>
             </table>    
