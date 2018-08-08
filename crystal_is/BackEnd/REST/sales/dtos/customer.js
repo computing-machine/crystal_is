@@ -6,12 +6,13 @@ let customerSchema=mongoose.Schema({
     company:[{name:String}],
     contact_no :[ String ],
     address:[{address:String}],
+    exist : {type:Boolean}
 });//schema
 
 let Customer = module.exports=mongoose.model("customer", customerSchema, "Customer");//export model
 
 module.exports.getAllCustomer=function(callback){
-    Customer.find(callback);
+    Customer.find({exist:true},callback);
 }//getCustomerlist
 
 module.exports.getCustomerById = function(id,callback){

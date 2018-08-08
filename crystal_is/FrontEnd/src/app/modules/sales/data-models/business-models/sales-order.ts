@@ -15,6 +15,7 @@ export class SalesOrder {
     private deliverables : List<Deliverables>;
     private history : List<Orderhistory>;
     private status:string;
+    private exist : boolean;
 
     //constructor
     constructor(sales_order_data ?: any){
@@ -98,4 +99,6 @@ export class SalesOrder {
     getOrderHistory():List<Orderhistory>{
         return this.history;
     }//getOrderHIstory
+    setOrderExistance(flag : boolean){this.exist = flag}//setOrderExistance
+    getOrderExistance():boolean{return this.exist;}
 }//class

@@ -38,5 +38,8 @@ export class SearchCustomerComponent  extends SearchPersonComponent implements O
     this.router.navigateByUrl("Sales/updateCustomer/"+customer_id);
   }//editCustomer
     
+  removeExistance(id:any){
+    this.router.navigateByUrl('Sales/deleteCustomer/'+id);
+  }//removeExistance
 
 }

@@ -8,6 +8,7 @@ export class Customer extends Person {
     //private members
     private _id : any;
     private company : List<Company>;
+    private exist : boolean;
     //constructor
     constructor(data ? : any){
         super();
@@ -17,6 +18,7 @@ export class Customer extends Person {
             this.setName(data.name);
             this.setAddresses(data.address);
             this.setContacts(data.contact_no);
+            this.setExistance(data.exist);
         }//if
     }//constructor
 
@@ -37,4 +39,6 @@ export class Customer extends Person {
     getCusCompanies():List<Company>{
         return this.company;
     }//getCusCompany
+    setExistance(flag:boolean){this.exist=flag}
+    getExistance():boolean{return this.exist;}
 }//Customer

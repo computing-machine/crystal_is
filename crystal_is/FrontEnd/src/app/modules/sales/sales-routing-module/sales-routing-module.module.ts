@@ -24,8 +24,9 @@ import { SalesSidebarComponent } from '../components/gui-elements/sales-sidebar/
 import { SalesContentComponent } from '../components/gui-elements/sales-content/sales-content.component';
 import { SalesDashboardComponent } from '../components/gui-elements/sales-dashboard/sales-dashboard.component';
 import { UpdateCustomerComponent} from '../components/use-cases/update-customer/update-customer.component'
-
+import {DeleteCustomerComponent} from '../components/use-cases/delete-customer/delete-customer.component'
 import { TestFormComponent } from '../components/use-cases/test-form/test-form.component';
+import { UpdateSalesOrderComponent } from '../components/update-sales-order/update-sales-order.component';
 
 const sales_routes: Routes = [
   {
@@ -99,6 +100,14 @@ const sales_routes: Routes = [
       {
         path : 'testForm',
         component : TestFormComponent
+      },
+      {
+        path : 'deleteCustomer/:id',
+        component : DeleteCustomerComponent
+      },
+      {
+        path : 'UpdateEstimate/:orderId',
+        component : UpdateSalesOrderComponent
       }
     ]
   }
@@ -117,4 +126,4 @@ export const sales_routing_components=[SalesSidebarComponent,SalesContentCompone
 SearchConfirmedSOComponent,ConfirmedOrderDetailComponent,SearchDeliveredSOComponent, DeliveredSODetailComponent,
 ReadySODetailComponent,SearchReadySOComponent,SOInProductionDetailComponent,SearchSOInProductionComponent,
 SearchEstimateComponent,RegisterCustomerComponent,ResgisterEstimateComponent,SearchCustomerComponent,
-OrderDetailComponent,ConfirmEstimateComponent,UpdateCustomerComponent,TestFormComponent];
+OrderDetailComponent,ConfirmEstimateComponent,UpdateCustomerComponent,TestFormComponent,DeleteCustomerComponent,UpdateSalesOrderComponent];
