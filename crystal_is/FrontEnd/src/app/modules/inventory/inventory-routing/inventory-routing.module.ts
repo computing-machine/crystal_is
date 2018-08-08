@@ -2,6 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule, Router} from "@angular/router";
 
+import { AddRawMaterialComponent } from '../components/use-cases/add-raw-material/add-raw-material.component';
 import {SearchFinishedGoodComponent} from "../components/use-cases/view-finished-good/search-finished-good/search-finished-good.component";
 import {ViewFinishedGoodDetailComponent} from "../components/use-cases/view-finished-good/view-finished-good-detail/view-finished-good-detail.component";
 import {SearchRawMaterialComponent} from "../components/use-cases/view-raw-material/search-raw-material/search-raw-material.component";
@@ -11,6 +12,7 @@ import {ViewIntermediaryDetailComponent} from "../components/use-cases/view-inte
 import { InventorySidebarComponent } from '../components/gui-elements/inventory-sidebar/inventory-sidebar.component';
 import { InventoryContentComponent } from '../components/gui-elements/inventory-content/inventory-content.component';
 import { InventoryDashboardComponent } from '../components/gui-elements/inventory-dashboard/inventory-dashboard.component';
+import { AddItemComponent } from '../components/use-cases/add-item/add-item.component';
 
 const inventory_routes: Routes=[
   {
@@ -40,6 +42,10 @@ const inventory_routes: Routes=[
       {
         path:"Intermediary/:id",
         component:ViewIntermediaryDetailComponent,
+      },
+      {
+        path:"RawMaterials/NewItem",
+        component:AddItemComponent,
       }
     ]
   },
@@ -54,5 +60,5 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
+export const inventory_routing_components=[AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
   SearchRawMaterialComponent,ViewRawMaterialDetailComponent,SearchIntermediaryComponent,ViewIntermediaryDetailComponent, InventoryDashboardComponent];

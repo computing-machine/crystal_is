@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import {Unit} from "../../../../data-models/business-models/unit";
 import {List} from "../../../../data-models/collection-models/list";
 import {Item} from "../../../../data-models/business-models/item";
@@ -78,6 +78,8 @@ export class SearchItemComponent implements OnInit {
   setInputName(given_name:string):void{this.input_name=given_name;}
   setInputDesc(given_desc:string):void{this.input_description=given_desc;}
   setUnits(given_units:List<Unit>):void{this.units=given_units;}
+
+  addItem(){this.router.navigateByUrl("Inventory/RawMaterials/NewItem")}
 
   protected addToItems(given_item:Item):void{this.getItems().add(given_item);}
   protected addToItemsForView(given_item:Item):void{this.getItemsForView().add(given_item);}

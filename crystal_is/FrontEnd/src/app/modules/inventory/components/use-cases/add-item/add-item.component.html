@@ -1,0 +1,17 @@
+<div>
+  <form>
+    <div class="col-md-5 form-group">
+      <label for="sel1">Select item type:</label>
+      <select (change)="onChangeSelect($event.target.value)" class="form-control" id="sel1">
+        <option>Select item category</option>
+        <option>Raw material</option>
+        <option>Intermediary</option>
+        <option>Finished good</option>
+      </select>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="this.getNewRm()">
+  <app-add-raw-material></app-add-raw-material>
+</div>

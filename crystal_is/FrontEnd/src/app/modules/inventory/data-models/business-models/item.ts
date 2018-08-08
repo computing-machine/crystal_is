@@ -1,6 +1,7 @@
 import {Unit} from "./unit";
 import {List} from "../collection-models/list";
 import {AttributeSet} from "./attribute-set";
+import { StockInfo } from "./stock-info";
 
 
 export abstract class Item {
@@ -10,8 +11,7 @@ export abstract class Item {
         this.setId(param._id);
         this.setName(param.name);
         this.setDescription(param.description);
-        this.setStock(param.stock);
-        this.setUnitId(param.unit_id);
+        this.setStockInfo(new StockInfo(param.stock_info));
         this.setCost(param.cost);
         this.setAttrSet(new AttributeSet(param.attributes));
 
@@ -31,17 +31,17 @@ export abstract class Item {
     setId(id:Object):void{this.item_id=id;}
     setName(given_name:string):void{this.name=given_name;}
     setDescription(given_description):void{this.description=given_description;}
-    setStock(given_stock:number):void{this.stock=given_stock;}
-    setUnitId(given_unit_id:object):void{this.unit_id=given_unit_id;}
+    setStockInfo(given_stock_info:StockInfo):void{this.stock_info=given_stock_info;}
     setCost(given_cost:number):void{this.cost=given_cost;}
     setAttrSet(attr_set:AttributeSet){this.attributes=attr_set;}
 
     //accessors
     getId():Object{return this.item_id;}
-    getUnitId():object{return this.unit_id;}
+    getUnitId():object{return this.stock_info.getUnitId();}
     getName():string{return this.name;}
     getDescription():string{return this.description;}
-    getStock():number{return this.stock;}
+    getStockInfo():StockInfo{return this.stock_info;}
+    getStock():number{return this.stock_info.getAvailQuan();}
     getCost():number{return this.cost;}
     getAttrSet(){return this.attributes}
 
@@ -50,8 +50,7 @@ export abstract class Item {
     private item_id:Object;
     private name:string;
     private description:string;
-    private unit_id:object;
-    private stock:number;
-    private cost:number;
+    private stock_info:StockInfo;
     private attributes:AttributeSet;
-}
+    private cost:number;
+}//class ends
