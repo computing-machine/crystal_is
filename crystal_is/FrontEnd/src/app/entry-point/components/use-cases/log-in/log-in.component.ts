@@ -3,10 +3,10 @@ import {Router} from "@angular/router";
 import {LogInService} from "../../../data-services/LogInService/log-in.service";
 import {EmployeeService} from "../../../../modules/payroll/data-services/Employee/employee.service";
 import { LogIn } from '../../../data-models/business-models/log-in';
-import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import { Employee } from '../../../../modules/payroll/data-models/business-models/employee';
 import { JobDescription } from '../../../../modules/payroll/data-models/business-models/job-description';
 import {JobDescriptionService} from "../../../../modules/payroll/data-services/JobDescription/job-description.service";
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-log-in',

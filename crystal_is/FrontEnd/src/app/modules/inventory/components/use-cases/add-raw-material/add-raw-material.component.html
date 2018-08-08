@@ -1,0 +1,126 @@
+<div *ngIf="this.data_ready" class="container">
+  <div class="row">
+        <form [formGroup]='rm_form' >
+                {{this.rm_form.value | json}}
+                      <div class='col-md-8 form-group' >
+                          <label>Name</label>
+                          <input placeholder="Name" formControlName='name' class=' form-control' >
+                      </div>
+                      <div class='col-md-8 form-group' >
+                        <label>Description</label>
+                        <input placeholder="Description" formControlName='description' class=' form-control' >
+                    </div>
+		<div class="col-md-12">
+      <div class="tabbable-panel">
+          <div class="tabbable-line">
+            <ul class="nav nav-tabs ">
+              <li class="active">
+                <a href="#tab_default_1" data-toggle="tab">
+                Stock information </a>
+              </li>
+              <li>
+                <a href="#tab_default_2" data-toggle="tab">
+                Quantitative </a>
+              </li>
+              <li>
+                <a href="#tab_default_3" data-toggle="tab">
+                Qualititative </a>
+              </li>
+              <li>
+                  <a href="#tab_default_4" data-toggle="tab">
+                  Finished good </a>
+                </li>
+                <li>
+                    <a href="#tab_default_4" data-toggle="tab">
+                    Intermediary </a>
+                    </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_default_1">
+                  <div formGroupName="stock_info" class="form-group">
+                      <div class='col-md-8 form-group'>
+                      <select formControlName="unit_id" 
+                      id="levelSelect" name="levelSelect" class="form-control">
+                        <option value="">Select a unit</option>
+                        <option *ngFor="let unit of this.units" [ngValue]="unit.getId()">
+                          {{unit.getName()}}
+                        </option>
+                    </select>
+                    </div>
+                    <div class='col-md-8 form-group' >
+                        <label>Available</label>
+                        <input placeholder="Available" formControlName='available' class=' form-control' >
+                    </div>
+                    <div class='col-md-8 form-group' >
+                        <label>Minimum</label>
+                        <input placeholder="Minimum" formControlName='minimum' class=' form-control' >
+                    </div>
+                  </div>  
+              </div>
+              <div class="tab-pane" id="tab_default_2">
+                  <div formGroupName="attribute_set">
+                      <div formArrayName="quantitative_attributes">
+                        <div *ngFor="let attribute of QuanAttr.controls; let i=index" [formGroupName]="i">
+                            <div class='col-md-8 form-group' >
+                                <label>Name</label>
+                                <input placeholder="Name" formControlName='name' class=' form-control' >
+                            </div>
+                            <div class="col-md-8 form-group">
+                            <select formControlName="unit_id" 
+                        id="levelSelect" name="levelSelect" class="form-control">
+                          <option value="">Select a unit</option>
+                          <option *ngFor="let unit of this.units" [ngValue]="unit.getId()">
+                            {{unit.getName()}}
+                          </option>
+                      </select>
+                      </div>
+                      <div class='col-md-8 form-group' >
+                          <label>Magnitude</label>
+                          <input placeholder="Magnitude" formControlName='magnitude' class=' form-control' >
+                      </div>
+                      <div class="col-md-2">
+                      <button (click)="delQuanAttr()">Remove QuanAttr</button>
+                    </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                          <button (click)="addQuanAttr()">Add QuanAttr</button>
+                          </div>
+                    </div>
+              </div>
+              <div class="tab-pane" id="tab_default_3">
+                  <div formGroupName="attribute_set">
+                      <div formArrayName="qualitative_attributes">
+                        <div *ngFor="let attribute of QualAttr.controls; let i=index" [formGroupName]="i">
+                            <div class='col-md-8 form-group' >
+                                <label>Name</label>
+                                <input placeholder="Name" formControlName='name' class=' form-control' >
+                            </div>
+                            <div class='col-md-8 form-group' >
+                              <label>Description</label>
+                              <input placeholder="description" formControlName='description' class=' form-control' >
+                            </div>
+                            <div class="col-md-2">
+                              <button (click)="delQualAttr()">Remove QualAttr</button>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                      <button (click)="addQualAttr()">Add QualAttr</button>
+                    </div>
+                    </div>
+              </div>
+              <div class="tab-pane" id="tab_default_4">
+                  <div class='col-md-8 form-group' >
+                      <label>Last purchase</label>
+                      <input placeholder="last purchase" formControlName='last_purchase' class=' form-control' >
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </form>
+    </div>
+  </div>

@@ -22,7 +22,7 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     purchase_routing_components,
     payroll_routing_components,
     sales_routing_components
-  ],
+    ],
   imports: [
     BrowserModule,
     HttpModule,
