@@ -13,3 +13,7 @@ module.exports.getAll=(callback)=>{
 module.exports.getById=(id,callback)=>{
     PurchaseHistory.findById(id, callback);
 }//method
+
+module.exports.saveInDb= function(given_purchase_history, callback){
+    given_purchase_history.save(callback);
+}//save new object

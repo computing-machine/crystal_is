@@ -15,7 +15,6 @@ import { PayrollRoutingModule, payroll_routing_components } from "./modules/payr
 import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sales-routing-module/sales-routing-module.module";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +22,7 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     inventory_routing_components,
     purchase_routing_components,
     payroll_routing_components,
-    sales_routing_components,
+    sales_routing_components
   ],
   imports: [
     BrowserModule,

@@ -27,20 +27,17 @@ router.get("/RawMaterial/:id",(req, res)=>{
     });
 })//router
 
-router.put("/RawMaterial/:id",(req, res)=>{
-    let x={_id:req.params.id};
-    let update={
-        name:req.body.name
-    };
-    RawMaterial.updateRawMaterial(x, update,(err, result)=>{
-        if(err){res.send(err);}//if
+//create new object
+router.post("/RawMaterial/Save",function(req,res){
+    const data = req.body;
+    const new_raw_material = new RawMaterial(data); 
+    RawMaterial.saveInDb(new_raw_material , (err,list)=>{
+        if(err) res.status(505).send(err);
         else{
-            res.send(result);
+            res.status(200).send(list);
         }//else
-    });
-});
+    }); 
 
-
-router.post("/RawMaterial/New");
+});//post data
 
 module.exports=router;

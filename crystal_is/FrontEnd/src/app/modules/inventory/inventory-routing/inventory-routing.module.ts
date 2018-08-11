@@ -46,6 +46,10 @@ const inventory_routes: Routes=[
       {
         path:"RawMaterials/NewItem",
         component:AddItemComponent,
+      },
+      {
+        path:"NewItem",
+        component:AddItemComponent,
       }
     ]
   },

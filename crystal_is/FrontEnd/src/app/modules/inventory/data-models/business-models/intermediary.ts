@@ -3,6 +3,10 @@ import { List } from "../collection-models/list";
 
 export class Intermediary extends Manufactured{
 
+    constructor(params:any){
+        super(params);
+    }//constructor
+
     //API
     getLine():number{
         return this.line;

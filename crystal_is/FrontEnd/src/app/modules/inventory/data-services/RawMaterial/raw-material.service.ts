@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -18,4 +18,16 @@ export class RawMaterialService {
     return this.http.get("http://localhost:3000/Inventory/RawMaterialApi/RawMaterial/"+raw_material_id)
     .pipe(map(data=>{return data.json();}));
   }//method
-}
+
+  saveRawMaterial(data:any){
+    let URI = "http://localhost:3000/Inventory/RawMaterialApi/RawMaterial/Save";
+    
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    
+    return this.http.post(URI,data,{headers:headers}).pipe(map(res => {
+      return res.json();
+    }));
+      
+  }//savePurchaseHistory
+
+}//class ends

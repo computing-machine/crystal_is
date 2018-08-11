@@ -23,4 +23,17 @@ router.get("/PurchaseHistory/:id", (req, res)=>{
     });
 });
 
+//create new object
+router.post("/PurchaseHistory/Save",function(req,res){
+    const data = req.body;
+    const new_purchase_history = new PurchaseHistory(data); 
+    PurchaseHistory.saveInDb(new_purchase_history , (err,list)=>{
+        if(err) res.status(505).send(err);
+        else{
+            res.status(200).send(list);
+        }//else
+    }); 
+
+});//post data
+
 module.exports=router;

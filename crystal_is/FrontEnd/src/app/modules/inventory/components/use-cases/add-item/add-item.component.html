@@ -1,4 +1,5 @@
 <div>
+  <div class="row">
   <form>
     <div class="col-md-5 form-group">
       <label for="sel1">Select item type:</label>
@@ -11,7 +12,10 @@
     </div>
   </form>
 </div>
+</div>
 
+<div class="row">
 <div *ngIf="this.getNewRm()">
   <app-add-raw-material></app-add-raw-material>
+</div>
 </div>

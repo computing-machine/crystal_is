@@ -1,14 +1,13 @@
-import { AttributesRecordData} from './attributes-record-data';
-import {QualitativeAttributesRecordData} from './qualitative-attributes-record-data';
+import { StockInfoData } from './stock-info-data';
+import { AttributeSetData } from './attribute-set-data';
 
 export interface RawMaterialData{
     name:string;
-    description:String;
-    stock:Number;
-    wastage:Number;
-    unit_id:object;
-    attributes :[AttributesRecordData];
-    qualitative_attributes :[QualitativeAttributesRecordData];
+    description:string;
+    stock_info:StockInfoData;
+    wastage:number;
+    cost:number;
+    attributes :AttributeSetData;
     purchase_history_id:object;
 
 }

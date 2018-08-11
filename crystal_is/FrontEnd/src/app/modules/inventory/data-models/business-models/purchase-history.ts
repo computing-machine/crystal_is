@@ -18,5 +18,9 @@ export class PurchaseHistory {
     //accessors
     getPurchaseRecords():List<PurchaseRecord>{return this.purchase_records;}
 
+    setId(given_id:object):void{this.id=given_id;}
+    getId():object{return this.id;}
+
+    private id;
     private purchase_records:List<PurchaseRecord>;
 }
