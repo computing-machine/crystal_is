@@ -35,4 +35,17 @@ router.get("/FinishedGood/:id/BOM", (req, res)=>{
     });
 });
 
+//create new object
+router.post("/FinishedGood/Save",function(req,res){
+    const data = req.body;
+    const new_finished_good = new FinishedGood(data); 
+    FinishedGood.saveInDb(new_finished_good , (err,list)=>{
+        if(err) res.status(505).send(err);
+        else{
+            res.status(200).send(list);
+        }//else
+    }); 
+
+});//post data
+
 module.exports=router;

@@ -13,6 +13,8 @@ import { InventorySidebarComponent } from '../components/gui-elements/inventory-
 import { InventoryContentComponent } from '../components/gui-elements/inventory-content/inventory-content.component';
 import { InventoryDashboardComponent } from '../components/gui-elements/inventory-dashboard/inventory-dashboard.component';
 import { AddItemComponent } from '../components/use-cases/add-item/add-item.component';
+import { AddIntermediaryComponent } from '../components/use-cases/add-intermediary/add-intermediary.component';
+import { AddFinishedGoodComponent } from '../components/use-cases/add-finished-good/add-finished-good.component';
 
 const inventory_routes: Routes=[
   {
@@ -64,5 +66,5 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
+export const inventory_routing_components=[AddFinishedGoodComponent,AddIntermediaryComponent,AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
   SearchRawMaterialComponent,ViewRawMaterialDetailComponent,SearchIntermediaryComponent,ViewIntermediaryDetailComponent, InventoryDashboardComponent];

@@ -23,4 +23,17 @@ router.get("/BOM/:id", (req, res)=>{
     });
 });
 
+//create new object
+router.post("/BOM/Save",function(req,res){
+    const data = req.body;
+    const new_bom = new BOM(data); 
+    BOM.saveInDb(new_bom , (err,list)=>{
+        if(err) res.status(505).send(err);
+        else{
+            res.status(200).send(list);
+        }//else
+    }); 
+
+});//post data
+
 module.exports=router;

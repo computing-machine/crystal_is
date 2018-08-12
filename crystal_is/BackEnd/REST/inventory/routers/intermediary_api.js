@@ -33,4 +33,17 @@ router.get("/Intermediary/:id/BOM", (req, res)=>{
     });
 });
 
+//create new object
+router.post("/Intermediary/Save",function(req,res){
+    const data = req.body;
+    const new_intermediary = new Intermediary(data); 
+    Intermediary.saveInDb(new_intermediary , (err,list)=>{
+        if(err) res.status(505).send(err);
+        else{
+            res.status(200).send(list);
+        }//else
+    }); 
+
+});//post data
+
 module.exports=router;

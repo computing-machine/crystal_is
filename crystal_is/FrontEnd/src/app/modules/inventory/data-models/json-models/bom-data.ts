@@ -1,9 +1,3 @@
-import { RMRecordData } from './rm-record-data';
-import { InterRecordData } from './inter-record-data';
-
-export interface BOMData {
+export interface BomData {
     
-    rm:[RMRecordData];
-    inter:[InterRecordData];
-    
-}
+}//interface ends

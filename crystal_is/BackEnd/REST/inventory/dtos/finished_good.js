@@ -7,8 +7,7 @@ let BOM=require("./bom");
 FinishedGoodSchema=mongoose.Schema({
     name:{type:String, required:true, unique:true},
     description:String,
-    unit_id:{type:mongoose.Schema.Types.ObjectId, ref:Unit},
-    stock:Number,
+    stock_info:{unit_id:{type:mongoose.Schema.Types.ObjectId, ref:Unit}, available:Number, minimum:Number},
     attributes:{quantitative_attributes:[{name:String, unit_id:{type:mongoose.Schema.Types.ObjectId, ref:Unit}, magnitude:Number}],
     qualitative_attributes:[{name:String, description:String}]},
     line:String,
@@ -52,3 +51,7 @@ module.exports.getBOMbyId=(id, callback)=>{
         }//else
     });
 }//method
+
+module.exports.saveInDb= function(given_finished_good, callback){
+    given_finished_good.save(callback);
+}//save new object

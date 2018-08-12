@@ -19,12 +19,18 @@ export class AddItemComponent implements OnInit {
   onChangeSelect(value:string){
     if(value=="Raw material"){
       this.setNewRm(true);
+      this.setNewInter(false);
+      this.setNewFg(false);
     }//if
     else if(value=="Finished good"){
       this.setNewFg(true);
+      this.setNewRm(false);
+      this.setNewInter(false);
     }//if
     else if(value=="Intermediary"){
       this.setNewInter(true);
+      this.setNewRm(false);
+      this.setNewFg(false);
     }//if
   }//onChangeSelect
 

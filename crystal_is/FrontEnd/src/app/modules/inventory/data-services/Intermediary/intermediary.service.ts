@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -20,4 +20,16 @@ export class IntermediaryService {
       return data.json();
     }));
   }//method
-}
+
+  saveIntermediary(data:any){
+    let URI = "http://localhost:3000/Inventory/IntermediaryApi/Intermediary/Save";
+    
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    
+    return this.http.post(URI,data,{headers:headers}).pipe(map(res => {
+      return res.json();
+    }));
+      
+  }//savePurchaseHistory
+
+}//class ends
