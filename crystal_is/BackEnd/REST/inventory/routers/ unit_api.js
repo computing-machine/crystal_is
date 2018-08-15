@@ -14,6 +14,24 @@ router.get("/Units", (req, res)=>{
     });
 });
 
+router.get("/Units/Active", (req, res)=>{
+    Unit.getActiveUnits((err, units)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(units);
+        }//if
+    });
+});
+
+router.get("/Units/Inactive", (req, res)=>{
+    Unit.getInactiveUnits((err, units)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(units);
+        }//if
+    });
+});
+
 router.get("/Unit/:id", (req, res)=>{
     Unit.getById(req.params.id,(err, unit)=>{
         if(err){
@@ -25,12 +43,29 @@ router.get("/Unit/:id", (req, res)=>{
     })
 });
 
-router.post("/Units", (req, res)=>{
-    let unit=req.body;
-    Unit.addUnit(unit, (err, unit)=>{
-        if(err){console.log(err);}//if
-        else{res.json(unit)}
+//create new object
+router.post("/Unit/Save",function(req,res){
+    const data = req.body;
+    const new_unit = new Unit(data); 
+    Unit.RegisterUnit(new_unit, (err,list)=>{
+        if(err) res.status(505).send(err);
+        else{
+            res.status(200).send(list);
+        }//else
+    }); 
+
+});//post data
+
+router.put("/Unit/update/:id",function(req,res){
+    let id= req.params.id
+    let update = req.body;
+    
+    Unit.updateUnit(id, update, (err,result)=>{
+       if(err) return res.status(505).send(err);
+       else{
+        return res.status(200).send(result);
+       }//else
     });
-});
+});//put unit
 
 module.exports=router;

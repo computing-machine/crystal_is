@@ -45,7 +45,7 @@ private bom_service:BomService) { }
           }//for
 
           //asyn func
-          this.unit_service.getUnits().subscribe(units_data=>{
+          this.unit_service.getActiveUnits().subscribe(units_data=>{
             for(let data of units_data){
               this.units.add(new Unit(data));
             }//for

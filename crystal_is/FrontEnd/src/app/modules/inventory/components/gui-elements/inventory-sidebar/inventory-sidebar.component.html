@@ -24,12 +24,21 @@
                         <a routerLink="/Inventory/FinishedGoods"><li>Finished goods</li></a>
                       </ul>
 
+                      <li  data-toggle="collapse" data-target="#units" class="collapsed ">
+                        <a><i class="fa fa-file-text-o fa-lg" aria-hidden="true" style="padding-right:40px"></i> Units <span class="arrow"></span></a>
+                      </li>
+                      <ul class="sub-menu collapse" id="units">
+                        <a routerLink="/Inventory/NewUnit"><li>New</li></a>
+                        <a routerLink="/Inventory/ActiveUnits"><li>Active</li></a>
+                        <a routerLink="/Inventory/InactiveUnits"><li>Inactive</li></a>
+                      </ul>
+
                       <li data-toggle="collapse" data-target="#new" class="collapsed">
-                        <a><i class="fa fa-users fa-lg" aria-hidden="true" style="padding-right:40px"></i> Categorize <span class="arrow"></span></a>
+                        <a><i class="fa fa-users fa-lg" aria-hidden="true" style="padding-right:40px"></i> Categorys <span class="arrow"></span></a>
                       </li>
                       <ul class="sub-menu collapse" id="new">
-                        <li><a routerLink="viewcustomers">New type</a></li>
-                        <li><a routerLink="viewcustomers">Category</a></li>
+                        <li><a routerLink="viewcustomers">New</a></li>
+                        <li><a routerLink="viewcustomers">View</a></li>
                       </ul>
         
                       <li data-toggle="collapse" data-target="#service" class="collapsed">

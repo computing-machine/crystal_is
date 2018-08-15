@@ -23,7 +23,7 @@ private raw_material_service:RawMaterialService) { }
   ngOnInit() {
     this.data_ready=false;
     this.units=new List<Unit>();
-    this.unit_service.getUnits().subscribe(units_data=>{
+    this.unit_service.getActiveUnits().subscribe(units_data=>{
       for(let data of units_data){
         this.units.add(new Unit(data));
       }//for

@@ -15,6 +15,16 @@ import { InventoryDashboardComponent } from '../components/gui-elements/inventor
 import { AddItemComponent } from '../components/use-cases/add-item/add-item.component';
 import { AddIntermediaryComponent } from '../components/use-cases/add-intermediary/add-intermediary.component';
 import { AddFinishedGoodComponent } from '../components/use-cases/add-finished-good/add-finished-good.component';
+import { SearchUnitComponent } from '../components/use-cases/inspect-unit/search-unit/search-unit.component';
+import { RetrieveUnitDetailComponent } from '../components/use-cases/inspect-unit/retrieve-unit-detail/retrieve-unit-detail.component';
+import { RegisterUnitComponent } from '../components/use-cases/register-unit/register-unit.component';
+import { UpdateUnitComponent } from '../components/use-cases/update-unit/update-unit.component';
+import { DeactivateUnitComponent } from '../components/use-cases/deactivate-unit/deactivate-unit.component';
+import { RetrieveActiveUnitDetailComponent } from '../components/use-cases/inspect-active-unit/retrieve-active-unit-detail/retrieve-active-unit-detail.component';
+import { SearchActiveUnitComponent } from '../components/use-cases/inspect-active-unit/search-active-unit/search-active-unit.component';
+import { SearchInactiveUnitComponent } from '../components/use-cases/inspect-inactive-unit/search-inactive-unit/search-inactive-unit.component';
+import { RetrieveInactiveUnitDetailComponent } from '../components/use-cases/inspect-inactive-unit/retrieve-inactive-unit-detail/retrieve-inactive-unit-detail.component';
+import { ActivateUnitComponent } from '../components/use-cases/activate-unit/activate-unit.component';
 
 const inventory_routes: Routes=[
   {
@@ -52,6 +62,42 @@ const inventory_routes: Routes=[
       {
         path:"NewItem",
         component:AddItemComponent,
+      },
+      {
+        path:"ActiveUnits",
+        component:SearchActiveUnitComponent,
+      },
+      {
+        path:"ActiveUnit/:id",
+        component:RetrieveActiveUnitDetailComponent,
+      },
+      {
+        path:"InactiveUnits",
+        component:SearchInactiveUnitComponent,
+      },
+      {
+        path:"InactiveUnit/:id",
+        component:RetrieveInactiveUnitDetailComponent,
+      },
+      {
+        path:"NewUnit",
+        component:RegisterUnitComponent,
+      },
+      {
+        path:"UpdateUnit/:id",
+        component:UpdateUnitComponent,
+      },
+      {
+        path:"RawMaterials/AddRawMaterial",
+        component:AddRawMaterialComponent,
+      },
+      {
+        path:"Intermediarys/AddIntermediary",
+        component:AddIntermediaryComponent,
+      },
+      {
+        path:"FinishedGoods/AddFinishedGood",
+        component:AddFinishedGoodComponent,
       }
     ]
   },
@@ -66,5 +112,7 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[AddFinishedGoodComponent,AddIntermediaryComponent,AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
+export const inventory_routing_components=[ActivateUnitComponent,SearchInactiveUnitComponent,RetrieveInactiveUnitDetailComponent,SearchActiveUnitComponent,
+  RetrieveActiveUnitDetailComponent,DeactivateUnitComponent,UpdateUnitComponent,RegisterUnitComponent,RetrieveUnitDetailComponent,SearchUnitComponent,
+  AddFinishedGoodComponent,AddIntermediaryComponent,AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
   SearchRawMaterialComponent,ViewRawMaterialDetailComponent,SearchIntermediaryComponent,ViewIntermediaryDetailComponent, InventoryDashboardComponent];

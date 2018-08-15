@@ -1,0 +1,59 @@
+<div *ngIf="this.data_ready">
+  <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#menu1">General</a></li>
+      <li><a data-toggle="tab" href="#menu2">Conversions</a></li>
+      <li><a data-toggle="tab" href="#menu6">Submit</a></li>
+    </ul>
+    <form [formGroup]='unit_form' >
+    <div class="tab-content">
+      <div id="menu1" class="tab-pane fade in active">
+            <!--two members of form-->
+            <div formGroupName="general_info">
+            <div class='col-md-8 form-group' >
+                <label>Name</label>
+                <input placeholder="Name" formControlName='name' class=' form-control' >
+            </div>
+            <div class='col-md-8 form-group' >
+              <label>Description</label>
+              <textarea placeholder="Description" formControlName='description' class=' form-control' rows="5"></textarea>
+            </div>
+            </div>
+            <!--members till here-->
+      </div>
+      <div id="menu2" class="tab-pane fade">
+            <!--members of form-->
+            <div formGroupName="converters_info">
+              <div formArrayName="converters">
+                <div *ngFor="let converter of getConverters.controls; let i=index" [formGroupName]="i">
+                    <div class='col-md-8 form-group' >
+                        <p><b>Unit</b></p>
+                        <select formControlName="unit_name" id="levelSelect" name="levelSelect" class="form-control">
+                          <option value="">Select a unit</option>
+                          <option *ngFor="let unit of this.units" [ngValue]="unit.getName()">
+                            {{unit.getName()}}
+                          </option>
+                        </select>
+                    </div>
+                    <div class='col-md-8 form-group' >
+                      <label>Factor</label>
+                      <input placeholder="description" formControlName='factor' class=' form-control' >
+                    </div>
+                    <div class="col-md-2">
+                      <button (click)="delConverter(i)" class="btn btn-danger">Remove converter</button>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+              <button (click)="addConverter()" class="btn btn-primary">Add converter</button>
+            </div>
+            </div>
+            <!--members till here-->
+      </div>
+      <div id="menu6" class="tab-pane fade">
+          <div class="row">
+              <button (click)="registerRawMaterial()" class="btn btn-primary">Submit</button>
+          </div>
+      </div>
+    </div>
+  </form>
+</div>

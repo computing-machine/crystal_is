@@ -1,0 +1,44 @@
+<div *ngIf="this.getDataReady()">
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th colspan="3" style="text-align: center;">General</th>
+              </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">Name</td>
+            <td  style="text-align: center;" colspan="2">{{this.unit.getName()}}</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">Description</td>
+            <td style="text-align: center;" colspan="2">{{this.unit.getDescription()}}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table class="table table-responsive table-striped">
+        <thead>
+          <tr>
+            <th colspan="3" style="text-align: center;">Conversions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let converter of this.unit.getConverters()">
+            <td style="text-align: center;">{{converter.getUnitName()}}</td>
+            <td style="text-align: center;">{{converter.getFactor()}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+          <app-activate-unit [target_unit]="this.unit"></app-activate-unit>
+      </div>
+    </div>
+    
+  </div>

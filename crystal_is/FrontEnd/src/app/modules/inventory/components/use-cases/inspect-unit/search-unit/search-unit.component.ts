@@ -1,47 +1,44 @@
-import { Component, OnInit,Inject } from '@angular/core';
-import {Unit} from "../../../../data-models/business-models/unit";
-import {List} from "../../../../data-models/collection-models/list";
-import {Item} from "../../../../data-models/business-models/item";
-import { UnitService } from '../../../../data-services/unit/unit.service';
+import { Component, OnInit } from '@angular/core';
+import { List } from '../../../../data-models/collection-models/list';
+import { Unit } from '../../../../data-models/business-models/unit';
+import {UnitService} from "../../../../data-services/unit/unit.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-search-item',
-  templateUrl: './search-item.component.html',
-  styleUrls: ['./search-item.component.css']
+  selector: 'app-search-unit',
+  templateUrl: './search-unit.component.html',
+  styleUrls: ['./search-unit.component.css']
 })
-export class SearchItemComponent implements OnInit {
-  private items:List<Item>;
+export class SearchUnitComponent implements OnInit {
+
   private units:List<Unit>;
+  private items_for_view:List<Unit>;
   private dataReady:boolean;
-  private items_for_view:List<Item>;
   private input_name : string;
   private input_description:string;
 
   constructor(protected unit_service:UnitService, protected router:Router) { 
-    this.setItems(new List<Item>());
+
     this.setUnits(new List<Unit>());
-    this.setItemsForView(new List<Item>());
+    this.setItemsForView(new List<Unit>());
     this.setDataReady(false);
     this.setInputName("");
     this.setInputDesc("");
   }//constructor
 
   ngOnInit() {
-
   }//ngOnIt
 
   //accessors
-  getItems():List<Item>{return this.items;}
-  getItemsForView():List<Item>{return this.items_for_view;}
+  getItemsForView():List<Unit>{return this.items_for_view;}
 
-  filterItems():List<Item>{
+  filterItems():List<Unit>{
     if(this.getInputName()==="" && this.getInputDesc()===""){
-      this.setItemsForView(this.getItems());
+      this.setItemsForView(this.getUnits());
     }//if
     else if(this.getInputDesc()===""){
-      this.setItemsForView(new List<Item>());
-      for(let item of this.getItems()){
+      this.setItemsForView(new List<Unit>());
+      for(let item of this.getUnits()){
         if(item.getName().toUpperCase().includes(this.getInputName().toUpperCase())){
           this.addToItemsForView(item);
       }//if
@@ -49,7 +46,7 @@ export class SearchItemComponent implements OnInit {
   }//if
 
   else{
-      let temp_items=new List<Item>();
+      let temp_items=new List<Unit>();
       for(let item of this.getItemsForView()){
         if(item.getDescription().toUpperCase().includes(this.getInputDesc().toUpperCase())){
           temp_items.add(item);
@@ -72,17 +69,15 @@ export class SearchItemComponent implements OnInit {
   getUnits():List<Unit>{return this.units;}
 
   //mutators
-  setItems(given_items:List<Item>):void{this.items=given_items;}
-  setItemsForView(given_items:List<Item>):void{this.items_for_view=given_items;}
+  setItemsForView(given_items:List<Unit>):void{this.items_for_view=given_items;}
   setDataReady(given_value:boolean):void{this.dataReady=given_value}
   setInputName(given_name:string):void{this.input_name=given_name;}
   setInputDesc(given_desc:string):void{this.input_description=given_desc;}
   setUnits(given_units:List<Unit>):void{this.units=given_units;}
 
-  addItem(route:string){this.router.navigateByUrl("Inventory/"+route)}
+  addItem(){this.router.navigateByUrl("Inventory/NewUnit")}
 
-  protected addToItems(given_item:Item):void{this.getItems().add(given_item);}
-  protected addToItemsForView(given_item:Item):void{this.getItemsForView().add(given_item);}
+  protected addToItemsForView(given_item:Unit):void{this.getItemsForView().add(given_item);}
   protected addToUnits(given_unit:Unit):void{this.units.add(given_unit);}
 
-}
+}//class ends
