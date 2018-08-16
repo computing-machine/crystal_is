@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import {OrderDetailComponent} from '../../viewOrders/order-detail/order-detail.component'
 import {ActivatedRoute} from '@angular/router';
 import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
@@ -8,11 +8,11 @@ import {CustomerService} from '../../../../data-services/customer/customer.servi
 import {UnitService} from '../../../../../inventory/data-services/unit/unit.service';
 
 @Component({
-  selector: 'app-soin-production-detail',
-  templateUrl: './soin-production-detail.component.html',
-  styleUrls: ['./soin-production-detail.component.css']
+  selector: 'app-estimate-detail',
+  templateUrl: './estimate-detail.component.html',
+  styleUrls: ['./estimate-detail.component.css']
 })
-export class SOInProductionDetailComponent  extends OrderDetailComponent implements OnInit {
+export class EstimateDetailComponent extends OrderDetailComponent implements OnInit {
 
   constructor(public route : ActivatedRoute,public SO_service : SalesOrderService,
     public FG_service : FinishedGoodService,public cusService : CustomerService,

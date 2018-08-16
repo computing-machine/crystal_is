@@ -36,7 +36,7 @@ export class SearchReadySOComponent extends SearchOrderComponent implements OnIn
   }//ngOnInit
   
   getOrderDetail(orderId : any){
-    this.router.navigateByUrl("Sales/OrderDetailComponent/"+orderId);
+    this.router.navigateByUrl("Sales/readyOrderDetail/"+orderId);
   }//detail
 
 }

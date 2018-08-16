@@ -37,7 +37,7 @@ export class SearchConfirmedSOComponent extends SearchOrderComponent implements 
   }//ngOnInit
 
   getOrderDetail(orderId : any){
-    this.router.navigateByUrl("Sales/OrderDetailComponent/"+orderId);
+    this.router.navigateByUrl("Sales/confirmedOrder/"+orderId);
   }//detail
 
 }

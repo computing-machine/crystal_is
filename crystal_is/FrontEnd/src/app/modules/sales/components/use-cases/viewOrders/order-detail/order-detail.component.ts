@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
-import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
-import {FinishedGoodService} from '../../../../../inventory/data-services/finished-good/finished-good.service';
 import {FinishedGood} from '../../../../../inventory/data-models/business-models/finished-good';
 import {List} from '../../../../data-models/collection-models/list';
-import {Route} from '@angular/router';
-import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {Customer} from '../../../../data-models/business-models/customer';
 import { Unit } from '../../../../../inventory/data-models/business-models/unit';
+import {ActivatedRoute} from '@angular/router';
+import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
+import {FinishedGoodService} from '../../../../../inventory/data-services/finished-good/finished-good.service';
+import {Route} from '@angular/router';
+import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {UnitService} from '../../../../../inventory/data-services/unit/unit.service';
 
 @Component({
@@ -29,20 +29,23 @@ export class OrderDetailComponent implements OnInit {
   private deliverables : List<any>;
   private item : FinishedGood;
 
-  constructor(private route : ActivatedRoute,private SO_service:SalesOrderService,
-              private FG_service : FinishedGoodService,private cusService : CustomerService,
-              private unit_ser : UnitService ) { }
+  constructor(public route : ActivatedRoute,public SO_service : SalesOrderService,
+     public FG_service : FinishedGoodService,public cusService : CustomerService,
+      public unit_ser : UnitService ) { }
   ngOnInit() {
+    this.setOrder(); 
+  }//ngOnInit
+
+  setOrder(){
+    
     //private members initialization
     this.deliverables = new List<any>();
     this.units = new List<Unit>();
-
     this.setDataStatus(false);   
     this.route.params.subscribe(params=>this.setOrderId(params.id));
     console.log(this.getOrderId());
     //....................get Orderdata through service.....................
     this.SO_service.getSalesOrderById(this.getOrderId()).subscribe(response=>{
-      console.log(response[0].customer_id);
       this.cusService.getCustomerById(response[0].customer_id).subscribe(customer=>{
         this.unit_ser.getUnits().subscribe(units_data =>{
           for(let unit of units_data){
@@ -57,8 +60,7 @@ export class OrderDetailComponent implements OnInit {
         });//units from service
       });//customer from service
     });//salesorder from service
-     
-  }//ngOnInit
+  }
 
   //........................Order-Detail functions...................
   setUnits(unitdata : any){

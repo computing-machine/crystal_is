@@ -1,0 +1,125 @@
+<div *ngIf='this.getDataStatus()'>
+    <div class="row">
+        <div class="col-md-11  main">
+            <div class="col-md-12">
+              <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" style="margin-top : 30px" alt="Invoce Template" src="http://www.prepbootstrap.com/Content/images/template/productslider/product_004.jpg" />
+                    </div>
+                    <div class="col-md-8 text-right" style="margin-top : 30px">
+                       <h4 style="color: #F81D2D;"><strong>Customer Detail</strong></h4>
+                        <table class="table" style='font-size: 12px'>
+                            <tbody>
+                            <tr>
+                              <td style="border:0px;padding:0px"><p>{{this.customer.getName()}}</p></td>
+                            </tr>
+                            <tr>
+                              <td style="border:0px;padding:0px">
+                              <div *ngFor="let con of this.customer.getContacts()">
+                                      {{con}}
+                              </div>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td style="border:0px;padding:0px">
+                                  <div *ngFor="let add of this.customer.getAddresses()">
+                                      {{add.getAddress()}}
+                                  </div>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td style="border:0px;padding:0px">
+                                  <div *ngFor="let com of this.customer.getCusCompanies()">
+                                          {{com.getCompanyName()}}
+                                  </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2>Update Estimate</h2>
+                        <h5>{{this.estimate_deli_detail.getEstimate().getSalesOrderId()}}</h5>
+                    </div>
+                </div>
+                <br/>
+               <div>
+                    <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><h5>Name</h5></th>
+                                    <th><h5>Unit</h5></th>
+                                    <th><h5>Quantity</h5></th>
+                                    <th><h5>Amount</h5></th>
+                                    <th><h5>Action</h5></th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let fg of this.estimate_deli_detail.getdeliverableDetail()">
+                                        <td class="col-md-2">
+                                            <div class='form-group'>
+                                                <input  class='form-control' type='text' value={{fg.getFG().getName()}} readonly>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <div class='form-group'>
+                                                <input  class='form-control' type='text' value={{fg.getUnit().getName()}} readonly>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <div class='form-group'>
+                                                <input  class='form-control' type='text' value= {{fg.getQuantity()}}>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <div class='form-group'>
+                                                <input  class='form-control' type='text' value={{fg.getFG().getPrice()}} readonly>
+                                            </div>
+                                        </td>
+                                        <td class='col-md-2'>
+                                            <button type="button" class="btn btn-danger">Delete</button>
+                                        </td>
+                                </tr>
+                            
+                            </tbody>
+                    </table>
+                    <div class='row'>
+                        <div class='col-md-3 col-sm-10'>
+                            <button  type="button" class="btn btn-info btn-block add_cat" (click)='getCatalog()'>Add items</button>
+                        </div>
+                        <div class='col-md-3 col-sm-10' style='float:right'>
+                            <button  type="button" class="btn btn-info btn-block">Save Updates</button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <!--Catalog-->
+                <table class='table' *ngIf='this.getCatalogStatus()'  style='margin-top:15px'>
+                        <tbody>
+                            <tr>
+                                <div class="col-md-6"  *ngFor='let fg of this.catalog' style='margin-bottom:10px' >
+                                    <div style="text-align:center ; display:inline-block; border:solid 1px #808080; padding:15px;width:100%" >
+                                            <div>
+                                                <b style='float:left'>Name : </b>{{fg.getName()}}<br><br>
+                                                <b style='float:left'>Unit :</b> {{fg.getUnitName(this.units)}}<br><br>
+                                                <b style='float:left'>Description :</b> {{fg.getDescription()}}<br><br>
+                                                <b style='float:left'>Quantity :</b><input class='form-control' type='text' placeholder='quantity'><br><br>
+                                            </div>  
+                                            <div class="btn-ground text-center" style="padding-bottom: 30px">
+                                                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add</button>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-info"></i> Info</button>
+                                                <br/>
+                                            </div>
+                                    </div>
+                                </div>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
