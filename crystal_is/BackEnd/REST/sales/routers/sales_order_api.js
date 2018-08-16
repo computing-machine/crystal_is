@@ -88,7 +88,6 @@ router.put("/SalesOrder/update/:id",function(req,res){
     salesorder.updateSalesOrder(query,Estimate,(err,result)=>{
         if(err) return res.status(505).send(err);
         else{
-            console.log(result);
          return res.status(200).send(result);
         }//else
     });//updateSalesOrder

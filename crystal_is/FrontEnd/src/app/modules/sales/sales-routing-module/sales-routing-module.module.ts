@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule, Router} from "@angular/router";
 
-
-
+import { EstimateDetailComponent } from '../components/use-cases/viewEstimate/estimate-detail/estimate-detail.component';
 import { SearchCustomerComponent } from '../components/use-cases/viewCustomer/search-customer/search-customer.component';
 import { CustomerDetailComponent } from '../components/use-cases/viewCustomer/customer-detail/customer-detail.component';
 import { SearchConfirmedSOComponent } from '../components/use-cases/viewConfirmedSO/search-confirmed-so/search-confirmed-so.component';
@@ -26,7 +25,7 @@ import { SalesDashboardComponent } from '../components/gui-elements/sales-dashbo
 import { UpdateCustomerComponent} from '../components/use-cases/update-customer/update-customer.component'
 import {DeleteCustomerComponent} from '../components/use-cases/delete-customer/delete-customer.component'
 import { TestFormComponent } from '../components/use-cases/test-form/test-form.component';
-import { UpdateSalesOrderComponent } from '../components/update-sales-order/update-sales-order.component';
+import { UpdateEstimateComponent } from '../components/use-cases/update-estimate/update-estimate.component';
 
 const sales_routes: Routes = [
   {
@@ -105,9 +104,30 @@ const sales_routes: Routes = [
         path : 'deleteCustomer/:id',
         component : DeleteCustomerComponent
       },
+     
       {
-        path : 'UpdateEstimate/:orderId',
-        component : UpdateSalesOrderComponent
+        path : 'estimateDetail/:id',
+        component :  EstimateDetailComponent
+      },
+      {
+        path : 'readyOrderDetail/:id',
+        component : ReadySODetailComponent
+      },
+      {
+        path : 'orderInProduction/:id',
+        component : SOInProductionDetailComponent
+      },
+      {
+        path : 'deliveredOrder/:id',
+        component : DeliveredSODetailComponent 
+      },
+      {
+        path : 'confirmedOrder/:id',
+        component :  ConfirmedOrderDetailComponent 
+      },
+      {
+        path : 'updateEstimate/:id',
+        component : UpdateEstimateComponent
       }
     ]
   }
@@ -126,4 +146,4 @@ export const sales_routing_components=[SalesSidebarComponent,SalesContentCompone
 SearchConfirmedSOComponent,ConfirmedOrderDetailComponent,SearchDeliveredSOComponent, DeliveredSODetailComponent,
 ReadySODetailComponent,SearchReadySOComponent,SOInProductionDetailComponent,SearchSOInProductionComponent,
 SearchEstimateComponent,RegisterCustomerComponent,ResgisterEstimateComponent,SearchCustomerComponent,
-OrderDetailComponent,ConfirmEstimateComponent,UpdateCustomerComponent,TestFormComponent,DeleteCustomerComponent,UpdateSalesOrderComponent];
+OrderDetailComponent,ConfirmEstimateComponent,UpdateCustomerComponent,UpdateEstimateComponent,TestFormComponent,DeleteCustomerComponent, EstimateDetailComponent];

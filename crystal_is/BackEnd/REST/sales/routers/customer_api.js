@@ -16,7 +16,6 @@ router.get("/Customers", function(req, res){
 
 router.get("/Customers/:_id",function(req,res){
     let query = {_id :req.params._id};
-    console.log(query);
     Customer.getCustomerById(query ,function(err,customer){//call customer.js function to get customer by id
         if(err){res.status(505).send(err);
         }

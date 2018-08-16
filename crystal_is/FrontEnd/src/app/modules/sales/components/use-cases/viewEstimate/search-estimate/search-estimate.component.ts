@@ -2,11 +2,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {SearchOrderComponent} from '../../../use-cases/viewOrders/search-order/search-order.component';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
 import {List} from '../../../../data-models/collection-models/list';
-import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
-import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {Customer} from '../../../../data-models/business-models/customer';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
-import {Router} from '@angular/router';
+import { SalesOrderService } from '../../../../data-services/sales_order/sales-order.service';
+import { FinishedGoodService } from '../../../../../inventory/data-services/finished-good/finished-good.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CustomerService } from '../../../../data-services/customer/customer.service';
+
 
 @Component({
   selector: 'app-search-estimate',
@@ -15,8 +17,10 @@ import {Router} from '@angular/router';
 })
 export class SearchEstimateComponent extends SearchOrderComponent implements OnInit {
 
-  private temp : any;
-  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private SO : SalesOrderService, private cusService : CustomerService, private router : Router) {
+  private saleOrder_id : any;
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private SO : SalesOrderService,
+              private FG : FinishedGoodService,private router : Router,
+              private cusService :CustomerService ) {
     super();
    }
 
@@ -37,16 +41,19 @@ export class SearchEstimateComponent extends SearchOrderComponent implements OnI
   }//ngOnInit
 
   getOrderDetail(orderId : any){
-    this.router.navigateByUrl("Sales/OrderDetailComponent/"+orderId);
+    this.router.navigateByUrl("Sales/estimateDetail/"+orderId);
   }//detail
 
   updateOrder(orderId : any){
-    this.router.navigateByUrl("Sales/UpdateEstimate/"+orderId);
+   this.router.navigateByUrl("Sales/updateEstimate/"+orderId);
   }//updateOrder
-  setTemp(id : any){
-    this.temp = id
+  setModal(event_target : any , id : any){
+    this.saleOrder_id = id
+    event_target.setAttribute("data-toggle","modal");
+    event_target.setAttribute("data-target","#myModal");
+    //console.log(event_target);
   }
-  getTemp():any{
-    return this.temp;
+  getModal():any{
+    return this.saleOrder_id;
   }
 }

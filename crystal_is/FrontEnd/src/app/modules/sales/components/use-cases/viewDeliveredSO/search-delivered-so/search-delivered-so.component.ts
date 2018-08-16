@@ -36,7 +36,7 @@ export class SearchDeliveredSOComponent  extends SearchOrderComponent implements
   }//ngOnInit
 
   getOrderDetail(orderId : any){
-    this.router.navigateByUrl("Sales/OrderDetailComponent/"+orderId);
+    this.router.navigateByUrl("Sales/deliveredOrder/"+orderId);
   }//detail
 
 }
