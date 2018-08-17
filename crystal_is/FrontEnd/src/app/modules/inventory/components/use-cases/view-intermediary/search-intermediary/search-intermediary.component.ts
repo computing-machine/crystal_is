@@ -22,7 +22,7 @@ export class SearchIntermediaryComponent extends SearchItemComponent implements 
 
   ngOnInit() {
     
-    this.intermediary_service.getIntermediarys().subscribe(intermediary_data=>{
+    this.intermediary_service.getActiveIntermediarys().subscribe(intermediary_data=>{
       for(let data of intermediary_data){
         this.addToItems(new Intermediary(data));
       }//for

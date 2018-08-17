@@ -8,12 +8,12 @@ export class Intermediary extends Manufactured{
     }//constructor
 
     //API
-    getLine():number{
+    getLine():string{
         return this.line;
     }//method
 
     get():Intermediary{return this.intermediary;}
 
     private intermediary:Intermediary;
-    private line:number;
+    private line:string;
 }

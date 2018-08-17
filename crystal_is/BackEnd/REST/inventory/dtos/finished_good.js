@@ -12,7 +12,8 @@ FinishedGoodSchema=mongoose.Schema({
     qualitative_attributes:[{name:String, description:String}]},
     line:String,
     bom_id:{type:mongoose.Schema.Types.ObjectId, ref:BOM},
-    price:Number
+    price:Number,
+    status:String
 });
 
 let FinishedGood=module.exports=mongoose.model("FinishedGood", FinishedGoodSchema, "FinishedGood");
@@ -55,3 +56,15 @@ module.exports.getBOMbyId=(id, callback)=>{
 module.exports.saveInDb= function(given_finished_good, callback){
     given_finished_good.save(callback);
 }//save new object
+
+module.exports.updateFinishedGood = function(id ,update, callback){
+    FinishedGood.update({ _id: id }, { $set: update }, callback);
+}//update Customer
+
+module.exports.getActiveFinishedGoods=(callback)=>{
+    FinishedGood.find({status:{$eq:"active"}}, callback);
+}//method
+
+module.exports.getInactiveFinishedGoods=(callback)=>{
+    FinishedGood.find({status:{$eq:"inactive"}}, callback);
+}//method

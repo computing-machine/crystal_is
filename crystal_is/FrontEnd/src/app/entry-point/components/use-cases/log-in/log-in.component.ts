@@ -44,7 +44,7 @@ export class LogInComponent implements OnInit {
             }//if
             else if(this.job_description.getDesignation()=="Stockkeeper"){
               this.storage.set("user_id", this.employee.getId());
-              this.router.navigateByUrl("/Inventory");
+              this.router.navigateByUrl("/Inventory/Dashboard");
             }//if
             else if(this.job_description.getDesignation()=="Salesperson"){
               this.storage.set("user_id", this.employee.getId());

@@ -15,6 +15,7 @@ import {FinishedGoodService} from "../../../../data-services/finished-good/finis
 import {Intermediary} from "../../../../data-models/business-models/intermediary";
 import {IntermediaryService} from "../../../../data-services/Intermediary/intermediary.service";
 import {Router} from "@angular/router";
+import {} from "../../deactivate-raw-material/deactivate-raw-material.component";
 
 
 @Component({
@@ -37,8 +38,8 @@ export class ViewRawMaterialDetailComponent extends ViewNonManufacturedItemDetai
   constructor(private unit_service:UnitService, private raw_material_service:RawMaterialService, 
     private route:ActivatedRoute, private purchase_history_service:PurchaseHistoryService,
   private bom_service:BomService, private finished_good_service:FinishedGoodService, 
-  private intermediary_service:IntermediaryService, private router:Router) { 
-    super();
+  private intermediary_service:IntermediaryService, protected router:Router) { 
+    super(router);
     this.route.params.subscribe(params=>this.setItemId(params.id));
   }
 
@@ -66,6 +67,21 @@ export class ViewRawMaterialDetailComponent extends ViewNonManufacturedItemDetai
     this.makeBoms();
 
   }//ngOnInit
+
+  showActions(){
+    if(!this.getShowActions()){
+      this.setShowActions(true);
+      this.setShowFinishedGoods(false);
+      this.setShowIntermediarys(false);
+      this.setShowPurchaseHistory(false);
+    }//if
+    else{
+      this.setShowActions(false);
+      this.setShowFinishedGoods(false);
+      this.setShowIntermediarys(false);
+      this.setShowPurchaseHistory(false);
+    }//else
+  }//mehtod
 
   showPurchaseHistory(){
     if(this.getItem().getPurchaseHistory()){

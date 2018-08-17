@@ -1,0 +1,23 @@
+<div *ngIf="this.data_ready">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Deactivate</button>
+    
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="color:red;">Warning</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to  <b>DEACTIVATE</b>  {{"'"+this.inter_data.name+"'"}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deactivateIntermediary()">Yes</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    </div>

@@ -34,8 +34,8 @@ export class ViewIntermediaryDetailComponent extends ViewManufacturedItemDetailC
 
   constructor(private finished_good_service:FinishedGoodService, private intermediary_service:IntermediaryService,private bom_service:BomService ,
     private raw_material_service:RawMaterialService,
-   protected unit_service:UnitService, private route:ActivatedRoute, private router:Router) { 
-   super();
+   protected unit_service:UnitService, private route:ActivatedRoute, protected router:Router) { 
+   super(router);
    this.route.params.subscribe(params=>this.setItemId(params.id));
  }//constructor
 
@@ -48,7 +48,7 @@ export class ViewIntermediaryDetailComponent extends ViewManufacturedItemDetailC
   this.setBoms(new List<BOM>());
   
   this.intermediary_service.getIntermediary(this.getItemId()).subscribe(intermediary_data=>{
-    this.setItem(new FinishedGood(intermediary_data));
+    this.setItem(new Intermediary(intermediary_data));
     //in asyn
     this.unit_service.getUnits().subscribe(units_data=>{
       for(let data of units_data){
@@ -72,6 +72,7 @@ showBom(){
     this.setShowIntermediarys(false);
     this.setShowBom(true);
     this.setShowFinishedGoods(false);
+    this.setShowActions(false);
   }//if
   else{
 
@@ -94,6 +95,7 @@ showBom(){
       this.setShowIntermediarys(false);
       this.setShowBom(true);
       this.setShowFinishedGoods(false);
+      this.setShowActions(false);
       });
     
     });
@@ -101,12 +103,28 @@ showBom(){
   }//else
 }//method
 
+showActions(){
+  if(!this.getShowActions()){
+    this.setShowActions(true);
+    this.setShowFinishedGoods(false);
+    this.setShowIntermediarys(false);
+    this.setShowBom(false);
+  }//if
+  else{
+    this.setShowActions(false);
+    this.setShowFinishedGoods(false);
+    this.setShowIntermediarys(false);
+    this.setShowBom(false);
+  }//else
+}//mehtod
+
 showIntermediarys(){
   if(this.boms.getLength()!=0){
     if(this.resultant_intermediarys.getLength()!=0){
       this.setShowIntermediarys(true);
       this.setShowBom(false);
       this.setShowFinishedGoods(false);
+      this.setShowActions(false);
     }//if
     else{
     for(let bom of this.boms){
@@ -128,6 +146,7 @@ showIntermediarys(){
     this.setShowIntermediarys(true);
     this.setShowBom(false);
     this.setShowFinishedGoods(false);
+    this.setShowActions(false);
   }//else
   }//if
 }//method
@@ -138,6 +157,7 @@ showFinishedGoods(){
       this.setShowIntermediarys(false);
       this.setShowBom(false);
       this.setShowFinishedGoods(true);
+      this.setShowActions(false);
     }//if
     else{
     for(let bom of this.boms){
@@ -159,6 +179,7 @@ showFinishedGoods(){
     this.setShowIntermediarys(false);
     this.setShowBom(false);
     this.setShowFinishedGoods(true);
+    this.setShowActions(false);
   }//else
   }//if
 }//method

@@ -8,7 +8,7 @@ export interface IntermediaryData{
     stock_info:StockInfoData;
     attributes:AttributeSetData;
     line:string;
-    wastage:number;
     cost:number,
     bom_id:object;
+    status:string;
 }

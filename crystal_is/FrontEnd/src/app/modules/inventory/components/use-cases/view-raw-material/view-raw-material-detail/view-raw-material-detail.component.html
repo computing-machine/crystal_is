@@ -72,6 +72,12 @@
         <div class="col-md-2">
             <button class="btn btn-info" (click)="this.showIntermediarys()">Intermediarys</button>
           </div>
+          <div class="col-md-1">
+            <button class="btn btn-info" (click)="this.showIntermediarys()">Cost</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-info" (click)="this.showActions()">Actions</button>
+          </div>
     </div>
     <div *ngIf="this.getShowPurchaseHistory()" style="padding-top: 20px;">
       <div class="row">
@@ -104,6 +110,7 @@
           <tbody>
             <tr *ngFor="let fg of this.resultant_finished_goods">
               <td class="col-md-3">{{fg.getName()}}</td>
+              <td class="col-md-3">{{fg.getStatus()}}</td>
               <td class="col-md-3">N/A</td>
               <td class="col-md-3">N/A</td>
               <td class="col-md-3"><button class="btn btn-primary" (click)="this.getItemDetail(fg.getId(),'/Inventory/FinishedGood/')">Detail</button></td>
@@ -124,6 +131,7 @@
             <tbody>
               <tr *ngFor="let inter of this.resultant_intermediarys">
                 <td class="col-md-3">{{inter.getName()}}</td>
+                <td class="col-md-3">{{inter.getStatus()}}</td>
                 <td class="col-md-3">N/A</td>
                 <td class="col-md-3">N/A</td>
                 <td class="col-md-3"><button class="btn btn-primary" (click)="this.getItemDetail(inter.getId(),'/Inventory/Intermediary/')">Detail</button></td>
@@ -131,6 +139,18 @@
             </tbody>
           </table>
           </div>
+          </div>
+        </div>
+
+        <div *ngIf="this.getShowActions()" style="padding-top: 20px;">
+          <div class="row">
+            <div class="col-md-1">
+              <button type="button" class="btn btn-warning" (click)="this.updateItem(this.getItem().getId(),'/Inventory/UpdateRawMaterial/')">Update</button>
+            </div>
+      
+            <div class="col-md-1">
+                <app-deactivate-raw-material [target_rm_id]="this.getItem().getId()"></app-deactivate-raw-material>
+              </div>
           </div>
         </div>
   </div>

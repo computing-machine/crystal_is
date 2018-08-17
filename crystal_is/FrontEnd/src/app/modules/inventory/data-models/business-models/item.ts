@@ -14,6 +14,7 @@ export abstract class Item {
         this.setStockInfo(new StockInfo(param.stock_info));
         this.setCost(param.cost);
         this.setAttrSet(new AttributeSet(param.attributes));
+        this.setStatus(param.status);
 
     }//constructor
 
@@ -34,6 +35,7 @@ export abstract class Item {
     setStockInfo(given_stock_info:StockInfo):void{this.stock_info=given_stock_info;}
     setCost(given_cost:number):void{this.cost=given_cost;}
     setAttrSet(attr_set:AttributeSet){this.attributes=attr_set;}
+    setStatus(value:string):void{this.status=value;}
 
     //accessors
     getId():Object{return this.item_id;}
@@ -44,6 +46,7 @@ export abstract class Item {
     getStock():number{return this.stock_info.getAvailQuan();}
     getCost():number{return this.cost;}
     getAttrSet(){return this.attributes}
+    getStatus():string{return this.status;}
 
 
     //data members
@@ -53,4 +56,5 @@ export abstract class Item {
     private stock_info:StockInfo;
     private attributes:AttributeSet;
     private cost:number;
+    private status:string;
 }//class ends

@@ -31,4 +31,14 @@ export class BomService {
       
   }//savePurchaseHistory
 
+  updateBom(id:object, data){
+
+    let URI = "http://localhost:3000/Inventory/BomApi/BOM/Update/"+id;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.put(URI,data,{headers:headers}).pipe(map(res => {
+      console.log(res.json());
+      return res.json();
+       }));
+  }//updateCustomer
+
 }//class ends

@@ -21,3 +21,7 @@ module.exports.getById=(id,callback)=>{
 module.exports.saveInDb= function(given_bom, callback){
     given_bom.save(callback);
 }//save new object
+
+module.exports.updateBom = function(id ,update, callback){
+    BOM.update({ _id: id }, { $set: update }, callback);
+}//update Customer

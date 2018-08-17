@@ -10,9 +10,9 @@ IntermediarySchema=mongoose.Schema({
     attributes:{quantitative_attributes:[{name:String, unit_id:{type:mongoose.Schema.Types.ObjectId, ref:Unit}, magnitude:Number}],
     qualitative_attributes:[{name:String, description:String}]},
     line:String,
-    wastage:Number,
     cost:Number,
-    bom_id:{type:mongoose.Schema.Types.ObjectId, ref:BOM}
+    bom_id:{type:mongoose.Schema.Types.ObjectId, ref:BOM},
+    status:String
 });
 
 let Intermediary=module.exports=mongoose.model("Intermediary", IntermediarySchema, "Intermediary");
@@ -55,3 +55,15 @@ module.exports.getBOMbyId=(id, callback)=>{
 module.exports.saveInDb= function(given_intermediary, callback){
     given_intermediary.save(callback);
 }//save new object
+
+module.exports.updateIntermediary = function(id ,update, callback){
+    Intermediary.update({ _id: id }, { $set: update }, callback);
+}//update Customer
+
+module.exports.getActiveIntermediarys=(callback)=>{
+    Intermediary.find({status:{$eq:"active"}}, callback);
+}//method
+
+module.exports.getInactiveIntermediarys=(callback)=>{
+    Intermediary.find({status:{$eq:"inactive"}}, callback);
+}//method

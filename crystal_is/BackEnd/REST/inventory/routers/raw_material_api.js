@@ -16,6 +16,24 @@ router.get("/RawMaterials",(req, res)=>{
     });
 })//router
 
+router.get("/RawMaterials/Active", (req, res)=>{
+    RawMaterial.getActiveRawMaterials((err, rms)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(rms);
+        }//if
+    });
+});
+
+router.get("/RawMaterials/Inactive", (req, res)=>{
+    RawMaterial.getInactiveRawMaterials((err, rms)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(rms);
+        }//if
+    });
+});
+
 router.get("/RawMaterial/:id",(req, res)=>{
     RawMaterial.getById(req.params.id,(err, raw_material)=>{
         if(err){
@@ -39,5 +57,17 @@ router.post("/RawMaterial/Save",function(req,res){
     }); 
 
 });//post data
+
+router.put("/RawMaterial/update/:id",function(req,res){
+    let id= req.params.id
+    let update = req.body;
+    
+    RawMaterial.updateRawMaterial(id, update, (err,result)=>{
+       if(err) return res.status(505).send(err);
+       else{
+        return res.status(200).send(result);
+       }//else
+    });
+});//put unit
 
 module.exports=router;

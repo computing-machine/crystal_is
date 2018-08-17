@@ -32,4 +32,24 @@ export class FinishedGoodService {
       
   }//savePurchaseHistory
 
+  updateFinishedGood(id:object, data){
+
+    let URI = "http://localhost:3000/Inventory/FinishedGoodApi/FinishedGood/Update/"+id;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.put(URI,data,{headers:headers}).pipe(map(res => {
+      console.log(res.json());
+      return res.json();
+       }));
+  }//updateCustomer
+
+  getActiveFinishedGoods(){
+    return this.http.get("http://localhost:3000/Inventory/FinishedGoodApi/FinishedGoods/Active")
+    .pipe(map(data=>{return data.json()}));
+  }//getUnits
+
+  getInactiveFinishedGoods(){
+    return this.http.get("http://localhost:3000/Inventory/FinishedGoodApi/FinishedGoods/Inactive")
+    .pipe(map(data=>{return data.json()}));
+  }//getUnits
+
 }//class ends

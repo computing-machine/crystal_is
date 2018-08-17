@@ -22,7 +22,7 @@ export class SearchRawMaterialComponent extends SearchItemComponent implements O
 
   ngOnInit() {
     
-    this.raw_material_service.getRawMaterials().subscribe(raw_material_data=>{
+    this.raw_material_service.getActiveRawMaterials().subscribe(raw_material_data=>{
       for(let data of raw_material_data){
         this.addToItems(new RawMaterial(data));
       }//for

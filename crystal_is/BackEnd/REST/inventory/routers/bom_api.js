@@ -36,4 +36,16 @@ router.post("/BOM/Save",function(req,res){
 
 });//post data
 
+router.put("/BOM/Update/:id",function(req,res){
+    let id= req.params.id
+    let update = req.body;
+    
+    BOM.updateBom(id, update, (err,result)=>{
+       if(err) return res.status(505).send(err);
+       else{
+        return res.status(200).send(result);
+       }//else
+    });
+});//put unit
+
 module.exports=router;

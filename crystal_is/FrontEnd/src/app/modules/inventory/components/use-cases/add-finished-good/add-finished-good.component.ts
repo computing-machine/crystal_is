@@ -35,7 +35,7 @@ private bom_service:BomService, private finished_good_service:FinishedGoodServic
       this.raw_materials=new List<RawMaterial>();
       this.intermediarys=new List<Intermediary>();
 
-      this.raw_material_service.getRawMaterials().subscribe(raw_materials_data=>{
+      this.raw_material_service.getActiveRawMaterials().subscribe(raw_materials_data=>{
         for(let data of raw_materials_data){
           this.raw_materials.add(new RawMaterial(data));
         }//for
@@ -158,7 +158,8 @@ private bom_service:BomService, private finished_good_service:FinishedGoodServic
           "attributes" :this.fg_form.value.attribute_set,
           "bom_id":response._id,
           "line":"3A",
-          "price":this.fg_form.value.price
+          "price":this.fg_form.value.price,
+          "status":"active"
         }
         this.finished_good_service.saveFinishedGood(fg).subscribe(response=>{
           console.log(response);
