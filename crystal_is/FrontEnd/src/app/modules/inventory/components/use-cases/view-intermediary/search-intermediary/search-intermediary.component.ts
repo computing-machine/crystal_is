@@ -4,7 +4,7 @@ import {UnitService} from "../../../../data-services/unit/unit.service";
 import { IntermediaryService } from '../../../../data-services/Intermediary/intermediary.service';
 import {Intermediary} from "../../../../data-models/business-models/intermediary";
 import { Item } from '../../../../data-models/business-models/item';
-import { List } from '../../../../data-models/collection-models/list';
+import { List } from "../../../../../../app-data-models/collection-models/list";
 import { Unit } from '../../../../data-models/business-models/unit';
 import {Router} from "@angular/router";
 

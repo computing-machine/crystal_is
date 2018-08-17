@@ -1,6 +1,6 @@
 import {Manufactured} from "./manufactured";
 import {BOM} from "./bom";
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 
 export class FinishedGood extends Manufactured{
 

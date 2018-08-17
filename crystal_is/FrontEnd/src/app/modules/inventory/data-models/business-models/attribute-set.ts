@@ -1,6 +1,6 @@
 import {QuantitativeAttribute} from "./quantitative-attribute";
 import {QualitativeAttribute} from "./qualitative-attribute";
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 
 export class AttributeSet {
     constructor(param:any){

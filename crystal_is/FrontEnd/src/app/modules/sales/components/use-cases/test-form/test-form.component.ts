@@ -1,6 +1,6 @@
 import { Component, OnInit, Type } from '@angular/core';
 import {Customer} from '../../../data-models/business-models/customer';
-import {List} from '../../../data-models/collection-models/list';
+import {List} from "../../../../../app-data-models/collection-models/list";
 import {Company} from '../../../data-models/business-models/company';
 import {Address} from '../../../data-models/business-models/address';
 import {CustomerService} from '../../../data-services/customer/customer.service';

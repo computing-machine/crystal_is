@@ -1,6 +1,6 @@
 
 import {Address} from './address';
-import { List } from '../collection-models/list';
+import { List } from "../../../../app-data-models/collection-models/list";
 
 export class Vendor {
    

@@ -13,7 +13,7 @@ import {RawMaterial} from "../../../../data-models/business-models/raw-material"
 import {Unit} from "../../../../data-models/business-models/unit";
 import {Intermediary} from "../../../../data-models/business-models/intermediary";
 import {BOM} from "../../../../data-models/business-models/bom";
-import {List} from "../../../../data-models/collection-models/list";
+import {List} from "../../../../../../app-data-models/collection-models/list";
 
 @Component({
   selector: 'app-view-intermediary-detail',

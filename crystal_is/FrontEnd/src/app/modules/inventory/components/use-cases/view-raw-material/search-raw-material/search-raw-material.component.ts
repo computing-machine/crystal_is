@@ -4,7 +4,7 @@ import {UnitService} from "../../../../data-services/unit/unit.service";
 import { RawMaterialService } from '../../../../data-services/RawMaterial/raw-material.service';
 import {RawMaterial} from "../../../../data-models/business-models/raw-material";
 import { Item } from '../../../../data-models/business-models/item';
-import { List } from '../../../../data-models/collection-models/list';
+import { List } from "../../../../../../app-data-models/collection-models/list";
 import { Unit } from '../../../../data-models/business-models/unit';
 import {Router} from "@angular/router";
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';

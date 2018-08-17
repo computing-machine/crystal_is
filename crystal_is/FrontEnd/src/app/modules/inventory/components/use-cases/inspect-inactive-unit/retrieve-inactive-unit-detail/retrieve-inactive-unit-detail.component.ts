@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Unit} from "../../../../data-models/business-models/unit";
-import {List} from "../../../../data-models/collection-models/list";
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import { UnitService } from '../../../../data-services/unit/unit.service';
 import {ActivatedRoute} from "@angular/router";
 import {ActivateUnitComponent} from "../../activate-unit/activate-unit.component";

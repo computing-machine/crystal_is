@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { FormGroup, FormBuilder, FormArray,Validators } from '@angular/forms';
 import {Customer} from '../../../data-models/business-models/customer';
 import {CustomerService} from '../../../data-services/customer/customer.service';
-import {List} from '../../../data-models/collection-models/list';
+import {List} from "../../../../../app-data-models/collection-models/list";
 import {SalesOrder} from '../../../data-models/business-models/sales-order';
 import {SalesOrderService} from '../../../data-services/sales_order/sales-order.service'
 import {FinishedGood} from '../../../../inventory/data-models/business-models/finished-good';
@@ -100,7 +100,6 @@ export class UpdateEstimateComponent implements OnInit {
         for(let fg of fgs ){
           this.catalog.add(new FinishedGood(fg));
         }//for
-        console.log(this.catalog);
         this.setCatalogStatus(true);
       });//get all fgs
       });//get all units from service

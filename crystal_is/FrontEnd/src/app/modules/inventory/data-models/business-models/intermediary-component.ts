@@ -1,7 +1,7 @@
 import {ProductionComponent} from "./production-component";
 import {BOM} from "./bom";
 import {Intermediary} from "./intermediary";
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 
 export class IntermediaryComponent extends ProductionComponent{
 

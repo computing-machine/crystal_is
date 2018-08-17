@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {PurchaseOrderService} from "../../../../data-services/purchase-order/purchase-order.service";
 import {VendorService} from "../../../../data-services/vendor-service/vendor.service";
 import { PurchaseOrder } from '../../../../data-models/business-models/purchase-order';
-import {List} from "../../../../data-models/collection-models/list";
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import { Employee } from '../../../../../payroll/data-models/business-models/employee';
 import { Vendor } from '../../../../data-models/business-models/vendor';
 import { EmployeeService } from '../../../../../payroll/data-services/Employee/employee.service';

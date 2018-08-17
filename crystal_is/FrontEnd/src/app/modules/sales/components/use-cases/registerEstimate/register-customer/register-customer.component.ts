@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Customer} from '../../../../data-models/business-models/customer';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {Router} from '@angular/router';
 import { FormGroup, FormBuilder, FormArray,Validators } from '@angular/forms';

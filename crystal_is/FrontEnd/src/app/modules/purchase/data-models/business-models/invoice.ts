@@ -1,4 +1,4 @@
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { Payment } from "./payment";
 import { InvoiceData } from "../json-models/invoice-data";
 

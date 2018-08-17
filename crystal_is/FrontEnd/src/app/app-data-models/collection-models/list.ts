@@ -5,7 +5,7 @@ export class List<T> extends Iterable<T> {
     // The underlying array data structure of the collection
     private items:T[]=[];
     //constructor
-    public constructor(){
+    constructor(){
         super();
     }
   
@@ -40,7 +40,7 @@ export class List<T> extends Iterable<T> {
     }
 
     // Find the index of a given object in a collection
-    public IndexOfItem(obj: T) :number {
+    public getIndexOf(obj: T) :number {
         for (let i = 0; i < this.items.length; i++) {
             if (this.items[i] === obj)
                 return i;

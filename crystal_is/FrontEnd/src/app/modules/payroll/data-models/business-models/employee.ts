@@ -1,4 +1,4 @@
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 import {Deduction} from "./deduction";
 import { EmployeeData } from "../json-models/employee-data";
 import { Address } from "./address";

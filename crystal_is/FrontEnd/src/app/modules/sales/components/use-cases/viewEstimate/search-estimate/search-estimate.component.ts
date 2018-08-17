@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {SearchOrderComponent} from '../../../use-cases/viewOrders/search-order/search-order.component';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {Customer} from '../../../../data-models/business-models/customer';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import { SalesOrderService } from '../../../../data-services/sales_order/sales-order.service';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {SearchConfirmedSOComponent} from '../../viewConfirmedSO/search-confirmed-so/search-confirmed-so.component';
 
 @Component({

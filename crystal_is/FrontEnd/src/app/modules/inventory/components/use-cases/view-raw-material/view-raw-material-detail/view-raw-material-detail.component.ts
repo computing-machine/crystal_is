@@ -5,7 +5,7 @@ import {RawMaterialService} from "../../../../data-services/RawMaterial/raw-mate
 import { UnitService } from '../../../../data-services/unit/unit.service';
 import { ActivatedRoute } from '@angular/router';
 import {Unit} from "../../../../data-models/business-models/unit";
-import {List} from "../../../../data-models/collection-models/list";
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import { PurchaseHistory } from '../../../../data-models/business-models/purchase-history';
 import {PurchaseHistoryService} from "../../../../data-services/purchase-history/purchase-history.service";
 import { BomService } from '../../../../data-services/Bom/bom.service';

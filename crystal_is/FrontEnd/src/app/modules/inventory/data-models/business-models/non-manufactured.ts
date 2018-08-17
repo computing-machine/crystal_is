@@ -1,5 +1,5 @@
 import {Item} from "./item"
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 import {PurchaseHistory} from "./purchase-history";
 import { PurchaseRecord } from "./purchase-record";
 

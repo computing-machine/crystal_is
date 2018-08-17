@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {SearchOrderComponent} from '../../../../components/use-cases/viewOrders/search-order/search-order.component';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
 import {CustomerService} from '../../../../data-services/customer/customer.service';
 import {Customer} from '../../../../data-models/business-models/customer';

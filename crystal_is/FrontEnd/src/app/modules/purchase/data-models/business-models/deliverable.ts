@@ -1,6 +1,6 @@
 import{ DeliverableData } from "../json-models/deliverable-data";
 import {Recieving} from "./recieving";
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 
 export class Deliverable {
 

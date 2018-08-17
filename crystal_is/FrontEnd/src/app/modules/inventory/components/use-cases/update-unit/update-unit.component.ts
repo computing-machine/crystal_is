@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray} from "@angular/forms";
 import { UnitService } from '../../../data-services/unit/unit.service';
-import { List } from '../../../../payroll/data-models/collection-models/list';
+import { List } from "../../../../../app-data-models/collection-models/list";
 import { Unit } from '../../../data-models/business-models/unit';
 import {ActivatedRoute} from "@angular/router";
 import { Converter } from '../../../data-models/business-models/converter';

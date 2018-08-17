@@ -1,4 +1,4 @@
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { SalaryPackage } from "./salary_package";
 import { JobDescriptionData } from "../json-models/job-description-data";
 import { SalaryPackageData } from "../json-models/salary-package-data";

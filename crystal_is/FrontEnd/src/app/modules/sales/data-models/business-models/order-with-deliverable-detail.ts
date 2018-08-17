@@ -1,6 +1,6 @@
 import {FGDetailWithQuantity} from './fgdetail-with-quantity';
 import {SalesOrder} from './sales-order';
-import {List} from '../collection-models/list';
+import {List} from "../../../../app-data-models/collection-models/list";
 
 export class OrderWithDeliverableDetail {
     private deli_detail : List<FGDetailWithQuantity>;

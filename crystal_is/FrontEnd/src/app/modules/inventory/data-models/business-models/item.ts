@@ -1,5 +1,5 @@
 import {Unit} from "./unit";
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 import {AttributeSet} from "./attribute-set";
 import { StockInfo } from "./stock-info";
 

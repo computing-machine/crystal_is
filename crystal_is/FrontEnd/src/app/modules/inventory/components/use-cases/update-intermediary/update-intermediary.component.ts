@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, FormArray} from "@angular/forms";
-import { List } from '../../../../purchase/data-models/collection-models/list';
+import { List } from "../../../../../app-data-models/collection-models/list";
 import { Unit } from '../../../data-models/business-models/unit';
 import {UnitService} from "../../../data-services/unit/unit.service";
 import { RawMaterialData } from '../../../data-models/json-models/raw-material-data';

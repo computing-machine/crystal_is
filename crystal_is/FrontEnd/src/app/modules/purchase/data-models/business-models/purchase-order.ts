@@ -1,9 +1,8 @@
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { Invoice } from "./invoice";
 import { Deliverable } from "./deliverable";
 import { Vendor } from "./vendor";
 import { PurchaseOrderData } from "../json-models/purchase-order-data";
-import { PurchaseOrderStatusEnum } from "../collection-models/purchase-order-status-enum.enum";
 import { Employee } from "../../../payroll/data-models/business-models/employee";
 
 
@@ -65,7 +64,7 @@ export class PurchaseOrder {
     }//method
 
     getLateDays():number{
-        if(this.getStatus()!=PurchaseOrderStatusEnum.closed){
+        if(this.getStatus()!="closed"){
             return new Date().valueOf()-this.getDueDate().valueOf();
         }//if
     }//method

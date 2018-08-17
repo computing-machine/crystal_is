@@ -1,5 +1,5 @@
 import {Converter} from "./converter";
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 
 export class Unit {
 

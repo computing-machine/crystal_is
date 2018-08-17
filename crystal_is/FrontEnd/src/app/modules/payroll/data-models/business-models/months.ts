@@ -1,4 +1,4 @@
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 import {Day} from "./day";
 import { MonthData } from "../json-models/month-data";
 

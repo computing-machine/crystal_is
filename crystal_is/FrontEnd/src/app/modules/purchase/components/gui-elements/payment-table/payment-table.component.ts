@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { List } from '../../../data-models/collection-models/list';
+import { List } from "../../../../../app-data-models/collection-models/list";
 import { Payment } from '../../../data-models/business-models/payment';
 
 @Component({

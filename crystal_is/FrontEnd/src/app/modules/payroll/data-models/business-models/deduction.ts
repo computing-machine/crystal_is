@@ -1,5 +1,5 @@
 import { DeductionData } from "../json-models/deduction-data";
-import { List } from "../../../purchase/data-models/collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { Payment } from "../../../purchase/data-models/business-models/payment";
 
 export class Deduction{

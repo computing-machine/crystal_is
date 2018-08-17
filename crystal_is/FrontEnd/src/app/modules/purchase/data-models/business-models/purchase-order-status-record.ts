@@ -1,4 +1,3 @@
-import { PurchaseOrderStatusEnum } from "../collection-models/purchase-order-status-enum.enum";
 import { PurchaseOrderStatusRecordData } from "../json-models/purchase-order-status-record-data";
 
 export class PurchaseOrderStatusRecord {
@@ -9,14 +8,14 @@ export class PurchaseOrderStatusRecord {
     }//status
     
     //mutators
-    setStatus(given_status:PurchaseOrderStatusEnum):void{this.status=given_status;}
+    setStatus(given_status:string):void{this.status=given_status;}
     setDate(given_date):void{this.date=given_date;}
 
     //accessors
-    getStatus():PurchaseOrderStatusEnum{return this.status;}
+    getStatus():string{return this.status;}
     getDate():Date{return this.date;}
 
     //data memebrs
-    private status:PurchaseOrderStatusEnum;
+    private status:string;
     private date:Date;
 }//class ends

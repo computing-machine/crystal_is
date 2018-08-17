@@ -1,7 +1,7 @@
 import {RawMaterialComponent} from "./raw-material-component";
 import {IntermediaryComponent} from "./intermediary-component";
 import {RawMaterial} from "./raw-material";
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { Intermediary } from "./intermediary";
 
 export class BOM {

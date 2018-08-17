@@ -4,7 +4,7 @@ import {RawMaterialService} from "../../../data-services/RawMaterial/raw-materia
 import { UnitService } from '../../../data-services/unit/unit.service';
 import { ActivatedRoute } from '@angular/router';
 import {Unit} from "../../../data-models/business-models/unit";
-import {List} from "../../../data-models/collection-models/list";
+import {List} from "../../../../../app-data-models/collection-models/list";
 import {Router} from "@angular/router";
 import { FormBuilder, FormGroup, FormArray} from "@angular/forms";
 import { RawMaterialData } from '../../../data-models/json-models/raw-material-data';

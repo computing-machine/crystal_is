@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomerService} from '../../../../data-services/customer/customer.service';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {Customer} from '../../../../data-models/business-models/customer';
 import { SearchPersonComponent} from '../../viewPerson/search-person/search-person.component';
 import {Router} from '@angular/router';

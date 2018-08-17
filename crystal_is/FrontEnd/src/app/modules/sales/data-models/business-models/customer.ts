@@ -1,7 +1,7 @@
 
 //imports
 import {Company} from './company';
-import {List} from '../collection-models/list';
+import {List} from "../../../../app-data-models/collection-models/list";
 import {Person} from './person';
 
 export class Customer extends Person {

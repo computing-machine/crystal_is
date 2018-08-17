@@ -1,5 +1,5 @@
 import { Summary } from "./summary";
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { SalaryPackageData } from "../json-models/salary-package-data";
 import { Facility } from "./facility";
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {List} from "../../../data-models/collection-models/list";
+import {List} from "../../../../../app-data-models/collection-models/list";
 import {Vendor} from "../../../data-models/business-models/vendor";
 import {VendorService} from "../../../data-services/vendor-service/vendor.service";
 

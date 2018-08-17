@@ -1,5 +1,5 @@
 import {Deliverables} from './deliverables';
-import {List} from '../collection-models/list';
+import {List} from "../../../../app-data-models/collection-models/list";
 import {Invoice} from './invoice';
 import {Orderhistory} from './orderhistory';
 

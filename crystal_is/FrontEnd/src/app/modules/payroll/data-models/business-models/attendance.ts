@@ -1,4 +1,4 @@
-import {List} from "../collection-models/list";
+import {List} from "../../../../app-data-models/collection-models/list";
 import {Month} from "./months";
 import { AttendanceData } from "../json-models/attendance-data";
 

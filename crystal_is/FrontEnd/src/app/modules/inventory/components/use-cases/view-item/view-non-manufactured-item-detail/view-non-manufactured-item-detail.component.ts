@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ViewItemDetailComponent} from "../view-item-detail/view-item-detail.component";
 import {Unit} from "../../../../data-models/business-models/unit";
-import {List} from "../../../../data-models/collection-models/list";
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import { PurchaseHistory } from '../../../../data-models/business-models/purchase-history';
 import {Router} from "@angular/router";
 

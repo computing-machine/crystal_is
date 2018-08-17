@@ -5,7 +5,7 @@ import {CustomerService} from '../../../../data-services/customer/customer.servi
 import {SalesOrderService} from '../../../../data-services/sales_order/sales-order.service';
 import {Customer} from '../../../../data-models/business-models/customer';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {FinishedGood} from '../../../../../inventory/data-models/business-models/finished-good';
 import {FinishedGoodService} from '../../../../../inventory/data-services/finished-good/finished-good.service';
 import {Router} from '@angular/router';

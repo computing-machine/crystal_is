@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FinishedGood} from '../../../../../inventory/data-models/business-models/finished-good';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {FinishedGoodService} from '../../../../../inventory/data-services/finished-good/finished-good.service';
 import {Router} from '@angular/router';
 
@@ -58,7 +58,7 @@ private selectedFG : List<any>;
     }//if
     else if(element.innerHTML == 'Selected'){
       element.innerHTML = 'Select';
-      let index = this.selectedFG.IndexOfItem({"fg" : item,"quantity" : quantity});
+      let index = this.selectedFG.getIndexOf({"fg" : item,"quantity" : quantity});
       this.selectedFG.delete(index);
     }//else if
     this.fg_quanity=1;

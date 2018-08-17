@@ -7,7 +7,7 @@ import {SalesOrderService} from '../../../../data-services/sales_order/sales-ord
 import {Customer} from '../../../../data-models/business-models/customer';
 //..................Select FinishedGood.....................
 import {FinishedGood} from '../../../../../inventory/data-models/business-models/finished-good';
-import {List} from '../../../../data-models/collection-models/list';
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {FinishedGoodService} from '../../../../../inventory/data-services/finished-good/finished-good.service';
 import { SalesOrder } from '../../../../data-models/business-models/sales-order';
 

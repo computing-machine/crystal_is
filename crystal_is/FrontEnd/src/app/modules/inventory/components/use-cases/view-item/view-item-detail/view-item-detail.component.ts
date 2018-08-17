@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Item} from "../../../../data-models/business-models/item";
-import {List} from "../../../../data-models/collection-models/list";
+import {List} from "../../../../../../app-data-models/collection-models/list";
 import {Unit} from "../../../../data-models/business-models/unit";
 import {Router} from "@angular/router"
 

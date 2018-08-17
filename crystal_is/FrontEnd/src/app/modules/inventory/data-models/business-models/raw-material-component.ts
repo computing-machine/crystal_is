@@ -1,6 +1,6 @@
 import { ProductionComponent} from "./production-component";
 import { RawMaterial } from "./raw-material";
-import { List } from "../collection-models/list";
+import { List } from "../../../../app-data-models/collection-models/list";
 import { Unit } from "./unit";
 
 export class RawMaterialComponent extends ProductionComponent{
