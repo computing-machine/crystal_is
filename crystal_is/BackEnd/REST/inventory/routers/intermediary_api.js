@@ -16,6 +16,24 @@ router.get("/Intermediarys",(req, res)=>{
     });
 })//router
 
+router.get("/Intermediarys/Active", (req, res)=>{
+    Intermediary.getActiveIntermediarys((err, rms)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(rms);
+        }//if
+    });
+});
+
+router.get("/Intermediarys/Inactive", (req, res)=>{
+    Intermediary.getInactiveIntermediarys((err, rms)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(rms);
+        }//if
+    });
+});
+
 router.get("/Intermediary/:id",(req, res)=>{
     Intermediary.getById(req.params.id,(err, raw_material)=>{
         if(err){
@@ -45,5 +63,17 @@ router.post("/Intermediary/Save",function(req,res){
     }); 
 
 });//post data
+
+router.put("/Intermediary/update/:id",function(req,res){
+    let id= req.params.id
+    let update = req.body;
+    
+    Intermediary.updateIntermediary(id, update, (err,result)=>{
+       if(err) return res.status(505).send(err);
+       else{
+        return res.status(200).send(result);
+       }//else
+    });
+});//put unit
 
 module.exports=router;

@@ -15,6 +15,16 @@ export class IntermediaryService {
     }));
   }//method
 
+  getActiveIntermediarys(){
+    return this.http.get("http://localhost:3000/Inventory/IntermediaryApi/Intermediarys/Active")
+    .pipe(map(data=>{return data.json()}));
+  }//getUnits
+
+  getInactiveIntermediarys(){
+    return this.http.get("http://localhost:3000/Inventory/IntermediaryApi/Intermediarys/Inactive")
+    .pipe(map(data=>{return data.json()}));
+  }//getUnits
+
   getIntermediary(intermediary_id){
     return this.http.get("http://localhost:3000/Inventory/IntermediaryApi/Intermediary/"+intermediary_id).pipe(map(data=>{
       return data.json();
@@ -31,5 +41,15 @@ export class IntermediaryService {
     }));
       
   }//savePurchaseHistory
+
+  updateIntermediary(id:object, data){
+
+    let URI = "http://localhost:3000/Inventory/IntermediaryApi/Intermediary/Update/"+id;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.put(URI,data,{headers:headers}).pipe(map(res => {
+      console.log(res.json());
+      return res.json();
+       }));
+  }//updateCustomer
 
 }//class ends

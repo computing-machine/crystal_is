@@ -11,7 +11,8 @@ RawMaterialSchema=mongoose.Schema({
     qualitative_attributes:[{name:String, description:String}]},
     wastage:Number,
     cost:Number,
-    purchase_history_id:{type:mongoose.Schema.Types.ObjectId, ref:PurchaseHistory}
+    purchase_history_id:{type:mongoose.Schema.Types.ObjectId, ref:PurchaseHistory},
+    status:String
 });
 
 let RawMaterial=module.exports=mongoose.model("RawMaterial", RawMaterialSchema, "RawMaterial");
@@ -27,3 +28,15 @@ module.exports.getById=(id,callback)=>{
 module.exports.saveInDb= function(given_raw_material, callback){
     given_raw_material.save(callback);
 }//insertCustomer
+
+module.exports.getActiveRawMaterials=(callback)=>{
+    RawMaterial.find({status:{$eq:"active"}}, callback);
+}//method
+
+module.exports.getInactiveRawMaterials=(callback)=>{
+    RawMaterial.find({status:{$eq:"inactive"}}, callback);
+}//method
+
+module.exports.updateRawMaterial = function(id ,update, callback){
+    RawMaterial.update({ _id: id }, { $set: update }, callback);
+}//update Customer

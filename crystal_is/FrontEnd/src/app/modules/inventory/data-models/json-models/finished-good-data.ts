@@ -9,5 +9,6 @@ export interface FinishedGoodData {
     attributes:AttributeSetData;
     line:string,
     bom_id:object;
-    price:Number
+    price:Number;
+    status:string;
 }

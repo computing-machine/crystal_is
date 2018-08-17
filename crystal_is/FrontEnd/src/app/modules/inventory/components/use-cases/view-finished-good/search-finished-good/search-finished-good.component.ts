@@ -22,7 +22,7 @@ export class SearchFinishedGoodComponent extends SearchItemComponent implements 
 
   ngOnInit() {
     
-    this.finished_good_service.getFinishedGoods().subscribe(raw_material_data=>{
+    this.finished_good_service.getActiveFinishedGoods().subscribe(raw_material_data=>{
       for(let data of raw_material_data){
         this.addToItems(new FinishedGood(data));
       }//for

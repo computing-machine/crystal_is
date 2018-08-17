@@ -106,7 +106,8 @@ private raw_material_service:RawMaterialService) { }
         "attributes":this.rm_form.value.attribute_set,
         "purchase_history_id":purchase_history_obj.getId(),
         "wastage":0,
-        "cost":0
+        "cost":0,
+        "status":"active"
       }
       this.raw_material_service.saveRawMaterial(raw_material_data).subscribe(response=>{
         console.log(response);

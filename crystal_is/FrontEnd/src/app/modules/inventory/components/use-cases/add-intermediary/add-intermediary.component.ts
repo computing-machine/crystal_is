@@ -33,7 +33,7 @@ private bom_service:BomService) { }
       this.raw_materials=new List<RawMaterial>();
       this.intermediarys=new List<Intermediary>();
 
-      this.raw_material_service.getRawMaterials().subscribe(raw_materials_data=>{
+      this.raw_material_service.getActiveRawMaterials().subscribe(raw_materials_data=>{
         for(let data of raw_materials_data){
           this.raw_materials.add(new RawMaterial(data));
         }//for
@@ -152,11 +152,11 @@ private bom_service:BomService) { }
           "name":this.inter_form.value.general_info.name,
           "description":this.inter_form.value.general_info.description,
           "stock_info":this.inter_form.value.stock_info,
-          "wastage":0,
           "attributes" :this.inter_form.value.attribute_set,
           "bom_id":response._id,
           "line":"3A",
-          "cost":0
+          "cost":0,
+          "status":"active"
         }
         this.intermediary_service.saveIntermediary(inter).subscribe(response=>{
           console.log(response);

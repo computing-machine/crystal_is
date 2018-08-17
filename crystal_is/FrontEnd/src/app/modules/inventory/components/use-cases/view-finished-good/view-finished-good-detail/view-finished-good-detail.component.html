@@ -63,8 +63,14 @@
   </div>
   
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-1">
       <button class="btn btn-info" (click)="this.showBom()">BOM</button>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-info">Cost</button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-info" (click)="this.showActions()">Actions</button>
     </div>
   </div>
 
@@ -80,6 +86,7 @@
               <tbody>
                 <tr *ngFor="let raw_compo of this.getItem().getBom().getRawMatCompoList()">
                   <td class="col-md-3">{{raw_compo.getRawMat().getName()}}</td>
+                  <td class="col-md-3">{{raw_compo.getRawMat().getStatus()}}</td>
                   <td class="col-md-3">{{raw_compo.getRawMat().getUnitName(this.getUnits())}}</td>
                   <td class="col-md-3">{{raw_compo.getQuantity()}}</td>
                   <td class="col-md-3"><button class="btn btn-primary" (click)="this.getItemDetail(raw_compo.getRawMat().getId(),'/Inventory/RawMaterial/')">Detail</button></td>
@@ -95,6 +102,7 @@
                 <tbody>
                   <tr *ngFor="let inter_compo of this.getItem().getBom().getInterCompoList()">
                     <td class="col-md-3">{{inter_compo.getIntermediary().getName()}}</td>
+                    <td class="col-md-3">{{inter_compo.getIntermediary().getStatus()}}</td>
                     <td class="col-md-3">{{inter_compo.getIntermediary().getUnitName(this.getUnits())}}</td>
                     <td class="col-md-3">{{inter_compo.getQuantity()}}</td>
                     <td class="col-md-3" style="align-content: center;"><button class="btn btn-primary" (click)="this.getItemDetail(inter_compo.getIntermediary().getId(), '/Inventory/Intermediary/')">Detail</button></td>
@@ -102,6 +110,18 @@
                   </tbody>
           </table>
       </div>
+    </div>
+  </div>
+
+  <div *ngIf="this.getShowActions()" style="padding-top: 20px;">
+    <div class="row">
+        <div class="col-md-1">
+            <button type="button" class="btn btn-warning" (click)="this.updateItem(this.getItem().getId(),'/Inventory/UpdateFinishedGood/')">Update</button>
+          </div>
+
+      <div class="col-md-1">
+          <app-deactivate-finished-good [target_fg_id]="this.getItem().getId()"></app-deactivate-finished-good>
+        </div>
     </div>
   </div>
 

@@ -7,6 +7,7 @@ import {Intermediary} from "../../../../data-models/business-models/intermediary
 import {BOM} from "../../../../data-models/business-models/bom";
 import {List} from "../../../../data-models/collection-models/list";
 import { ActivatedRoute } from '@angular/router';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-manufactured-item-detail',
@@ -20,8 +21,8 @@ export abstract class ViewManufacturedItemDetailComponent extends ViewItemDetail
   private bom:BOM;
   private show_bom:boolean;
 
-  constructor() { 
-    super();
+  constructor(protected router:Router) { 
+    super(router);
     this.setShowBom(false);
 
     this.setComposingRawMaterials(new List<RawMaterial>());

@@ -3,6 +3,7 @@ import {ViewItemDetailComponent} from "../view-item-detail/view-item-detail.comp
 import {Unit} from "../../../../data-models/business-models/unit";
 import {List} from "../../../../data-models/collection-models/list";
 import { PurchaseHistory } from '../../../../data-models/business-models/purchase-history';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-non-manufactured-item-detail',
@@ -13,8 +14,8 @@ export abstract class ViewNonManufacturedItemDetailComponent extends ViewItemDet
 
   private show_purchase_history:boolean;
 
-  constructor() {
-    super();
+  constructor(protected router:Router) {
+    super(router);
    }//constructor
 
    ngOnInit() {

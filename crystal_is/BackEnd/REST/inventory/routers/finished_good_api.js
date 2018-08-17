@@ -48,4 +48,34 @@ router.post("/FinishedGood/Save",function(req,res){
 
 });//post data
 
+router.put("/FinishedGood/Update/:id",function(req,res){
+    let id= req.params.id
+    let update = req.body;
+    
+    FinishedGood.updateFinishedGood(id, update, (err,result)=>{
+       if(err) return res.status(505).send(err);
+       else{
+        return res.status(200).send(result);
+       }//else
+    });
+});//put unit
+
+router.get("/FinishedGoods/Active", (req, res)=>{
+    FinishedGood.getActiveFinishedGoods((err, rms)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(rms);
+        }//if
+    });
+});
+
+router.get("/FinishedGoods/Inactive", (req, res)=>{
+    FinishedGood.getInactiveFinishedGoods((err, rms)=>{
+        if(err){res.json();}//if
+        else{
+            res.send(rms);
+        }//if
+    });
+});
+
 module.exports=router;

@@ -14,7 +14,7 @@ import {Unit} from "../../../../data-models/business-models/unit";
 import {Intermediary} from "../../../../data-models/business-models/intermediary";
 import {BOM} from "../../../../data-models/business-models/bom";
 import {List} from "../../../../data-models/collection-models/list";
-
+import {DeactivateFinishedGoodComponent} from "../../deactivate-finished-good/deactivate-finished-good.component";
 
 @Component({
   selector: 'app-view-finished-good-detail',
@@ -25,8 +25,8 @@ export class ViewFinishedGoodDetailComponent extends ViewManufacturedItemDetailC
 
   constructor(private finished_good_service:FinishedGoodService, private intermediary_service:IntermediaryService,private bom_service:BomService ,
      private raw_material_service:RawMaterialService,
-    protected unit_service:UnitService, private route:ActivatedRoute, private router:Router) { 
-    super();
+    protected unit_service:UnitService, private route:ActivatedRoute, protected router:Router) { 
+    super(router);
     this.route.params.subscribe(params=>this.setItemId(params.id));
   }//constructor
 
@@ -64,6 +64,7 @@ export class ViewFinishedGoodDetailComponent extends ViewManufacturedItemDetailC
           
         this.getItem().setBom(this.getBom());
         this.setShowBom(true);
+        this.setShowActions(false);
         });
       
       });
@@ -73,5 +74,16 @@ export class ViewFinishedGoodDetailComponent extends ViewManufacturedItemDetailC
   getItemDetail(item_id:Object, given_route:string){
     this.router.navigateByUrl(given_route+item_id);
   }//method
+
+  showActions(){
+    if(!this.getShowActions()){
+      this.setShowActions(true);
+      this.setShowBom(false);
+    }//if
+    else{
+      this.setShowActions(false);
+      this.setShowBom(false);
+    }//else
+  }//mehtod
 
 }//class ends

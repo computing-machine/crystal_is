@@ -12,7 +12,7 @@ export class FinishedGood extends Manufactured{
     }//method
 
     //mutators
-    setLine(given_line:number):void{
+    setLine(given_line:string):void{
         this.line=given_line;
     }//method
 
@@ -21,7 +21,7 @@ export class FinishedGood extends Manufactured{
     }//method
 
     //accessors
-    getLine():number{
+    getLine():string{
         return this.line;
     }//method
 
@@ -31,6 +31,6 @@ export class FinishedGood extends Manufactured{
 
 
     //data members
-    private line:number;
+    private line:string;
     private price:number;
 }

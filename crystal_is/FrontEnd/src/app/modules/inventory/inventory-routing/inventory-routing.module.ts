@@ -25,12 +25,23 @@ import { SearchActiveUnitComponent } from '../components/use-cases/inspect-activ
 import { SearchInactiveUnitComponent } from '../components/use-cases/inspect-inactive-unit/search-inactive-unit/search-inactive-unit.component';
 import { RetrieveInactiveUnitDetailComponent } from '../components/use-cases/inspect-inactive-unit/retrieve-inactive-unit-detail/retrieve-inactive-unit-detail.component';
 import { ActivateUnitComponent } from '../components/use-cases/activate-unit/activate-unit.component';
+import { UpdateRawMaterialComponent } from '../components/use-cases/update-raw-material/update-raw-material.component';
+import { DeactivateRawMaterialComponent } from '../components/use-cases/deactivate-raw-material/deactivate-raw-material.component';
+import { UpdateIntermediaryComponent } from '../components/use-cases/update-intermediary/update-intermediary.component';
+import { DeactivateIntermediaryComponent } from '../components/use-cases/deactivate-intermediary/deactivate-intermediary.component';
+import { DeactivateFinishedGoodComponent } from '../components/use-cases/deactivate-finished-good/deactivate-finished-good.component';
+import { UpdateFinishedGoodComponent } from '../components/use-cases/update-finished-good/update-finished-good.component';
+import { InventoryBodyComponent } from '../components/gui-elements/inventory-body/inventory-body.component';
 
 const inventory_routes: Routes=[
   {
     path:"Inventory",
-    component:InventoryDashboardComponent,
+    component:InventoryBodyComponent,
     children:[
+      {
+        path:"Dashboard",
+        component:InventoryDashboardComponent
+      },
       {
         path:"FinishedGoods",
         component:SearchFinishedGoodComponent
@@ -98,6 +109,18 @@ const inventory_routes: Routes=[
       {
         path:"FinishedGoods/AddFinishedGood",
         component:AddFinishedGoodComponent,
+      },
+      {
+        path:"UpdateRawMaterial/:id",
+        component:UpdateRawMaterialComponent,
+      },
+      {
+        path:"UpdateIntermediary/:id",
+        component:UpdateIntermediaryComponent
+      },
+      {
+        path:"UpdateFinishedGood/:id",
+        component:UpdateFinishedGoodComponent
       }
     ]
   },
@@ -112,7 +135,8 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[ActivateUnitComponent,SearchInactiveUnitComponent,RetrieveInactiveUnitDetailComponent,SearchActiveUnitComponent,
+export const inventory_routing_components=[InventoryBodyComponent,UpdateRawMaterialComponent,DeactivateRawMaterialComponent,UpdateIntermediaryComponent,DeactivateIntermediaryComponent,
+  UpdateFinishedGoodComponent,DeactivateFinishedGoodComponent,ActivateUnitComponent,SearchInactiveUnitComponent,RetrieveInactiveUnitDetailComponent,SearchActiveUnitComponent,
   RetrieveActiveUnitDetailComponent,DeactivateUnitComponent,UpdateUnitComponent,RegisterUnitComponent,RetrieveUnitDetailComponent,SearchUnitComponent,
   AddFinishedGoodComponent,AddIntermediaryComponent,AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
   SearchRawMaterialComponent,ViewRawMaterialDetailComponent,SearchIntermediaryComponent,ViewIntermediaryDetailComponent, InventoryDashboardComponent];
