@@ -2,6 +2,7 @@ import {Deliverables} from './deliverables';
 import {List} from "../../../../app-data-models/collection-models/list";
 import {Invoice} from './invoice';
 import {Orderhistory} from './orderhistory';
+import { Deliverable } from '../../../purchase/data-models/business-models/deliverable';
 
 export class SalesOrder {
     //private members
@@ -15,7 +16,6 @@ export class SalesOrder {
     private deliverables : List<Deliverables>;
     private history : List<Orderhistory>;
     private status:string;
-    private exist : boolean;
 
     //constructor
     constructor(sales_order_data ?: any){
@@ -99,6 +99,5 @@ export class SalesOrder {
     getOrderHistory():List<Orderhistory>{
         return this.history;
     }//getOrderHIstory
-    setOrderExistance(flag : boolean){this.exist = flag}//setOrderExistance
-    getOrderExistance():boolean{return this.exist;}
+   
 }//class

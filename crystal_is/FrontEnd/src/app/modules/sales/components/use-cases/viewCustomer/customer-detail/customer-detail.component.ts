@@ -64,7 +64,6 @@ export class CustomerDetailComponent extends PersonDetailComponent implements On
       .subscribe(salesorders=>{
           this.setSalesOrder(salesorders);
           this.setOrdersOfCustomer();
-          console.log(this.getSalesOrder());
           if(this.getSalesOrder()){this.setDataStatus(true);}
       });//salesOrderservice
   });//getCustomerById
@@ -83,19 +82,19 @@ getSalesOrder():List<SalesOrder>{return this.sales_Orders}
  setOrdersOfCustomer(){
   for(let order of this.sales_Orders){
    this.setcusReceivables(order.getReceivables());
-    if(order.getStatus()=="estimate"){
+    if(order.getStatus()=="estimate"|| order.getStatus()=='Estimate'){
       this.setEstimatesOfCustomer(order)
     }//if
-    else if((order.getStatus()=="delivered")){
+    else if((order.getStatus()=="delivered" || order.getStatus()=='Delivered')){
       this.setDeliveredOrders(order);
     }//else if
-    else if((order.getStatus()=="production")){
+    else if((order.getStatus()=="production" || order.getStatus()=='Production')){
       this.setOrdersInProduction(order);
     }//else of
-    else if((order.getStatus()=="ready")){
+    else if((order.getStatus()=="ready" || order.getStatus()=='Ready')){
       this.setReadyOrders(order);
     }//else of
-    else if((order.getStatus()=="confirmed")){
+    else if((order.getStatus()=="confirmed" || order.getStatus()=='Confirmed')){
       this.setConfOrderOfCustomer(order);
     }//else of
   }//for
@@ -128,6 +127,8 @@ getOrdersOfCustomer():List<any>{
 }//getOrdersOfCustomer
 
 getEstimatesOfCustomer():List<SalesOrder>{
+  console.log("komo");
+  console.log(this.estimates);
   return this.estimates;
 }//getEstimatesOfCustomer
 

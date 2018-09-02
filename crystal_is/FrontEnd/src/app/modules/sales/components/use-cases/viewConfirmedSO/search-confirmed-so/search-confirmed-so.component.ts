@@ -15,6 +15,9 @@ import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 })
 export class SearchConfirmedSOComponent extends SearchOrderComponent implements OnInit {
 
+  private production_state : boolean;
+  private saleOrder_id : any;
+  
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private SO : SalesOrderService, private cusService : CustomerService, private router : Router) { 
     super();
   }//constructor
@@ -39,5 +42,39 @@ export class SearchConfirmedSOComponent extends SearchOrderComponent implements 
   getOrderDetail(orderId : any){
     this.router.navigateByUrl("Sales/confirmedOrder/"+orderId);
   }//detail
+
+  productionState(orderId : any){
+    this.setProductionState(false);
+    let order = SalesOrder;
+    this.SO.getSalesOrderById(orderId).subscribe(order=>{
+      order = new SalesOrder(order[0]);
+      this.SO.moveToProductionState(order).subscribe(result=>{
+         //delete item
+         let orders = this.getOrders();
+         let index = orders.getIndexOf(order);
+         orders.delete(index);
+         this.setOrders(orders);
+         
+        this.setProductionState(true);
+      })
+    });//get salesOrder
+  }//productionState
+
+  PayBill(orderId : any){
+    this.router.navigateByUrl("Sales/payBill/"+orderId);
+  }//PayBill
+
+  setModal(event_target : any , id : any){
+    this.saleOrder_id = id
+    event_target.setAttribute("data-toggle","modal");
+    event_target.setAttribute("data-target","#myModal");
+    //console.log(event_target);
+  }
+  getModal():any{
+    return this.saleOrder_id;
+  }
+
+  setProductionState(flag : boolean){this.production_state=flag}
+  getProductionState():boolean{return this.production_state;}
 
 }

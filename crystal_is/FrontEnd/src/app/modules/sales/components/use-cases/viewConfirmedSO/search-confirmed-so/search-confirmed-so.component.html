@@ -42,35 +42,46 @@
                   <td>
                       {{order.getReceivables()}}
                   </td>
-                  <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Actions</button></td>
-                  <td>
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
-                      <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Actions</h4>
-                          </div>
-                          <div class="modal-body">
-                              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="getOrderDetail(this.order.getSalesOrderId())">Check Order Detail</button><hr>
-                              <button class="btn btn-warning btn-block" data-dismiss="modal" (click)="updateOrder(this.order.getSalesOrderId())">Update Order</button><hr>
-                              <button class="btn btn-danger btn-block" data-dismiss="modal" (click)="deleteOrder(this.order.getSalesOrderId())">Delete Order</button>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>  
-                  </td>
+                  <td><button class="btn btn-primary"  (click)='this.setModal($event.target , order.getSalesOrderId())'>Actions</button></td>
                 </tr>
               </tbody>
-            </table>  
-            
-      </div>
+            </table>
+             <!-- Modal -->
+             <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Actions</h4>
+                  </div>
+                  <div class="modal-body">
+                      <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="getOrderDetail(this.getModal())">Check Order Detail</button><hr>
+                      <button class="btn btn-warning btn-block" data-dismiss="modal" (click)="productionState(this.getModal())"  data-toggle="modal" data-target="#productionModal">Move To Production state</button><hr>
+                      <button class="btn btn-danger btn-block" data-dismiss="modal" (click)="PayBill(this.getModal())">Pay Bill</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>   
+        </div>
       </div>
     </div>
+    <!-- Modal -->
+    <div id="productionModal" class="modal fade" role="dialog" >
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body" *ngIf='this.getProductionState()'>
+            <h3>Order succefully move to production state !</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>

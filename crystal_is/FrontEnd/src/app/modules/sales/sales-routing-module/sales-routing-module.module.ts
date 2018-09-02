@@ -26,6 +26,8 @@ import { UpdateCustomerComponent} from '../components/use-cases/update-customer/
 import {DeleteCustomerComponent} from '../components/use-cases/delete-customer/delete-customer.component'
 import { TestFormComponent } from '../components/use-cases/test-form/test-form.component';
 import { UpdateEstimateComponent } from '../components/use-cases/update-estimate/update-estimate.component';
+import {PayBillComponent} from '../components/use-cases/pay-bill/pay-bill.component';
+import { CatalogComponent } from '../components/use-cases/catalog/catalog.component';
 
 const sales_routes: Routes = [
   {
@@ -128,6 +130,14 @@ const sales_routes: Routes = [
       {
         path : 'updateEstimate/:id',
         component : UpdateEstimateComponent
+      },
+      {
+        path : 'payBill/:id',
+        component : PayBillComponent
+      },
+      {
+        path : 'catalog',
+        component : CatalogComponent 
       }
     ]
   }
@@ -146,4 +156,4 @@ export const sales_routing_components=[SalesSidebarComponent,SalesContentCompone
 SearchConfirmedSOComponent,ConfirmedOrderDetailComponent,SearchDeliveredSOComponent, DeliveredSODetailComponent,
 ReadySODetailComponent,SearchReadySOComponent,SOInProductionDetailComponent,SearchSOInProductionComponent,
 SearchEstimateComponent,RegisterCustomerComponent,ResgisterEstimateComponent,SearchCustomerComponent,
-OrderDetailComponent,ConfirmEstimateComponent,UpdateCustomerComponent,UpdateEstimateComponent,TestFormComponent,DeleteCustomerComponent, EstimateDetailComponent];
+OrderDetailComponent,ConfirmEstimateComponent,PayBillComponent,CatalogComponent ,UpdateCustomerComponent,UpdateEstimateComponent,TestFormComponent,DeleteCustomerComponent, EstimateDetailComponent];

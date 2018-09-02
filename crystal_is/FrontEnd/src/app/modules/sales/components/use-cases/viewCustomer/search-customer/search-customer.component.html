@@ -21,7 +21,7 @@
                   <th>Company</th>
                   <th>Address</th>
                   <th>Actions</th>
-                  <th></th>
+                 
                 </tr>
               </thead>
               <tbody >
@@ -42,9 +42,9 @@
                         {{address.getAddress()}}
                     </div>
                 </td>
-                  <td><button class="btn btn-primary" (click)="getDetail(this.person.getCusId())">Detail</button></td>
-                  <td><button class="btn btn-warning" (click)="editCustomer(this.person.getCusId())">Edit</button></td>
-                  <td><button class="btn btn-danger" (click)='removeExistance(this.person.getCusId())'>Delete</button></td>
+                  <td><button style='width:100%' class="btn btn-primary" (click)="getDetail(this.person.getCusId())">Detail</button></td>
+                  <td><button style='width:100%' class="btn btn-warning" (click)="editCustomer(this.person.getCusId())">Edit</button></td>
+                 <!-- <td><button class="btn btn-danger" (click)='removeExistance(this.person.getCusId())'>Delete</button></td>-->
                 </tr>
               </tbody>
             </table>    

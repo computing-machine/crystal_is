@@ -5,7 +5,6 @@ import {Builty} from './builty';
 
 export class Invoice {
     //private members
-    private status : any;
     private payments : List<Payment>;
     private builty : Builty;
 
@@ -17,12 +16,16 @@ export class Invoice {
         }//if
     }
    
-    setPayments(payments_data : any){
-        this.payments = new List<Payment>();
-        for(let payment_data of payments_data){
-            let payment = new Payment(payment_data);
-            this.payments.add(payment);
-        }//for
+    setPayments(payments_data? : any){
+        //this.payments = new List<Payment>();
+        //this.payments = payments_data;
+        if(payments_data!=undefined){
+            this.payments = new List<Payment>();
+            for(let payment_data of payments_data){
+                let payment = new Payment(payment_data);
+                this.payments.add(payment);
+            }//for
+        }//if
     }//setPayments
     setBuilty(builty : any){
         this.builty = new Builty(builty);

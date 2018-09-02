@@ -114,6 +114,16 @@ router.get('/SalesOrders/cusId/:id/salperId/:salperId',function(req,res){
     });
  });
 
+ router.delete("/Estimate/delete/:_id",function(req,res){
+    let query = {_id : req.params._id};
+    salesorder.deleteEstimate(query,(err,estimate)=>{
+        if(err) return res.status(505).send(err);
+        else{
+            return res.status(200).send(estimate);
+        }//else
+    });//delete customer
+});//delete customer
+
 
 
 module.exports = router;

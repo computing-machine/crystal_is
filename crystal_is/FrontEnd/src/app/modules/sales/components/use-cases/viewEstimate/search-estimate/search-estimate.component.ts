@@ -18,13 +18,16 @@ import { CustomerService } from '../../../../data-services/customer/customer.ser
 export class SearchEstimateComponent extends SearchOrderComponent implements OnInit {
 
   private saleOrder_id : any;
+  private deleted_estimate : SalesOrder;
+  private confirm_status : boolean;
+  private del_status : boolean;
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private SO : SalesOrderService,
               private FG : FinishedGoodService,private router : Router,
               private cusService :CustomerService ) {
     super();
    }
 
-  ngOnInit() {
+  ngOnInit(){
     this.setOrders(new List<SalesOrder>());
     this.setOrderCusList(new List<any>());
     this.SO.getEstimatesBySalPerId(this.storage.get('user_id')).subscribe(response =>{
@@ -47,6 +50,30 @@ export class SearchEstimateComponent extends SearchOrderComponent implements OnI
   updateOrder(orderId : any){
    this.router.navigateByUrl("Sales/updateEstimate/"+orderId);
   }//updateOrder
+  confirmEstimate(estimateId :any){
+    this.setEstimateconStatus(false);
+    this.SO.getSalesOrderById(estimateId).subscribe(estimate=>{
+      let order = new SalesOrder(estimate[0]);
+      this.SO.ConfirmEstimate(order).subscribe(result=>{
+         //delete item
+         let orders = this.getOrders();
+         let index = orders.getIndexOf(order);
+         orders.delete(index);
+         this.setOrders(orders);
+         
+       this. setEstimateconStatus(true);
+      });
+    });//getSalesOrderById
+  }//confirmEstimate
+
+  deleteOrder(estimateId:any){
+    this.setEstimateDelStatus(false);
+    this.SO.deleteEstimate(estimateId).subscribe(result=>{
+      this.deleted_estimate = new SalesOrder(result[0]);
+      this.setEstimateDelStatus(true);
+    });
+  }//deleteOrder
+
   setModal(event_target : any , id : any){
     this.saleOrder_id = id
     event_target.setAttribute("data-toggle","modal");
@@ -55,5 +82,16 @@ export class SearchEstimateComponent extends SearchOrderComponent implements OnI
   }
   getModal():any{
     return this.saleOrder_id;
+  }
+  setEstimateDelStatus(flag:boolean){
+    this.del_status = flag;
+  }//setEstimateDelStatus
+  getEstimateDelStatus():boolean{return this.del_status;}
+
+  setEstimateconStatus(flag:boolean){
+    this.confirm_status = flag;
+  }//setEstimateconStatus
+  getEstimateconStatus():boolean{
+    return this.confirm_status;
   }
 }

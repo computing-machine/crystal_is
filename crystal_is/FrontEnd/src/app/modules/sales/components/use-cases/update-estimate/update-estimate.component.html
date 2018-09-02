@@ -16,21 +16,21 @@
                             <tr>
                               <td style="border:0px;padding:0px">
                               <div *ngFor="let con of this.customer.getContacts()">
-                                      {{con}}
+                                {{con}}
                               </div>
                                 </td>
                             </tr>
                             <tr>
                               <td style="border:0px;padding:0px">
                                   <div *ngFor="let add of this.customer.getAddresses()">
-                                      {{add.getAddress()}}
+                                    {{add.getAddress()}}
                                   </div>
                                 </td>
                             </tr>
                             <tr>
                               <td style="border:0px;padding:0px">
                                   <div *ngFor="let com of this.customer.getCusCompanies()">
-                                          {{com.getCompanyName()}}
+                                    {{com.getCompanyName()}}
                                   </div>
                               </td>
                             </tr>
@@ -41,7 +41,7 @@
                 <br/>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h2>Update Estimate</h2>
+                        <h3><i>Update Estimate</i></h3>
                         <h5>{{this.estimate_deli_detail.getEstimate().getSalesOrderId()}}</h5>
                     </div>
                 </div>
@@ -55,71 +55,137 @@
                                     <th><h5>Quantity</h5></th>
                                     <th><h5>Amount</h5></th>
                                     <th><h5>Action</h5></th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let fg of this.estimate_deli_detail.getdeliverableDetail()">
-                                        <td class="col-md-2">
-                                            <div class='form-group'>
-                                                <input  class='form-control' type='text' value={{fg.getFG().getName()}} readonly>
-                                            </div>
-                                        </td>
-                                        <td class="col-md-2">
-                                            <div class='form-group'>
-                                                <input  class='form-control' type='text' value={{fg.getUnit().getName()}} readonly>
-                                            </div>
-                                        </td>
-                                        <td class="col-md-2">
-                                            <div class='form-group'>
-                                                <input  class='form-control' type='text' value= {{fg.getQuantity()}}>
-                                            </div>
-                                        </td>
-                                        <td class="col-md-2">
-                                            <div class='form-group'>
-                                                <input  class='form-control' type='text' value={{fg.getFG().getPrice()}} readonly>
-                                            </div>
-                                        </td>
-                                        <td class='col-md-2'>
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </td>
+                                    <td class="col-md-2">
+                                        <div class='form-group'>
+                                            <input  class='form-control' type='text' value={{fg.getFG().getName()}} readonly>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <div class='form-group'>
+                                            <input  class='form-control' type='text' value={{fg.getUnit()}} readonly>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <div class='form-group'>
+                                            <input  class='form-control' type='text' value= {{fg.getQuantity()}}>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <div class='form-group'>
+                                            <input  class='form-control' type='text' value={{fg.getFG().getPrice()}} readonly>
+                                        </div>
+                                    </td>
+                                    <td class='col-md-2'>
+                                        <button type="button" class="btn btn-danger" (click)='deleteItem(this.fg)'>Delete</button>
+                                    </td>
                                 </tr>
-                            
                             </tbody>
                     </table>
                     <div class='row'>
-                        <div class='col-md-3 col-sm-10'>
+                        <div class='col-md-3 col-sm-10' style='margin-bottom:15px'>
                             <button  type="button" class="btn btn-info btn-block add_cat" (click)='getCatalog()'>Add items</button>
                         </div>
-                        <div class='col-md-3 col-sm-10' style='float:right'>
-                            <button  type="button" class="btn btn-info btn-block">Save Updates</button>
+                        <div class='col-md-3 col-md-offset-6 col-sm-10' >
+                            <button  type="button" class="btn btn-info btn-block" (click)='updateEstimate()'  data-toggle="modal" data-target="#updateStatus">Save Updates</button>
                         </div>
                     </div>
                     <br>
                 </div>
                 <!--Catalog-->
-                <table class='table' *ngIf='this.getCatalogStatus()'  style='margin-top:15px'>
-                        <tbody>
-                            <tr>
-                                <div class="col-md-6"  *ngFor='let fg of this.catalog' style='margin-bottom:10px' >
-                                    <div style="text-align:center ; display:inline-block; border:solid 1px #808080; padding:15px;width:100%" >
-                                            <div>
-                                                <b style='float:left'>Name : </b>{{fg.getName()}}<br><br>
-                                                <b style='float:left'>Unit :</b> {{fg.getUnitName(this.units)}}<br><br>
-                                                <b style='float:left'>Description :</b> {{fg.getDescription()}}<br><br>
-                                                <b style='float:left'>Quantity :</b><input class='form-control' type='text' placeholder='quantity'><br><br>
-                                            </div>  
-                                            <div class="btn-ground text-center" style="padding-bottom: 30px">
-                                                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add</button>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-info"></i> Info</button>
-                                                <br/>
+                <div  *ngIf='this.getCatalogStatus()'>
+                    <div class='text-center' style='margin-bottom: 20px'>
+                        <h3><i>Catalog</i></h3>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-6 col-sm-12' style='margin-bottom: 10px'>
+                            <input type='text' class='form-control' placeholder="Enter Item Name" [(ngModel)]='pro_name' (input)='this.getItems()'>
+                        </div>
+                        <div class='col-md-6 col-sm-12' style='margin-bottom: 20px'>
+                            <input type='text' class='form-control' placeholder="Enter Unit Name" [(ngModel)]='unit_name' (input)='this.getItems()'>
+                        </div>
+                            <table class='table'>
+                                <tbody>
+                                    <tr>
+                                        <div class="col-md-6"  *ngFor='let fg of this.res_catalog' style='margin-bottom:10px' >
+                                            <div style="text-align:center ; display:inline-block; border:solid 1px #808080; padding:15px;width:100%" >
+                                                <div>
+                                                    <b style='float:left'>Name : </b>{{fg.getName()}}<br><br>
+                                                    <b style='float:left'>Unit :</b> {{fg.getUnitName(this.units)}}<br><br>
+                                                    <b style='float:left'>Quantity :</b><input class='form-control'  type='text' placeholder='quantity' (input)='removeQuantityAlert($event.target)'>
+                                                    <!--Alerts-->
+                                                    <strong style='float:left;color:red' class='hide' id='quantity_alert' >Please Enter Quantity First</strong><br><br>
+                                                    <button style='margin-right:10px'type="button" class="btn btn-primary" (click)='addItems(this.fg,$event.target)'><i class="fa fa-shopping-cart" ></i> Add</button>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)='itemDetail(this.fg)'><i class="fa fa-info"></i> Info</button>
+                                                </div>  
+                                                
+                                               
                                             </div>
+                                        </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Modal -->
+                            <div id="myModal" class="col-sm-12 modal fade" role="dialog" *ngIf='getItemDetailStatus()' >
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content" >
+                                        <div class="modal-header" style='background-color: #1E1F23;color:#fff'>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Item Detail</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class='table'>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Name</b></td>
+                                                        <td>{{this.item_detail.getName()}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Unit</b></td>
+                                                        <td>{{this.item_detail.getUnitName(this.units)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Description</b></td>
+                                                        <td>{{this.item_detail.getDescription()}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Stock</b></td>
+                                                        <td>{{this.item_detail.getStock()}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </tr>
-                        </tbody>
-                </table>
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Model to say item has updated -->
+        <!-- Modal -->
+        <div id="updateStatus" class="modal fade" role="dialog" >
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content" *ngIf='this.getupdateStatus()'>
+            
+            <div class="modal-body">
+                <h2>Estimate has been updated</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+            </div>
+        
+        </div>
+        </div>
 </div>

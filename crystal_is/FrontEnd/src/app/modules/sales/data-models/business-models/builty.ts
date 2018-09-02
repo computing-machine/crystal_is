@@ -1,7 +1,5 @@
 export class Builty {
     //private members
-    private date : any;
-    private status : boolean;
     private vehicle_number :string;
     //constructor
     constructor(builty_data?:any){

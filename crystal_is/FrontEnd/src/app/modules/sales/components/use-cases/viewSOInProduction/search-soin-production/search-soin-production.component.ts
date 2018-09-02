@@ -15,6 +15,8 @@ import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 })
 export class SearchSOInProductionComponent extends SearchOrderComponent implements OnInit {
 
+  private saleOrder_id : any;
+  private ready_state : boolean;
   constructor( @Inject(LOCAL_STORAGE) private storage: WebStorageService, private SO : SalesOrderService, private cusService : CustomerService, private router : Router) { 
     super();
   }//constructor
@@ -39,5 +41,39 @@ export class SearchSOInProductionComponent extends SearchOrderComponent implemen
     this.router.navigateByUrl("Sales/orderInProduction/"+orderId);
   }//detail
 
+  setModal(event_target : any , id : any){
+    this.saleOrder_id = id
+    event_target.setAttribute("data-toggle","modal");
+    event_target.setAttribute("data-target","#myModal");
+    //console.log(event_target);
+  }
+  getModal():any{
+    return this.saleOrder_id;
+  }
+
+  readyState(orderId : any){
+    this.setReadyState(false);
+    let order = SalesOrder;
+    this.SO.getSalesOrderById(orderId).subscribe(order=>{
+      order = new SalesOrder(order[0]);
+      this.SO.moveToReadyState(order).subscribe(result=>{
+        //delete item
+        let orders = this.getOrders();
+        let index = orders.getIndexOf(order);
+        orders.delete(index);
+        this.setOrders(orders);
+        
+        this.setReadyState(true);
+      })
+    });//get salesOrder
+  }//readyState
+
+  PayBill(orderId : any){
+    this.router.navigateByUrl("Sales/payBill/"+orderId);
+  }//PayBill
+
+
+  setReadyState(flag : boolean){this.ready_state = flag}
+  getReadyState(){return this.ready_state;}
 
 }

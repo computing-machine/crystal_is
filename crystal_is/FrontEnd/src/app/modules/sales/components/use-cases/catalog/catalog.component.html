@@ -1,0 +1,71 @@
+<div *ngIf='this.getDataStatus()' class='col-md-11'>
+    <!--Catalog-->
+ <div  *ngIf='this.getCatalogStatus()'>
+    <div class='text-center' style='margin-bottom: 20px'>
+        <h3><i>Catalog</i></h3>
+    </div>
+  <div class='row'>
+      <div class='col-md-6 col-sm-12' style='margin-bottom: 10px'>
+          <input type='text' class='form-control' placeholder="Enter Item Name" [(ngModel)]='pro_name' (input)='this.getItems()'>
+      </div>
+      <div class='col-md-6 col-sm-12' style='margin-bottom: 20px'>
+          <input type='text' class='form-control' placeholder="Enter Unit Name" [(ngModel)]='unit_name' (input)='this.getItems()'>
+      </div>
+          <table class='table'>
+              <tbody>
+                  <tr>
+                      <div class="col-md-6"  *ngFor='let fg of this.res_catalog' style='margin-bottom:10px' >
+                          <div style="text-align:center ; display:inline-block; border:solid 1px #808080; padding:15px;width:100%" >
+                              <div>
+                                  <b style='float:left'>Name : </b>{{fg.getName()}}<br><br>
+                                  <b style='float:left'>Unit :</b> {{fg.getUnitName(this.units)}}<br><br>
+                                  <b style='float:left'>Description :</b> {{fg.getDescription()}}<br><br>
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)='itemDetail(this.fg)'><i class="fa fa-info"></i> Info</button>
+                              </div>  
+                          </div>
+                      </div>
+                  </tr>
+              </tbody>
+          </table>
+          <!-- Modal -->
+          <div id="myModal" class="col-sm-12 modal fade" role="dialog" *ngIf='getItemDetailStatus()' >
+              <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content" >
+                      <div class="modal-header" style='background-color: #1E1F23;color:#fff'>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Item Detail</h4>
+                      </div>
+                      <div class="modal-body">
+                          <table class='table'>
+                              <tbody>
+                                  <tr>
+                                      <td><b>Name</b></td>
+                                      <td>{{this.item_detail.getName()}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><b>Unit</b></td>
+                                      <td>{{this.item_detail.getUnitName(this.units)}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><b>Description</b></td>
+                                      <td>{{this.item_detail.getDescription()}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><b>Stock</b></td>
+                                      <td>{{this.item_detail.getStock()}}</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+ 
