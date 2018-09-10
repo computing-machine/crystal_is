@@ -108,12 +108,12 @@
             <th colspan="4">Used in</th>
           </thead>
           <tbody>
-            <tr *ngFor="let fg of this.resultant_finished_goods">
-              <td class="col-md-3">{{fg.getName()}}</td>
-              <td class="col-md-3">{{fg.getStatus()}}</td>
-              <td class="col-md-3">N/A</td>
-              <td class="col-md-3">N/A</td>
-              <td class="col-md-3"><button class="btn btn-primary" (click)="this.getItemDetail(fg.getId(),'/Inventory/FinishedGood/')">Detail</button></td>
+            <tr *ngFor="let rs of this.resultant">
+              <td class="col-md-3">{{rs[0].getName()}}</td>
+              <td class="col-md-3">{{rs[0].getStatus()}}</td>
+              <td class="col-md-3">{{rs[1].getQuantity()}}</td>
+              <td class="col-md-3">{{this.getUnitName(rs[1].getUnitId(),this.getUnits())}}</td>
+              <td class="col-md-3"><button class="btn btn-primary" (click)="this.getItemDetail(rs[0].getId(),'/Inventory/FinishedGood/')">Detail</button></td>
             </tr>
           </tbody>
         </table>

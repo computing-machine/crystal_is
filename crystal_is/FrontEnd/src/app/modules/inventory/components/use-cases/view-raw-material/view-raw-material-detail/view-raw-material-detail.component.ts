@@ -16,6 +16,8 @@ import {Intermediary} from "../../../../data-models/business-models/intermediary
 import {IntermediaryService} from "../../../../data-services/Intermediary/intermediary.service";
 import {Router} from "@angular/router";
 import {} from "../../deactivate-raw-material/deactivate-raw-material.component";
+import { RawMaterialComponent } from '../../../../data-models/business-models/raw-material-component';
+import { IntermediaryComponent } from '../../../../data-models/business-models/intermediary-component';
 
 
 @Component({
@@ -34,6 +36,7 @@ export class ViewRawMaterialDetailComponent extends ViewNonManufacturedItemDetai
   private resultant_boms:List<BOM>;
   private resultant_finished_goods:List<FinishedGood>;
   private resultant_intermediarys:List<Intermediary>;
+  private resultant:List<[FinishedGood, RawMaterialComponent]>;
 
   constructor(private unit_service:UnitService, private raw_material_service:RawMaterialService, 
     private route:ActivatedRoute, private purchase_history_service:PurchaseHistoryService,
@@ -143,18 +146,27 @@ export class ViewRawMaterialDetailComponent extends ViewNonManufacturedItemDetai
       for(let bom of this.boms){
         for(let rm_compo of bom.getRawMatCompoList()){
           if(rm_compo.getRawMat().getId()==this.getItem().getId()){
-            this.resultant_boms.add(bom);
+            //this.resultant_boms.add(bom);
+            for(let fg of this.finished_goods){
+              if(bom.getId()==fg.getBomId()){
+                let temp_array:[FinishedGood, RawMaterialComponent]=[fg, rm_compo];
+                this.resultant.add(temp_array);
+              }//if
+            }//for
           }//if
         }//for
       }//for
 
+      /*
       for(let fg of this.finished_goods){
         for(let bom of this.resultant_boms){
           if(bom.getId()==fg.getBomId()){
             this.resultant_finished_goods.add(fg);
+
           }//if
         }//for
       }//for
+      */
       this.resultant_boms=new List<BOM>();
       this.setShowIntermediarys(false);
       this.setShowPurchaseHistory(false);
@@ -167,6 +179,7 @@ export class ViewRawMaterialDetailComponent extends ViewNonManufacturedItemDetai
     this.resultant_boms=new List<BOM>();
     this.resultant_finished_goods=new List<FinishedGood>();
     this.resultant_intermediarys=new List<Intermediary>();
+    this.resultant=new List<[FinishedGood, RawMaterialComponent]>();
 
     this.finished_good_service.getFinishedGoods().subscribe(finished_good_data=>{
       for(let data of finished_good_data){
@@ -211,5 +224,14 @@ export class ViewRawMaterialDetailComponent extends ViewNonManufacturedItemDetai
   setShowFinishedGoods(value:boolean):void{this.show_finished_goods=value;}
   setShowIntermediarys(value:boolean):void{this.show_intermediarys=value;}
   setBoms(boms:List<BOM>):void{this.boms=boms;}
+
+  //private function
+  getUnitName(unit_id:Object, Units:List<Unit>):string{
+    for(let unit of Units){
+      if(unit.getId()==unit_id){
+        return unit.getName();
+      }//if
+    }//for
+  }//function
 
 }//class ends
