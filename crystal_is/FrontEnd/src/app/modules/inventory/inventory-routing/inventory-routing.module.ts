@@ -32,6 +32,8 @@ import { DeactivateIntermediaryComponent } from '../components/use-cases/deactiv
 import { DeactivateFinishedGoodComponent } from '../components/use-cases/deactivate-finished-good/deactivate-finished-good.component';
 import { UpdateFinishedGoodComponent } from '../components/use-cases/update-finished-good/update-finished-good.component';
 import { InventoryBodyComponent } from '../components/gui-elements/inventory-body/inventory-body.component';
+import { SearchSalesOrderComponent } from '../components/use-cases/inspect-sales-order/search-sales-order/search-sales-order.component';
+import { RetrieveSalesOrderDetailComponent } from '../components/use-cases/inspect-sales-order/retrieve-sales-order-detail/retrieve-sales-order-detail.component';
 
 const inventory_routes: Routes=[
   {
@@ -135,7 +137,7 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[InventoryBodyComponent,UpdateRawMaterialComponent,DeactivateRawMaterialComponent,UpdateIntermediaryComponent,DeactivateIntermediaryComponent,
+export const inventory_routing_components=[RetrieveSalesOrderDetailComponent,SearchSalesOrderComponent,InventoryBodyComponent,UpdateRawMaterialComponent,DeactivateRawMaterialComponent,UpdateIntermediaryComponent,DeactivateIntermediaryComponent,
   UpdateFinishedGoodComponent,DeactivateFinishedGoodComponent,ActivateUnitComponent,SearchInactiveUnitComponent,RetrieveInactiveUnitDetailComponent,SearchActiveUnitComponent,
   RetrieveActiveUnitDetailComponent,DeactivateUnitComponent,UpdateUnitComponent,RegisterUnitComponent,RetrieveUnitDetailComponent,SearchUnitComponent,
   AddFinishedGoodComponent,AddIntermediaryComponent,AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,

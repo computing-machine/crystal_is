@@ -1,0 +1,20 @@
+<div *ngIf="this.getDataReady()">
+  <div class="wrap">
+      <div class="box box1">
+        <h3>Confirmed</h3>
+        <p>{{this.getConfirmedOrders().getLength()}}</p>
+      </div>
+      <div class="box box1">
+        <h3>In production</h3>
+        <p>{{this.getProductionOrders().getLength()}}</p>
+      </div>
+      <div class="box box1">
+        <h3>Ready</h3>
+        <p>{{this.getReadyOrders().getLength()}}</p>
+      </div>
+      <div class="box box1">
+        <h3>Delivered</h3>
+        <p>{{this.getDeliveredOrders().getLength()}}</p>
+      </div>
+    </div>  
+</div>

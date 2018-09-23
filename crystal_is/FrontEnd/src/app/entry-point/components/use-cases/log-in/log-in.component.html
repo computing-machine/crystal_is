@@ -4,9 +4,9 @@
         <div class="col-md-6 col-md-offset-5">
             <div class="form-login">
             <h4>Crystal Information System</h4>
-            <input type="text" id="userName" [(ngModel)]="input_username" class="form-control input-sm chat-input" placeholder="username" />
+            <input (keyup.enter)="this.logIn()" type="text" id="userName" [(ngModel)]="input_username" class="form-control input-sm chat-input" placeholder="username" />
             <br>
-            <input type="text" id="userPassword" [(ngModel)]="input_password" class="form-control input-sm chat-input" placeholder="password" />
+            <input (keyup.enter)="this.logIn()" type="text" id="userPassword" [(ngModel)]="input_password" class="form-control input-sm chat-input" placeholder="password" />
             <br>
             <div class="wrapper">
             <span class="group-btn">     

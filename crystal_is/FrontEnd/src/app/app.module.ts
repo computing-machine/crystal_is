@@ -21,7 +21,7 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     inventory_routing_components,
     purchase_routing_components,
     payroll_routing_components,
-    sales_routing_components,
+    sales_routing_components
 
   ],
   imports: [

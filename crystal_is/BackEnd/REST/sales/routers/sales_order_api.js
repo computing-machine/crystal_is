@@ -124,6 +124,48 @@ router.get('/SalesOrders/cusId/:id/salperId/:salperId',function(req,res){
     });//delete customer
 });//delete customer
 
+router.get("/SalesOrders/Status/Confirmed", function(req, res){
+    salesorder.getAllConfirmedOrders((err, sales_orders)=>{
+        if(err){
+            res.send(err);
+        }//if
+        else{
+            res.json(sales_orders);
+        }//else
+    })
+})
 
+router.get("/SalesOrders/Status/Production", function(req, res){
+    salesorder.getAllProductionOrders((err, sales_orders)=>{
+        if(err){
+            res.send(err);
+        }//if
+        else{
+            res.json(sales_orders);
+        }//else
+    })
+})
+
+router.get("/SalesOrders/Status/Ready", function(req, res){
+    salesorder.getAllReadyOrders((err, sales_orders)=>{
+        if(err){
+            res.send(err);
+        }//if
+        else{
+            res.json(sales_orders);
+        }//else
+    })
+})
+
+router.get("/SalesOrders/Status/Delivered", function(req, res){
+    salesorder.getAllDeliveredOrders((err, sales_orders)=>{
+        if(err){
+            res.send(err);
+        }//if
+        else{
+            res.json(sales_orders);
+        }//else
+    })
+})
 
 module.exports = router;

@@ -11,6 +11,30 @@ export class SalesOrderService {
   private date = new Date();
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private http : Http) { }
 
+  getAllConfirmedOrders(){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/Status/Confirmed').pipe(map(data=>{
+      return data.json();
+    }));
+  }//getSalesOrders
+
+  getAllProductionOrders(){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/Status/Production').pipe(map(data=>{
+      return data.json();
+    }));
+  }//getSalesOrders
+
+  getAllReadyOrders(){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/Status/Ready').pipe(map(data=>{
+      return data.json();
+    }));
+  }//getSalesOrders
+
+  getAllDeliveredOrders(){
+    return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/Status/Delivered').pipe(map(data=>{
+      return data.json();
+    }));
+  }//getSalesOrders
+
   getSalesOrders(){
     return this.http.get('http://localhost:3000/Sales/SalesOrderApi/SalesOrders/').pipe(map(data=>{
       return data.json();

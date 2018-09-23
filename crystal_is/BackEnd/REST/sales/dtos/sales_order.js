@@ -81,6 +81,22 @@ module.exports.getConfirmedOrdersBySalperId = function(id,callback){
     });
 }//getConfirmedOrders
 
+module.exports.getAllConfirmedOrders = function(callback){
+    salesorder.find({$or:[{status:{$eq:"confirmed"}},{status:{$eq:"Confirmed"}}]}, callback);
+}//getConfirmedOrders
+
+module.exports.getAllProductionOrders = function(callback){
+    salesorder.find({$or:[{status:{$eq:"production"}},{status:{$eq:"Production"}}]}, callback);
+}//getConfirmedOrders
+
+module.exports.getAllReadyOrders = function(callback){
+    salesorder.find({$or:[{status:{$eq:"ready"}},{status:{$eq:"Ready"}}]}, callback);
+}//getConfirmedOrders
+
+module.exports.getAllDeliveredOrders = function(callback){
+    salesorder.find({$or:[{status:{$eq:"delivered"}},{status:{$eq:"Delivered"}}]}, callback);
+}//getConfirmedOrders
+
 module.exports.getOrdersInProduction= function(id,callback){
     let orders = [];
     salesorder.getAllSalesOrder((err,result)=>{
