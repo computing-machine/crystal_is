@@ -13,6 +13,10 @@ import { InventoryRoutingModule, inventory_routing_components } from "./modules/
 import { PurchaseRoutingModule, purchase_routing_components } from "./modules/purchase/purchase-routing/purchase-routing.module";
 import { PayrollRoutingModule, payroll_routing_components } from "./modules/payroll/payroll-routing/payroll-routing.module";
 import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sales-routing-module/sales-routing-module.module";
+import {PointOfSaleRoutingModule, point_of_sale_routing_components} from "./modules/point-of-sale/point-of-sale-routing/point-of-sale-routing.module";
+import { RegisterNonProcessLineItemComponent } from './modules/inventory/components/use-cases/register-non-process-line-item/register-non-process-line-item.component';
+import { UpdateNonProcessLineItemComponent } from './modules/inventory/components/use-cases/update-non-process-line-item/update-non-process-line-item.component';
+import { DeactivateNonProcessLineItemComponent } from './modules/inventory/components/use-cases/deactivate-non-process-line-item/deactivate-non-process-line-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     inventory_routing_components,
     purchase_routing_components,
     payroll_routing_components,
-    sales_routing_components
+    sales_routing_components,
+    point_of_sale_routing_components,
+    RegisterNonProcessLineItemComponent,
+    UpdateNonProcessLineItemComponent,
+    DeactivateNonProcessLineItemComponent,
 
   ],
   imports: [
@@ -32,6 +40,7 @@ import {SalesRoutingModule, sales_routing_components} from "./modules/sales/sale
     PurchaseRoutingModule,
     PayrollRoutingModule,
     SalesRoutingModule,
+    PointOfSaleRoutingModule,
     AppRoutingModule,
     ReactiveFormsModule,
     StorageServiceModule,

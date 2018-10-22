@@ -50,6 +50,10 @@ export class LogInComponent implements OnInit {
               this.storage.set("user_id", this.employee.getId());
               this.router.navigateByUrl("/Sales");
             }//if
+            else if(this.job_description.getDesignation()=="Cashier"){
+              this.storage.set("user_id", this.employee.getId());
+              this.router.navigateByUrl("/PointOfSale/Dashboard");
+            }//if
           });
         });
       }//if

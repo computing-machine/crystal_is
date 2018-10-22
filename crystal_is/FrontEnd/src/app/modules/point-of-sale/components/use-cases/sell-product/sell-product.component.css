@@ -1,0 +1,33 @@
+#main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    background-color: blue;
+    padding: 10px;
+}
+
+#main button{
+    height: 50px;
+    width: 50px;
+    background-color: brown;
+    color: white;
+    margin: 2px;
+}
+
+#my_screen{
+    border: 1px solid black;
+    width: 100%;
+    height: 500px;
+}
+
+#my_container{
+    padding: 10px;
+}
+
+#my_content{
+    border: 1px solid black;
+    width: 100%;
+    height: 500px;
+}

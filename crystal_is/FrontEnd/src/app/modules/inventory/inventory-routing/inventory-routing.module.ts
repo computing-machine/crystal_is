@@ -34,6 +34,10 @@ import { UpdateFinishedGoodComponent } from '../components/use-cases/update-fini
 import { InventoryBodyComponent } from '../components/gui-elements/inventory-body/inventory-body.component';
 import { SearchSalesOrderComponent } from '../components/use-cases/inspect-sales-order/search-sales-order/search-sales-order.component';
 import { RetrieveSalesOrderDetailComponent } from '../components/use-cases/inspect-sales-order/retrieve-sales-order-detail/retrieve-sales-order-detail.component';
+import { SearchNonProcessLineItemComponent } from '../components/use-cases/inspect-non-process-line-item/search-non-process-line-item/search-non-process-line-item.component';
+import { RetrieveNonProcessLineItemDetailComponent } from '../components/use-cases/inspect-non-process-line-item/retrieve-non-process-line-item-detail/retrieve-non-process-line-item-detail.component';
+import { RegisterNonProcessLineItemComponent } from '../components/use-cases/register-non-process-line-item/register-non-process-line-item.component';
+import { UpdateNonProcessLineItemComponent } from '../components/use-cases/update-non-process-line-item/update-non-process-line-item.component';
 
 const inventory_routes: Routes=[
   {
@@ -67,6 +71,14 @@ const inventory_routes: Routes=[
       {
         path:"Intermediary/:id",
         component:ViewIntermediaryDetailComponent,
+      },
+      {
+        path:"NonProcessLineItems",
+        component:SearchNonProcessLineItemComponent,
+      },
+      {
+        path:"NonProcessLineItem/:id",
+        component:RetrieveNonProcessLineItemDetailComponent,
       },
       {
         path:"RawMaterials/NewItem",
@@ -113,6 +125,10 @@ const inventory_routes: Routes=[
         component:AddFinishedGoodComponent,
       },
       {
+        path:"NonProcessLineItems/RegisterNonProcessLineItem",
+        component:RegisterNonProcessLineItemComponent,
+      },
+      {
         path:"UpdateRawMaterial/:id",
         component:UpdateRawMaterialComponent,
       },
@@ -123,6 +139,10 @@ const inventory_routes: Routes=[
       {
         path:"UpdateFinishedGood/:id",
         component:UpdateFinishedGoodComponent
+      },
+      {
+        path:"UpdateNonProcessLineItem/:id",
+        component:UpdateNonProcessLineItemComponent
       }
     ]
   },
@@ -137,7 +157,7 @@ const inventory_routes: Routes=[
   declarations: []
 })
 export class InventoryRoutingModule { }
-export const inventory_routing_components=[RetrieveSalesOrderDetailComponent,SearchSalesOrderComponent,InventoryBodyComponent,UpdateRawMaterialComponent,DeactivateRawMaterialComponent,UpdateIntermediaryComponent,DeactivateIntermediaryComponent,
+export const inventory_routing_components=[RetrieveNonProcessLineItemDetailComponent,SearchNonProcessLineItemComponent,RetrieveSalesOrderDetailComponent,SearchSalesOrderComponent,InventoryBodyComponent,UpdateRawMaterialComponent,DeactivateRawMaterialComponent,UpdateIntermediaryComponent,DeactivateIntermediaryComponent,
   UpdateFinishedGoodComponent,DeactivateFinishedGoodComponent,ActivateUnitComponent,SearchInactiveUnitComponent,RetrieveInactiveUnitDetailComponent,SearchActiveUnitComponent,
   RetrieveActiveUnitDetailComponent,DeactivateUnitComponent,UpdateUnitComponent,RegisterUnitComponent,RetrieveUnitDetailComponent,SearchUnitComponent,
   AddFinishedGoodComponent,AddIntermediaryComponent,AddItemComponent,AddRawMaterialComponent,InventorySidebarComponent,InventoryContentComponent,SearchFinishedGoodComponent, ViewFinishedGoodDetailComponent,
